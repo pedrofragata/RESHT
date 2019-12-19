@@ -1,16 +1,16 @@
 <template>
   <nav class="navbar navbar is-fixed-top is-black" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <router-link id="restaurant-title" to="/">Restaurante Aplicação</router-link>
+      <router-link class="ra-title" to="/">Restaurante Aplicação</router-link>
 
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="restaurant-navbar">
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="ra-navbar">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
 
-    <div id="restaurant-navbar" class="navbar-menu">
+    <div id="ra-navbar" class="navbar-menu">
       <div class="navbar-start">
         <a class="navbar-item">
           Home
@@ -45,6 +45,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-  @import "@/styles/_nav.scss";
-</style>
+<style src="@/styles/nav.scss" lang="scss"></style>

@@ -2,9 +2,7 @@
   <div>
     <Nav />
     <section class="hero is-fullheight-with-navbar">
-      <div class="hero-body">
-        <img src="@/assets/stil-u2Lp8tXIcjw-unsplash.jpg">
-      </div>
+      <img src="@/assets/stil-u2Lp8tXIcjw-unsplash.jpg">
     </section>
     <!-- <div class="container is-fluid">
       <div class="notification">
@@ -87,6 +85,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-  @import "@/styles/_home.scss";
-</style>
+<style src="@/styles/home.scss" lang="scss"></style>
