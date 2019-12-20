@@ -9,3 +9,29 @@
         height: 100%;
     }
 }
+
+.ra-section-content {
+    margin-top: 4em;
+
+    .ra-dish-name {
+        color: #FFF;
+        margin-bottom: 40px;
+    }
+    
+    .ra-dish-desc {
+        color: $ra-grey;
+        line-height: 1.8;
+    }
+    
+    .ra-disc-image {
+        height: 600px;
+        object-fit: cover;
+        object-position: center center;
+    }
+    
+    .ra-day-selector-wrapper {
+        display: flex;
+        justify-content: space-around;
+        //align-items: flex-end;
+    }
+}

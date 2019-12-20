@@ -1,0 +1,17 @@
+.ra-divider {
+    display: flex;
+    align-items: center;
+    margin: 3em -1em;
+    color: $ra-green !important;
+    font-family: $ra-fontfamily-serif;
+    font-size: $ra-fontsize-title;
+  
+    &:before,
+    &:after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        margin: 0 1em;
+        box-shadow: 0 0.5px 0 $ra-green;
+    }
+}

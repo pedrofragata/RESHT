@@ -2,14 +2,27 @@
   <div>
     <Nav />
     <section class="hero is-fullheight-with-navbar">
-      <img src="@/assets/stil-u2Lp8tXIcjw-unsplash.jpg">
+      <img src="@/assets/stil-u2Lp8tXIcjw-unsplash.jpg" />
     </section>
-    <!-- <div class="container is-fluid">
-      <div class="notification">
-        This container is <strong>fluid</strong>: it will have a 32px gap on either side, on any
-        viewport size.
+    <div class="container is-fluid">
+      <SectionHeader title="Prato do dia" />
+      <div class="columns ra-section-content">
+        <div class="column is-4 is-offset-2">
+          <h3 class="title is-3 has-text-weight-bold ra-dish-name">Amêijoas à Bulhão Pato</h3>
+          <p class="is-size-5	ra-dish-desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices tincidunt arcu non sodales neque sodales. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.
+          </p>
+          <div class="ra-day-selector-wrapper">
+            <button class="button">10</button>
+            <button class="button">11</button>
+            <button class="button">12</button>
+          </div>
+        </div>
+        <div class="column is-4">
+          <img class="ra-disc-image" src="@/assets/ameijoas-a-bulhao-pato.jpg"/>
+        </div>
       </div>
-    </div> -->
+    </div>
   </div>
 
   <!-- <div class="home"> -->
@@ -43,6 +56,7 @@
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
 import Nav from "@/components/Nav.vue";
+import SectionHeader from "@/components/SectionHeader.vue";
 
 // class User {
 //   constructor(
@@ -56,7 +70,8 @@ import Nav from "@/components/Nav.vue";
 export default {
   name: "home",
   components: {
-    Nav
+    Nav,
+    SectionHeader
   },
   // data(){
   //   return {

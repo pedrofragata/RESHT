@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar is-fixed-top is-black" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <router-link class="ra-title" to="/">Restaurante Aplicação</router-link>
+      <router-link class="ra-brand" to="/">Restaurante Aplicação</router-link>
 
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="ra-navbar">
         <span aria-hidden="true"></span>
