@@ -1,4 +1,11 @@
-@import "~bulma/bulma";
+// importar fonts
+@import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css?family=Tinos&display=swap');
 
-@import "./font.scss";
-@import "./colors.scss";
+// substituir as variaveis predefenidas da Bulma
+$family-primary: 'Inter', sans-serif;
+$family-secondary: 'Tinos', serif;
+$primary: #C5E058;
+
+// importar Bulma
+@import "~bulma/bulma";

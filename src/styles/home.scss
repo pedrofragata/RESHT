@@ -10,28 +10,36 @@
     }
 }
 
-.ra-section-content {
+.columns {
     margin-top: 4em;
+}
 
-    .ra-dish-name {
-        color: #FFF;
-        margin-bottom: 40px;
-    }
-    
-    .ra-dish-desc {
-        color: $ra-grey;
-        line-height: 1.8;
-    }
-    
-    .ra-disc-image {
-        height: 600px;
-        object-fit: cover;
-        object-position: center center;
-    }
-    
-    .ra-day-selector-wrapper {
-        display: flex;
-        justify-content: space-around;
-        //align-items: flex-end;
+.ra-dish-name {
+    height: 10%;
+}
+
+.ra-dish-desc {
+    line-height: 1.6;
+    height: 80%;
+    width: 90%;
+}
+
+.ra-dish-image {
+    height: 600px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.ra-day-selector-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 5%;
+    width: 90%;
+
+    .button {
+        border-color: $black-ter;
+        width: 50px;
+        height: 50px;
     }
 }

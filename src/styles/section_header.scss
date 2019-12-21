@@ -2,9 +2,7 @@
     display: flex;
     align-items: center;
     margin: 3em -1em;
-    color: $ra-green !important;
-    font-family: $ra-fontfamily-serif;
-    font-size: $ra-fontsize-title;
+    color: $primary !important;
   
     &:before,
     &:after {
@@ -12,6 +10,6 @@
         flex: 1;
         height: 1px;
         margin: 0 1em;
-        box-shadow: 0 0.5px 0 $ra-green;
+        box-shadow: 0 0.5px 0 $primary;
     }
 }
