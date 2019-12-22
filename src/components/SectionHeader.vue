@@ -1,5 +1,5 @@
 <template>
-    <h2 class="title is-2 ra-divider is-family-secondary">{{title}}</h2>
+    <h2 class="title is-2 is-family-secondary ra-divider">{{title}}</h2>
 </template>
 
 <script>

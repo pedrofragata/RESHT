@@ -92,7 +92,12 @@
               <div class="field-body">
                 <div class="field">
                   <div class="control">
-                    <textarea id="ra-form-health" class="textarea" rows="1" placeholder="Dieta, alergénios, ..."></textarea>
+                    <textarea
+                      id="ra-form-health"
+                      class="textarea"
+                      rows="1"
+                      placeholder="Dieta, alergénios, ..."
+                    ></textarea>
                   </div>
                 </div>
               </div>
@@ -104,7 +109,12 @@
               <div class="field-body">
                 <div class="field">
                   <div class="control">
-                    <textarea id="ra-form-message" class="textarea" rows="2" placeholder="Espaço sossegado, junto à janela,  ..."></textarea>
+                    <textarea
+                      id="ra-form-message"
+                      class="textarea"
+                      rows="2"
+                      placeholder="Espaço sossegado, junto à janela,  ..."
+                    ></textarea>
                   </div>
                 </div>
               </div>
@@ -114,12 +124,22 @@
               <div class="field-body">
                 <div class="field">
                   <div class="control">
-                    <input class="button has-background-grey-lighter has-text-grey-dark is-family-secondary is-size-5" type="submit" value="Enviar" />
+                    <input
+                      class="button has-background-grey-lighter has-text-grey-dark is-family-secondary is-size-5"
+                      type="submit"
+                      value="Enviar"
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </form>
+        </div>
+      </div>
+      <SectionHeader title="Galeria" />
+      <div class="columns">
+        <div class="column is-10 is-offset-1">
+          <Carousel />
         </div>
       </div>
     </div>
@@ -154,9 +174,9 @@
 
 <script>
 // @ is an alias to /src
-//import HelloWorld from "@/components/HelloWorld.vue";
 import Nav from "@/components/Nav.vue";
 import SectionHeader from "@/components/SectionHeader.vue";
+import Carousel from "@/components/Carousel.vue";
 
 // class User {
 //   constructor(
@@ -171,7 +191,8 @@ export default {
   name: "home",
   components: {
     Nav,
-    SectionHeader
+    SectionHeader,
+    Carousel
   }
   // data(){
   //   return {
