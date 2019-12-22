@@ -1,7 +1,7 @@
 .ra-divider {
     display: flex;
     align-items: center;
-    margin: 3em -1em;
+    margin: 1em -1em;
     color: $primary !important;
   
     &:before,
@@ -9,7 +9,7 @@
         content: "";
         flex: 1;
         height: 1px;
-        margin: 0 1em;
+        margin: 2em 1em;
         box-shadow: 0 0.5px 0 $primary;
     }
 }

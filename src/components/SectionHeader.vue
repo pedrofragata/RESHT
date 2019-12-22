@@ -14,4 +14,4 @@ export default {
 };
 </script>
 
-<style src="@/styles/section_header.scss" lang="scss"></style>
+<style src="@/scss/partials/_sectionheader.scss" lang="scss"></style>

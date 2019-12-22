@@ -142,6 +142,15 @@
           <Carousel />
         </div>
       </div>
+      <SectionHeader title="FAQs" />
+      <div class="columns">
+        <div class="column is-10 is-offset-2">
+          <Faq question="Em que dias está o restaurante aberto?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+          <Faq question="Não pertenço ao IPP. Posso efetuar uma reserva?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+          <Faq question="Servem jantares?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+          <Faq question="Emitem fatura?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+        </div>
+      </div>
     </div>
   </div>
 
@@ -177,6 +186,7 @@
 import Nav from "@/components/Nav.vue";
 import SectionHeader from "@/components/SectionHeader.vue";
 import Carousel from "@/components/Carousel.vue";
+import Faq from "@/components/Faq.vue";
 
 // class User {
 //   constructor(
@@ -192,7 +202,8 @@ export default {
   components: {
     Nav,
     SectionHeader,
-    Carousel
+    Carousel,
+    Faq
   }
   // data(){
   //   return {
@@ -221,4 +232,4 @@ export default {
 };
 </script>
 
-<style src="@/styles/home.scss" lang="scss"></style>
+<style src="@/scss/home.scss" lang="scss"></style>

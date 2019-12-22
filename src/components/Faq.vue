@@ -1,0 +1,24 @@
+<template>
+  <div class="ra-faq-wrapper" style="margin-bottom: 3em">
+    <h4 class="title is-4 has-text-white is-family-secondary">{{question}}</h4>
+    <p class="is-size-6 has-text-grey-light">{{answer}}</p>
+  </div>
+</template>
+
+<script>
+export default {
+    name: "FAQ",
+    props: {
+      question: {
+        type: String,
+        required: true
+      },
+      answer: {
+        type: String,
+        required: true
+      }
+    }
+}
+</script>
+
+<style></style>
