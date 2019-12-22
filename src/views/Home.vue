@@ -152,6 +152,7 @@
         </div>
       </div>
     </div>
+    <Footer />
   </div>
 
   <!-- <div class="home"> -->
@@ -187,6 +188,7 @@ import Nav from "@/components/Nav.vue";
 import SectionHeader from "@/components/SectionHeader.vue";
 import Carousel from "@/components/Carousel.vue";
 import Faq from "@/components/Faq.vue";
+import Footer from "@/components/Footer.vue";
 
 // class User {
 //   constructor(
@@ -203,7 +205,8 @@ export default {
     Nav,
     SectionHeader,
     Carousel,
-    Faq
+    Faq,
+    Footer
   }
   // data(){
   //   return {
