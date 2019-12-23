@@ -1,5 +1,13 @@
-.ra-brand {
-    &:link {
-        color: $grey-light
+.navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    .ra-brand {
+        letter-spacing: 2px;
+    
+        &:hover {
+            color: hsl(0, 0%, 96%);
+        }
     }
 }

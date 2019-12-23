@@ -1,8 +1,9 @@
 <template>
   <div>
-    <Nav />
-    <section class="hero is-fullheight-with-navbar">
-      <img src="@/assets/stil-u2Lp8tXIcjw-unsplash.jpg" />
+    <section class="hero is-fullheight">
+      <div class="hero-head">
+        <Nav />
+      </div>
     </section>
     <div class="container is-fluid">
       <SectionHeader title="Prato do dia" />
