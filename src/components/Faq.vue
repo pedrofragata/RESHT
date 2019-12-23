@@ -1,6 +1,6 @@
 <template>
   <div class="ra-faq-wrapper" style="margin-bottom: 3em">
-    <h4 class="title is-4 has-text-white is-family-secondary">{{question}}</h4>
+    <h5 class="title is-5 has-text-white is-family-secondary">{{question}}</h5>
     <p class="is-size-6 has-text-grey-light">{{answer}}</p>
   </div>
 </template>

@@ -9,11 +9,11 @@
       <SectionHeader title="Prato do dia" />
       <div class="columns">
         <div class="column is-4 is-offset-2">
-          <h3
-            class="title is-3 has-text-weight-bold has-text-white ra-dish-name"
-          >Amêijoas à Bulhão Pato</h3>
+          <h4
+            class="title is-4 has-text-weight-bold has-text-white ra-dish-name"
+          >Amêijoas à Bulhão Pato</h4>
           <p
-            class="is-size-5 has-text-grey-light ra-dish-desc"
+            class="is-size-6 has-text-grey-light ra-dish-desc"
           >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices tincidunt arcu non sodales neque sodales. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.</p>
           <div class="ra-day-selector-wrapper">
             <button class="button is-medium has-text-weight-semibold has-text-white is-primary">10</button>
@@ -139,13 +139,13 @@
       </div>
       <SectionHeader title="Galeria" />
       <div class="columns">
-        <div class="column is-10 is-offset-1">
+        <div class="column is-8 is-offset-2">
           <Carousel />
         </div>
       </div>
       <SectionHeader title="FAQs" />
       <div class="columns">
-        <div class="column is-10 is-offset-2">
+        <div class="column is-8 is-offset-2">
           <Faq question="Em que dias está o restaurante aberto?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
           <Faq question="Não pertenço ao IPP. Posso efetuar uma reserva?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
           <Faq question="Servem jantares?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />

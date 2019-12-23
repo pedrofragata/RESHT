@@ -1,14 +1,14 @@
 .ra-divider {
     display: flex;
     align-items: center;
-    margin: 1em -1em;
+    margin: 1em 6em;
   
     &:before,
     &:after {
         content: "";
         flex: 1;
         height: 1px;
-        margin: 2em 1em;
+        margin: 0em 1em;
         box-shadow: 0 0.5px 0 $primary;
     }
 }
