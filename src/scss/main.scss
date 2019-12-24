@@ -3,11 +3,23 @@
 @import url('https://fonts.googleapis.com/css?family=Cardo&display=swap');
 
 // substituir as variaveis predefenidas da Bulma
+// fonts
 $family-primary: 'Inter', sans-serif;
 $family-secondary: 'Cardo', serif;
+// cores
 $primary: hsl(74, 50%, 54%);
+// navbar
 $navbar-height: 4rem;
+// footer
 $footer-background-color: hsl(0, 0%, 21%);
+// form
+$input-color: hsl(0, 0%, 86%);
+$input-background-color: hsl(0, 0%, 14%);
+$input-border-color: hsl(0, 0%, 71%);
+$input-hover-color: hsl(0, 0%, 96%);
+$input-hover-border-color: hsl(0, 0%, 96%);
+$input-focus-border-color: $primary;
+$input-arrow: hsl(0, 0%, 71%);
 
 // importar Bulma
 @import "~bulma/bulma.sass";
