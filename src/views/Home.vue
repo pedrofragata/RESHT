@@ -10,15 +10,17 @@
       <div class="columns">
         <div class="column is-4 is-offset-2">
           <h4
-            class="title is-4 has-text-weight-bold has-text-white ra-dish-name"
+            class="title is-4 has-text-weight-bold has-text-white"
           >Amêijoas à Bulhão Pato</h4>
           <p
             class="is-size-6 has-text-grey-light ra-dish-desc"
-          >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices tincidunt arcu non sodales neque sodales. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.</p>
-          <div class="ra-day-selector-wrapper">
-            <button class="button is-medium has-text-weight-semibold has-text-white is-primary">10</button>
-            <button class="button is-medium has-text-weight-semibold">11</button>
-            <button class="button is-medium has-text-weight-semibold">12</button>
+          >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices tincidunt arcu non sodales neque sodales. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.</p> 
+          <div class="has-text-centered ra-weekday-wrapper">
+            <Weekday letter="S" day="9" />
+            <Weekday letter="T" day="10" isOpen="true" isToday="true" />
+            <Weekday letter="Q" day="11" isOpen="true" />
+            <Weekday letter="Q" day="12" isOpen="true" />
+            <Weekday letter="S" day="13" />
           </div>
         </div>
         <div class="column is-4">
@@ -187,6 +189,7 @@
 // @ is an alias to /src
 import Nav from "@/components/Nav.vue";
 import SectionHeader from "@/components/SectionHeader.vue";
+import Weekday from "@/components/Weekday.vue";
 import Carousel from "@/components/Carousel.vue";
 import Faq from "@/components/Faq.vue";
 import Footer from "@/components/Footer.vue";
@@ -205,6 +208,7 @@ export default {
   components: {
     Nav,
     SectionHeader,
+    Weekday,
     Carousel,
     Faq,
     Footer
