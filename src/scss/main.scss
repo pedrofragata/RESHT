@@ -1,11 +1,13 @@
 // importar fonts
-@import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css?family=Domine&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Cardo&display=swap');
+@import url('https://rsms.me/inter/inter.css');
 
 // substituir as variaveis predefenidas da Bulma
 // fonts
-$family-primary: 'Inter', sans-serif;
+$family-primary: 'Domine', serif;
 $family-secondary: 'Cardo', serif;
+$family-sans-serif: 'Inter', sans-serif;
 // cores
 $primary: hsl(74, 50%, 54%);
 // navbar

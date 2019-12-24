@@ -16,7 +16,7 @@
         <hr class="has-background-primary">
         <p>Telefone: 252 291 700</p>
       </div>
-      <div class="has-text-white has-text-weight-bold is-uppercase" style="line-height: 1">
+      <div class="is-family-sans-serif has-text-white has-text-weight-bold is-uppercase" style="line-height: 1">
         <p>Escola</p>
         <p>Superior</p>
         <p>de Hotelaria</p>
