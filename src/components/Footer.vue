@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: "Footer",
+  name: "footer",
   props: {}
 };
 </script>

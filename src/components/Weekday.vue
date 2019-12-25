@@ -15,7 +15,7 @@
 
 <script>
 export default {
-    name: "Weekday",
+    name: "weekday",
     props: {
         letter: {
             type: String,
