@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <section class="hero is-fullheight">
+  <div class="home">
+    <section class="hero is-fullheight-with-navbar">
       <div class="hero-head">
         <Nav />
+      </div>
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title is-spaced has-text-white-bis">Bem vindo</h1>
+          <h3 class="subtitle has-text-white-bis">Os estudantes de Gestão e Administração Hoteleira, convidam-no a saborear as receitas especialmente criadas para si. Venha conhecer-nos.</h3>
+        </div>
       </div>
     </section>
     <div class="container is-fluid">
