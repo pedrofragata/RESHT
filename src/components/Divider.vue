@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "SectionHeader",
+  name: "Divider",
   props: {
     title: {
       type: String,
@@ -14,4 +14,4 @@ export default {
 };
 </script>
 
-<style src="@/scss/partials/_sectionheader.scss" lang="scss"></style>
+<style src="@/scss/divider.scss" lang="scss"></style>

@@ -6,7 +6,7 @@
       </div>
     </section>
     <div class="container is-fluid">
-      <SectionHeader title="Prato do dia" />
+      <Divider title="Prato do dia" />
       <div class="columns">
         <div class="column is-4 is-offset-2">
           <h4
@@ -27,7 +27,7 @@
           <img class="ra-dish-image" src="@/assets/ameijoas-a-bulhao-pato.jpg" />
         </div>
       </div>
-      <SectionHeader title="Reservar" />
+      <Divider title="Reservar" />
       <div class="columns">
         <div class="column is-9 is-offset-1">
           <form>
@@ -139,13 +139,13 @@
           </form>
         </div>
       </div>
-      <SectionHeader title="Galeria" />
+      <Divider title="Galeria" />
       <div class="columns">
         <div class="column is-8 is-offset-2">
           <Carousel />
         </div>
       </div>
-      <SectionHeader title="FAQs" />
+      <Divider title="FAQs" />
       <div class="columns">
         <div class="column is-8 is-offset-2">
           <Faq question="Em que dias está o restaurante aberto?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
@@ -188,7 +188,7 @@
 <script>
 // @ is an alias to /src
 import Nav from "@/components/Nav.vue";
-import SectionHeader from "@/components/SectionHeader.vue";
+import Divider from "@/components/Divider.vue";
 import Weekday from "@/components/Weekday.vue";
 import Carousel from "@/components/Carousel.vue";
 import Faq from "@/components/Faq.vue";
@@ -207,7 +207,7 @@ export default {
   name: "home",
   components: {
     Nav,
-    SectionHeader,
+    Divider,
     Weekday,
     Carousel,
     Faq,
