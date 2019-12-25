@@ -52,4 +52,4 @@ export default {
 };
 </script>
 
-<style src="@/scss/partials/_carousel.scss" lang="scss"></style>
+<style src="@/scss/carousel.scss" lang="scss"></style>

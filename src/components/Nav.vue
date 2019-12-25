@@ -35,4 +35,4 @@ export default {
 };
 </script>
 
-<style src="@/scss/partials/_nav.scss" lang="scss"></style>
+<style src="@/scss/nav.scss" lang="scss"></style>

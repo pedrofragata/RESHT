@@ -33,4 +33,4 @@ export default {
 };
 </script>
 
-<style src="@/scss/partials/_footer.scss" lang="scss"></style>
+<style src="@/scss/footer.scss" lang="scss"></style>
