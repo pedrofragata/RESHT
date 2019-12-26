@@ -1,5 +1,5 @@
 @import "/node_modules/owl.carousel/dist/assets/owl.carousel.min.css";
-@import "/node_modules/owl.carousel/dist/assets/owl.theme.default.min.css";
+//@import "/node_modules/owl.carousel/dist/assets/owl.theme.default.min.css";
 
 .owl-carousel {
   overflow-x: hidden;
@@ -22,4 +22,113 @@
   .owl-stage {
     display: flex;
   }
+}
+
+/*
+            Como o ficheiro "owl.theme.default.min.css" não carrega os estilos da classe .owl-theme como deveria,
+            foram copiados os estilos sass diretamente do repositório GitHub
+
+            (Para alterações efetuadas ao seguinte código,
+            guardar o valor inicial no fim da linha em comentário ou comentar vazio se for adicionado)
+
+            vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+*/
+
+$owl-color-base:			$primary;             // #869791 !default
+$owl-color-white:			#FFF !default;
+$owl-color-gray:			#D6D6D6 !default;
+
+//nav
+
+$owl-nav-color: 			$owl-color-white !default;
+$owl-nav-color-hover:		$owl-color-white !default;
+$owl-nav-font-size: 		14px !default;
+$owl-nav-rounded: 			3px !default;
+$owl-nav-margin: 			5px !default;
+$owl-nav-padding: 			4px 7px !default;
+$owl-nav-background: 		$owl-color-gray !default;
+$owl-nav-background-hover:	$owl-color-base !default;
+$owl-nav-disabled-opacity: 	0.5 !default;
+
+//dots
+
+$owl-dot-width:				10px !default;
+$owl-dot-height:			10px !default;
+$owl-dot-rounded:			30px !default;
+$owl-dot-margin: 			5px 7px !default;
+$owl-dot-background:		$owl-color-gray !default;
+$owl-dot-background-active:	$owl-color-base !default;
+
+.owl-theme {
+	// Styling Next and Prev buttons
+	.owl-nav {
+		margin-top: 10px;
+		text-align: center;
+		-webkit-tap-highlight-color: transparent;
+
+		[class*='owl-'] {
+			color: $owl-nav-color;
+			font-size: $owl-nav-font-size;
+			margin: $owl-nav-margin;
+			padding: $owl-nav-padding;
+      background: transparent; // $owl-nav-background
+      border: none; //
+			display: inline-block;
+			cursor: pointer;
+			border-radius: 3px;
+
+			&:hover {
+				background: $owl-nav-background-hover;
+				color:$owl-nav-color-hover;
+				text-decoration: none;
+      }
+      
+      &:focus {                     //
+        outline-color: $primary;    //
+      }                             //
+		}
+		.disabled {
+			opacity: $owl-nav-disabled-opacity;
+			cursor: default;
+		}
+	}
+
+	// Styling dots
+	.owl-nav.disabled + .owl-dots {
+		margin-top: 10px;
+	}
+
+	.owl-dots {
+		text-align: center;
+    -webkit-tap-highlight-color: transparent;
+
+		.owl-dot {
+			display: inline-block;
+			zoom: 1;
+      *display: inline;
+      background: transparent; //
+      border: none;            //
+
+			span {
+				width: $owl-dot-width;
+				height: $owl-dot-height;
+				margin: $owl-dot-margin;
+				background: $owl-dot-background;
+				display: block;
+				-webkit-backface-visibility: visible;
+				transition: opacity 200ms ease;
+				border-radius: $owl-dot-rounded;
+			}
+
+			&.active,
+			&:hover {
+				span {
+					background: $owl-dot-background-active;
+				}
+      }
+      &:focus {                     //
+        outline-color: $primary;    //
+      }                             //
+		}
+	}
 }
