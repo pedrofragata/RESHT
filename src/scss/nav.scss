@@ -9,3 +9,9 @@
         }
     }
 }
+
+.navbar-item.has-dropdown:hover {
+    .icon {
+        color: $navbar-item-hover-color;
+    }
+}

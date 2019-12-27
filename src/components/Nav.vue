@@ -1,13 +1,20 @@
 <template>
-  <nav class="navbar navbar is-fixed-top has-background-black-bis" role="navigation" aria-label="main navigation">
+  <nav
+    class="navbar navbar is-fixed-top has-background-black-bis"
+    role="navigation"
+    aria-label="main navigation"
+  >
     <div class="navbar-brand">
-      <router-link class="has-text-white-ter is-family-secondary is-size-2 ra-brand" to="/">Restaurante de Aplicação</router-link>
+      <router-link
+        class="has-text-white-ter is-family-secondary is-size-2 ra-brand"
+        to="/"
+      >Restaurante de Aplicação</router-link>
 
       <!-- <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="ra-navbar">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
-      </a> -->
+      </a>-->
     </div>
 
     <div id="ra-navbar" class="navbar-menu">
@@ -17,9 +24,28 @@
             <a class="button is-primary">
               <strong>Sign up</strong>
             </a>
-            <a class="button is-light">
-              Log in
-            </a>
+            <a class="button is-light">Log in</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar-end">
+        <router-link class="navbar-item" to="/">Reservar</router-link>
+        <a class="navbar-item">
+          Prato do dia
+        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link is-arrowless">
+            <span class="icon is-large">
+              <i class="fas fa-ellipsis-h"></i>
+            </span>
+          </a>
+          <div class="navbar-dropdown is-right has-background-black-bis">
+            <a class="navbar-item">Galeria</a>
+            <a class="navbar-item">FAQs</a>
+            <router-link class="navbar-item" to="/sponsor">Patrocinadores</router-link>
+            <!-- <hr class="navbar-divider" />
+            <div class="navbar-item has-text-white-ter">Version 0.8.0</div> -->
           </div>
         </div>
       </div>
@@ -30,8 +56,7 @@
 <script>
 export default {
   name: "nav",
-  props: {
-  }
+  props: {}
 };
 </script>
 
