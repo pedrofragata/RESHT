@@ -30,7 +30,7 @@
       </div>
 
       <div class="navbar-end">
-        <router-link class="navbar-item" to="/">Reservar</router-link>
+        <router-link @click.native="onNavItemClick('#ra-bookmark-reservar')" class="navbar-item" :to="href">Reservar</router-link>
         <a class="navbar-item">
           Prato do dia
         </a>
@@ -56,7 +56,17 @@
 <script>
 export default {
   name: "nav",
-  props: {}
+  props: {},
+  data() {
+    return {
+      href: "/"
+    }
+  },
+  methods: {
+    onNavItemClick(href) {
+      this.href = (this.href !== `/${href}`) ? `/${href}` : "/";
+    }
+  }
 };
 </script>
 

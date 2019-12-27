@@ -33,7 +33,7 @@
           <img class="ra-dish-image" src="@/assets/ameijoas-a-bulhao-pato.jpg" />
         </div>
       </div>
-      <Divider title="Reservar" />
+      <Divider id="ra-bookmark-reservar" title="Reservar" />
       <div class="columns">
         <div class="column is-9 is-offset-1">
           <form>
