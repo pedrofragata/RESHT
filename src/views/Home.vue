@@ -43,13 +43,19 @@
               </div>
               <div class="field-body">
                 <div class="field">
-                  <div class="control">
+                  <div class="control has-icons-left">
                     <input id="ra-form-day" class="input" type="date" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-calendar-alt"></i>
+                    </span>
                   </div>
                 </div>
                 <div class="field">
-                  <div class="control">
+                  <div class="control has-icons-left">
                     <input id="ra-form-hour" class="input" type="time" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-clock"></i>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -60,8 +66,11 @@
               </div>
               <div class="field-body">
                 <div class="field">
-                  <div class="control">
+                  <div class="control has-icons-left">
                     <input id="ra-form-arrival" class="input" type="time" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-user-clock"></i>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -72,8 +81,11 @@
               </div>
               <div class="field-body">
                 <div class="field">
-                  <div class="control">
+                  <div class="control has-icons-left">
                     <input id="ra-form-people" class="input" type="number" value="1" min="1" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-user"></i>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -84,11 +96,14 @@
               </div>
               <div class="field-body">
                 <div class="field">
-                  <div class="control">
+                  <div class="control has-icons-left">
                     <div class="select">
                       <select id="ra-form-dish">
                         <option value>Selecione o prato</option>
                       </select>
+                    </div>
+                    <div class="icon is-small is-left">
+                      <i class="fas fa-utensils"></i>
                     </div>
                   </div>
                 </div>
