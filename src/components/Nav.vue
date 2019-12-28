@@ -30,10 +30,8 @@
       </div>
 
       <div class="navbar-end">
-        <router-link @click.native="onNavItemClick('#ra-bookmark-reservar')" class="navbar-item" :to="href">Reservar</router-link>
-        <a class="navbar-item">
-          Prato do dia
-        </a>
+        <router-link class="navbar-item" to="/#ra-bookmark-booking">Reservar</router-link>
+        <router-link class="navbar-item" to="/#ra-bookmark-todays-special">Prato do dia</router-link>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link is-arrowless">
             <span class="icon is-large">
@@ -41,8 +39,8 @@
             </span>
           </a>
           <div class="navbar-dropdown is-right has-background-black-bis">
-            <a class="navbar-item">Galeria</a>
-            <a class="navbar-item">FAQs</a>
+            <router-link class="navbar-item" to="/#ra-bookmark-gallery">Galeria</router-link>
+            <router-link class="navbar-item" to="/#ra-bookmark-faqs">FAQs</router-link>
             <router-link class="navbar-item" to="/sponsor">Patrocinadores</router-link>
             <!-- <hr class="navbar-divider" />
             <div class="navbar-item has-text-white-ter">Version 0.8.0</div> -->
@@ -56,17 +54,7 @@
 <script>
 export default {
   name: "nav",
-  props: {},
-  data() {
-    return {
-      href: "/"
-    }
-  },
-  methods: {
-    onNavItemClick(href) {
-      this.href = (this.href !== `/${href}`) ? `/${href}` : "/";
-    }
-  }
+  props: {}
 };
 </script>
 

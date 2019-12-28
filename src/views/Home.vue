@@ -12,7 +12,7 @@
       </div>
     </section>
     <div class="container is-fluid">
-      <Divider title="Prato do dia" />
+      <Divider id="ra-bookmark-todays-special" title="Prato do dia" />
       <div class="columns">
         <div class="column is-4 is-offset-2">
           <h4
@@ -33,7 +33,7 @@
           <img class="ra-dish-image" src="@/assets/ameijoas-a-bulhao-pato.jpg" />
         </div>
       </div>
-      <Divider id="ra-bookmark-reservar" title="Reservar" />
+      <Divider id="ra-bookmark-booking" title="Reservar" />
       <div class="columns">
         <div class="column is-9 is-offset-1">
           <form>
@@ -145,13 +145,13 @@
           </form>
         </div>
       </div>
-      <Divider title="Galeria" />
+      <Divider id="ra-bookmark-gallery" title="Galeria" />
       <div class="columns">
         <div class="column is-8 is-offset-2">
           <Carousel />
         </div>
       </div>
-      <Divider title="FAQs" />
+      <Divider id="ra-bookmark-faqs" title="FAQs" />
       <div class="columns">
         <div class="column is-8 is-offset-2">
           <Faq question="Em que dias está o restaurante aberto?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
