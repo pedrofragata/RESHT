@@ -6,15 +6,15 @@
   >
     <div class="navbar-brand">
       <router-link
-        class="has-text-white-ter is-family-secondary is-size-2 ra-brand"
+        class="has-text-white-ter is-family-secondary is-size-5-mobile is-size-2-desktop ra-brand"
         to="/"
       >Restaurante de Aplicação</router-link>
 
-      <!-- <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="ra-navbar">
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="ra-navbar">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
-      </a>-->
+      </a>
     </div>
 
     <div id="ra-navbar" class="navbar-menu">

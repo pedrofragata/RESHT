@@ -1,17 +1,28 @@
-.navbar-brand {
+.ra-brand {
     position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
+    top: 50%;
+    transform: translate(0, -50%);
+    margin-left: 24px;
 
-    .ra-brand {
-        &:hover {
-            color: hsl(0, 0%, 96%);
+    &:hover {
+        color: hsl(0, 0%, 96%);
+    }
+}
+
+.navbar-item.has-dropdown {
+    &:hover {
+        .icon {
+            color: $navbar-item-hover-color;
         }
     }
 }
 
-.navbar-item.has-dropdown:hover {
-    .icon {
-        color: $navbar-item-hover-color;
+@include tablet {
+    .ra-brand {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, 0);
+        margin-left: 0;
     }
 }
