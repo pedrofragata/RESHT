@@ -18,7 +18,7 @@
               <strong>Sign up</strong>
             </a>
             <a class="button is-light">
-              Log in
+              <router-link to="/login">Login</router-link>
             </a>
           </div>
         </div>
