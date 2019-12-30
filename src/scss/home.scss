@@ -3,7 +3,8 @@
     background-image: url("../assets/bg.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100vw;
+    background-size: auto 100%;
+    background-position: center;
 
     .hero {
         background-image: url("../assets/stil-u2Lp8tXIcjw-unsplash2.jpg");
@@ -27,21 +28,18 @@
         
         .ra-dish-desc {
             line-height: 1.8;
-            width: 90%;
         }
         
-        .ra-dish-image {
-            height: 100%;
+        .ra-dish-image-mobile {
             object-fit: cover;
             object-position: center center;
-            padding-left: 10%;
+            margin: 10% 0 0 0;
         }
         
         .ra-weekday-wrapper {
             display: flex;
             justify-content: space-around;
             align-items: flex-end;
-            width: 90%;
             padding-top: 4em;
         
             .button {
@@ -50,5 +48,28 @@
                 height: 40px;
             }
         }
+    }
+}
+
+@include tablet {
+    .home {
+        background-size: 100% auto;
+        background-position: 0% 0%;
+    }
+
+    .column.is-4:first-child:nth-child(-n + 2) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .ra-dish-image {
+        object-fit: cover;
+        object-position: center center;
+        margin: 0 0 0 10%;
+    }
+
+    .ra-weekday-wrapper {
+        width: 90%;
     }
 }

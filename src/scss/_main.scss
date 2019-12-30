@@ -1,27 +1,35 @@
 // importar fonts
-@import url('https://fonts.googleapis.com/css?family=Domine&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Cardo&display=swap');
-@import url('https://rsms.me/inter/inter.css');
+@import url("https://fonts.googleapis.com/css?family=Domine&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cardo&display=swap");
+@import url("https://rsms.me/inter/inter.css");
 
 // substituir as variaveis predefenidas da Bulma
 // fonts
-$family-primary: 'Domine', serif;
-$family-secondary: 'Cardo', serif;
-$family-sans-serif: 'Inter', sans-serif;
+$family-primary: "Domine", serif;
+$family-secondary: "Cardo", serif;
+$family-sans-serif: "Inter", sans-serif;
 // cores
 $primary: hsl(74, 50%, 54%);
 // navbar
 $navbar-height: 4rem;
+$navbar-item-color: hsl(0, 0%, 96%);                        // white-ter
+$navbar-item-hover-color: hsl(0, 0%, 14%);                  // black-ter
+$navbar-dropdown-border-top: 2px solid hsl(0, 0%, 14%);     // black-ter
+$navbar-divider-background-color: hsl(0, 0%, 14%);          // black-ter
 // footer
-$footer-background-color: hsl(0, 0%, 21%);
+$footer-background-color: hsl(0, 0%, 21%);                  // grey-darker
 // form
-$input-color: hsl(0, 0%, 86%);
-$input-background-color: hsl(0, 0%, 14%);
-$input-border-color: hsl(0, 0%, 71%);
-$input-hover-color: hsl(0, 0%, 96%);
-$input-hover-border-color: hsl(0, 0%, 96%);
+$input-color: hsl(0, 0%, 86%);                              // grey-lighter
+$input-background-color: hsl(0, 0%, 14%);                   // black-ter
+$input-border-color: hsl(0, 0%, 71%);                       // grey-light
+$input-hover-color: hsl(0, 0%, 96%);                        // white-ter
+$input-hover-border-color: hsl(0, 0%, 96%);                 // white-ter
 $input-focus-border-color: $primary;
-$input-arrow: hsl(0, 0%, 71%);
+$input-arrow: hsl(0, 0%, 71%);                              // grey-light
 
 // importar Bulma
 @import "~bulma/bulma.sass";
+
+// importar fontawesome
+@import url("~@fortawesome/fontawesome-free/css/solid.min.css");
+@import url("~@fortawesome/fontawesome-free/css/fontawesome.min.css");

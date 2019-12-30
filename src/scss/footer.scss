@@ -1,11 +1,49 @@
 .footer {
     .content {
         display: flex;
-        justify-content: space-around;
-        width: 95%;
+        flex-direction: column;
+
+        p.is-primary {
+            margin: 0;
+        }
+
+        hr {
+            margin-top: 1em;
+        }
+
+        .ra-footer-item:not(:first-child):not(:last-child) {
+            margin: 2em 0;
+        }
 
         img {
-        height: 30px;
+            height: 20px;
+            align-self: flex-start;
+            object-fit: contain;
+        }
+    }
+}
+
+@include tablet {
+    .footer {
+        .content {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-around;
+            width: 95%;
+
+            .ra-footer-item:not(:first-child):not(:last-child) {
+                margin: 0;
+            }
+    
+            img {
+                order: -1;
+                height: 30px;
+            }
+    
+            .ra-esht {
+                order: 4;
+            }
         }
     }
 }

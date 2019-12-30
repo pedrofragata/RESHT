@@ -12,15 +12,20 @@
       </div>
     </section>
     <div class="container is-fluid">
-      <Divider title="Prato do dia" />
+      <Divider id="ra-bookmark-todays-special" title="Prato do dia" />
       <div class="columns">
         <div class="column is-4 is-offset-2">
-          <h4
-            class="title is-4 has-text-weight-bold has-text-white"
-          >Amêijoas à Bulhão Pato</h4>
-          <p
-            class="is-size-6 has-text-grey-light ra-dish-desc"
-          >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices tincidunt arcu non sodales neque sodales. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.</p> 
+          <div>
+            <h4
+              class="title is-size-5-mobile is-size-4-desktop has-text-weight-bold has-text-white"
+            >Amêijoas à Bulhão Pato</h4>
+            <p
+              class="is-size-6 has-text-grey-light ra-dish-desc"
+            >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices tincidunt arcu non sodales neque sodales. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.</p>
+          </div>
+          <figure class="is-hidden-tablet image is-1by1">
+            <img class="ra-dish-image-mobile" src="@/assets/ameijoas-a-bulhao-pato.jpg" />
+          </figure>
           <div class="has-text-centered ra-weekday-wrapper">
             <Weekday letter="S" day="9" />
             <Weekday letter="T" day="10" isOpen="true" isToday="true" />
@@ -29,11 +34,13 @@
             <Weekday letter="S" day="13" />
           </div>
         </div>
-        <div class="column is-4">
-          <img class="ra-dish-image" src="@/assets/ameijoas-a-bulhao-pato.jpg" />
+        <div class="column is-4 is-hidden-mobile">
+          <figure class="image is-1by1">
+            <img class="ra-dish-image" src="@/assets/ameijoas-a-bulhao-pato.jpg" />
+          </figure>
         </div>
       </div>
-      <Divider title="Reservar" />
+      <Divider id="ra-bookmark-booking" title="Reservar" />
       <div class="columns">
         <div class="column is-9 is-offset-1">
           <form>
@@ -43,13 +50,19 @@
               </div>
               <div class="field-body">
                 <div class="field">
-                  <div class="control">
+                  <div class="control has-icons-left">
                     <input id="ra-form-day" class="input" type="date" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-calendar-alt"></i>
+                    </span>
                   </div>
                 </div>
                 <div class="field">
-                  <div class="control">
+                  <div class="control has-icons-left">
                     <input id="ra-form-hour" class="input" type="time" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-clock"></i>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -60,8 +73,11 @@
               </div>
               <div class="field-body">
                 <div class="field">
-                  <div class="control">
+                  <div class="control has-icons-left">
                     <input id="ra-form-arrival" class="input" type="time" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-user-clock"></i>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -72,8 +88,11 @@
               </div>
               <div class="field-body">
                 <div class="field">
-                  <div class="control">
+                  <div class="control has-icons-left">
                     <input id="ra-form-people" class="input" type="number" value="1" min="1" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-user"></i>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -84,11 +103,14 @@
               </div>
               <div class="field-body">
                 <div class="field">
-                  <div class="control">
+                  <div class="control has-icons-left">
                     <div class="select">
                       <select id="ra-form-dish">
                         <option value>Selecione o prato</option>
                       </select>
+                    </div>
+                    <div class="icon is-small is-left">
+                      <i class="fas fa-utensils"></i>
                     </div>
                   </div>
                 </div>
@@ -145,13 +167,13 @@
           </form>
         </div>
       </div>
-      <Divider title="Galeria" />
+      <Divider id="ra-bookmark-gallery" title="Galeria" />
       <div class="columns">
         <div class="column is-8 is-offset-2">
           <Carousel />
         </div>
       </div>
-      <Divider title="FAQs" />
+      <Divider id="ra-bookmark-faqs" title="FAQs" />
       <div class="columns">
         <div class="column is-8 is-offset-2">
           <Faq question="Em que dias está o restaurante aberto?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
