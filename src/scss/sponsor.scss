@@ -3,7 +3,8 @@
     background-image: url("../assets/bg.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100vw;
+    background-size: auto 100%;
+    background-position: center;
 
     .hero {
         background-image: url("../assets/dan-gold-4_jhDO54BYg-unsplash.jpg");
@@ -21,9 +22,15 @@
             padding-bottom: inherit;
 
             .is-ancestor {
-                display: flex;
                 flex-wrap: wrap;
             }
         }
+    }
+}
+
+@include tablet {
+    .sponsor {
+        background-size: 100% auto;
+        background-position: 0% 0%;
     }
 }
