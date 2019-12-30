@@ -8,7 +8,10 @@
         color: hsl(0, 0%, 96%);
     }
 }
-
+.navbar-item .button{
+    background: r !important;
+    color: white;
+}
 .navbar-item.has-dropdown {
     &:hover {
         .icon {

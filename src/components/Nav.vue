@@ -19,12 +19,8 @@
 
     <div id="ra-navbar" class="navbar-menu">
       <div class="navbar-start">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary">
-              <strong><router-link to="/login">Login</router-link></strong>
-            </a>
-          </div>
+        <div class="navbar-item">  
+              <strong><router-link class="navbar-item" to="/login">Login</router-link></strong>
         </div>
       </div>
 
