@@ -6,10 +6,12 @@ Vue.use(Vuex);
 class User {
   constructor(
     username,
-    password
+    password,
+    email
     ){
     this.username=username,
-    this.password=password   
+    this.password=password,
+    this.email=email   
   }
 }
 
@@ -22,8 +24,10 @@ export default new Vuex.Store({
   mutations: {
     //regist user
     ADD_USER(state, user) {
-      let newUser= new User (user.username, user.password)
+      let newUser= new User (user.username, user.password, user.email)
       state.users.push(newUser)
+      console.log(user)
+      console.log(user.email + "LALALALAL")
       console.log(state.users)
     },
     //login
@@ -49,6 +53,11 @@ export default new Vuex.Store({
     //return loggedUser
     isLogged: state =>{
       return state.loggedUser
+    },
+
+    //get all users
+    getUsers: state =>{
+      return state.users
     }
   },
 
