@@ -12,8 +12,8 @@
         <div class="sign-in-htm">
           <form v-on:submit.prevent="login">
             <div class="group">
-              <label for="logUsername" class="label">Nome de utilizador</label>
-              <input id="logUsername" type="text" class="input" v-model="logUsername" required />
+              <label for="logEmail" class="label">Email</label>
+              <input id="logEmail" type="email" class="input" v-model="logEmail" required />
             </div>
             <div class="group">
               <label for="logPassword" class="label">Password</label>
@@ -83,8 +83,11 @@
 <script>
 //isto vai mudar
 class User {
-  constructor(username, password, email) {
-    (this.username = username), (this.password = password), (this.email = email) ;
+  constructor(id, username, password, email) {
+    (this.id = id),
+      (this.username = username),
+      (this.password = password),
+      (this.email = email);
   }
 }
 
@@ -104,7 +107,7 @@ export default {
       users: [],
       newUsername: "",
       newPassword: "",
-      logUsername: "",
+      logEmail: "",
       logPassword: "",
       email: "",
       confPassword: "",
@@ -114,9 +117,25 @@ export default {
   },
   created() {
     this.users = this.$store.getters.getUsers;
-    console.log(this.users)
+    console.log(this.users);
   },
   methods: {
+    //obter o ultimo Id
+    getLastId() {
+      let bigger;
+      if (this.users.length != 0) {
+        this.users.sort(function(a, b) {
+          if (a.id > b.id) return 1;
+          if (a.id < b.id) return -1;
+        });
+        bigger = this.users[this.users.length - 1].id;
+        console.log(bigger);
+        return bigger;
+      } else {
+        return 0;
+      }
+    },
+
     addUser() {
       //verificar se email já existe
       let emailAlreadyExists = this.users.some(
@@ -146,12 +165,14 @@ export default {
           });
         }
         // se estiver tudo bem, cria o utilizador
-          else  {
+        else {
+          //fazer o ID aqui
+          let id = this.getLastId() + 1;
           this.$store.commit(
             "ADD_USER",
-            new User(this.newUsername, this.newPassword, this.email)
+            new User(id, this.newUsername, this.newPassword, this.email)
           );
-          console.log(this.email)
+          console.log(this.email);
           Swal.fire({
             icon: "success",
             title: "Registo efetuado com sucesso!",
@@ -159,22 +180,40 @@ export default {
             timer: 1500
           });
         }
-      }
-      else {
+      } else {
         Swal.fire({
-            icon: "error",
-            title: "Oops..",
-            text: "As passwords não coincidem!"
-          })
+          icon: "error",
+          title: "Oops..",
+          text: "As passwords não coincidem!"
+        });
       }
     },
     login() {
-      this.$store.commit("LOGIN", (this.logUsername, this.logPassword));
-      this.isLoggedStatus = true;
+      this.users.filter(user => {
+        if (user.email == this.logEmail && user.password == this.logPassword) {
+          this.$store.commit("LOGIN", (this.logEmail, this.logPassword));
+          this.isLoggedStatus = true;
+          console.log("LOGADO");
+          this.$router.push("/")
+          Swal.fire({
+            icon: "success",
+            title: "Login efetuado com sucesso!",
+            text: "Bem-vindo, " + user.username + "!",
+            timer: 2500
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops..",
+            text: "Credenciais incorretas!"
+          });
+        }
+      });
     },
+
     logout() {
       this.$store.commit("LOGOUT");
-      this.isLoggedStatus = true;
+      this.isLoggedStatus = false;
     }
   }
 };

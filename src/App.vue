@@ -7,3 +7,26 @@
     <router-view />
   </div>
 </template>
+<script>
+export default {
+  created() {
+  
+  if(localStorage.getItem("users")) {
+          this.$store.state.users = JSON.parse(localStorage.getItem("users"))
+        }        
+},
+updated()
+{
+    window.addEventListener(
+      "unload",
+      () =>
+        localStorage.setItem(
+          "users",
+          JSON.stringify(this.$store.state.users)
+        )
+    );
+    }
+  
+}
+
+</script>

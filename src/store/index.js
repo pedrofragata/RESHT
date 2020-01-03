@@ -5,10 +5,12 @@ Vue.use(Vuex);
 
 class User {
   constructor(
+    id,
     username,
     password,
     email
     ){
+    this.id = id
     this.username=username,
     this.password=password,
     this.email=email   
@@ -24,7 +26,7 @@ export default new Vuex.Store({
   mutations: {
     //regist user
     ADD_USER(state, user) {
-      let newUser= new User (user.username, user.password, user.email)
+      let newUser= new User (user.id, user.username, user.password, user.email)
       state.users.push(newUser)
       console.log(user)
       console.log(user.email + "LALALALAL")
@@ -33,7 +35,7 @@ export default new Vuex.Store({
     //login
     LOGIN(state, payload){
       for (let user in state.users){
-        if(user.username==payload.Lusername && user.password==payload.Lpassword)
+        if(user.email==payload.logEmail && user.password==payload.logPassword)
          {
            state.loggedUser= state.users[user] // obtem-se o user loggado
            console.log("LOGIn",state.loggedUser)
