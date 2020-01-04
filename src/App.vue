@@ -8,6 +8,7 @@
   </div>
 </template>
 <script>
+
 export default {
   created() {
   
@@ -17,7 +18,7 @@ export default {
 },
 updated()
 {
-    window.addEventListener(
+      window.addEventListener(
       "unload",
       () =>
         localStorage.setItem(
@@ -25,6 +26,7 @@ updated()
           JSON.stringify(this.$store.state.users)
         )
     );
+
     }
   
 }

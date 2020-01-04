@@ -122,15 +122,8 @@ export default {
   methods: {
     //obter o ultimo Id
     getLastId() {
-      let bigger;
-      if (this.users.length != 0) {
-        this.users.sort(function(a, b) {
-          if (a.id > b.id) return 1;
-          if (a.id < b.id) return -1;
-        });
-        bigger = this.users[this.users.length - 1].id;
-        console.log(bigger);
-        return bigger;
+      if (this.users.length) {
+        return this.users[this.users.length - 1].id;
       } else {
         return 0;
       }
@@ -143,12 +136,6 @@ export default {
       );
       console.log("email existe?" + emailAlreadyExists);
 
-      //verificar se email já existe
-      let usernameAlreadyExists = this.users.some(
-        user => user.username == this.newUsername
-      );
-      console.log("username existe?" + usernameAlreadyExists);
-
       // verificar passwords
       if (this.newPassword == this.confPassword) {
         if (emailAlreadyExists) {
@@ -156,12 +143,6 @@ export default {
             icon: "error",
             title: "Oops..",
             text: "Esse email já se encontra registado!"
-          });
-        } else if (usernameAlreadyExists) {
-          Swal.fire({
-            icon: "error",
-            title: "Oops..",
-            text: "Alguém já está a utilizar esse nome!"
           });
         }
         // se estiver tudo bem, cria o utilizador
@@ -194,14 +175,10 @@ export default {
           this.$store.commit("LOGIN", (this.logEmail, this.logPassword));
           this.isLoggedStatus = true;
           console.log("LOGADO");
-          this.$router.push("/")
-          Swal.fire({
-            icon: "success",
-            title: "Login efetuado com sucesso!",
-            text: "Bem-vindo, " + user.username + "!",
-            timer: 2500
-          });
+          console.log("IFFFFFFFFFFFFFF");
+          this.$router.push("/");
         } else {
+          console.log("ELSEEEEEEE");
           Swal.fire({
             icon: "error",
             title: "Oops..",
