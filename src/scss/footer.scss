@@ -12,13 +12,18 @@
         }
 
         .ra-footer-item:not(:first-child):not(:last-child) {
-            margin: 2em 0;
+            margin: 4em 0;
         }
 
         img {
             height: 20px;
             align-self: flex-start;
             object-fit: contain;
+        }
+
+        .ra-esht {
+            line-height: 1;
+            margin-top: 2em;
         }
     }
 }
@@ -39,10 +44,6 @@
             img {
                 order: -1;
                 height: 30px;
-            }
-    
-            .ra-esht {
-                order: 4;
             }
         }
     }

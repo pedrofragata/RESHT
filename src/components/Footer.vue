@@ -15,12 +15,14 @@
         <hr class="has-background-primary">
         <p>Telefone: 252 291 700</p>
       </div>
-      <img class="ra-footer-item" src="@/assets/logo_pporto_branco.png" />
-      <div class="is-family-sans-serif has-text-white has-text-weight-bold is-uppercase ra-esht ra-footer-item" style="line-height: 1">
-        <p>Escola</p>
-        <p>Superior</p>
-        <p>de Hotelaria</p>
-        <p>e Turismo</p>
+      <div class="ra-footer-item">
+        <img src="@/assets/logo_pporto_branco.png" />
+        <div class="is-family-sans-serif has-text-white has-text-weight-bold is-uppercase ra-esht">
+          <p>Escola</p>
+          <p>Superior</p>
+          <p>de Hotelaria</p>
+          <p>e Turismo</p>
+        </div>
       </div>
     </div>
   </footer>
