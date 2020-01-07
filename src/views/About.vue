@@ -1,5 +1,5 @@
 <template>
-  <div class="sponsor">
+  <div class="about">
     <Nav />
     <div class="container is-fluid">
         <Divider title="Sobre nós" />
@@ -44,4 +44,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style src="@/scss/about.scss" lang="scss"></style>
