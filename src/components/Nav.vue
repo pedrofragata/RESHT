@@ -37,9 +37,10 @@
             <router-link class="navbar-item" to="/#ra-bookmark-gallery">Galeria</router-link>
             <router-link class="navbar-item" to="/#ra-bookmark-faqs">FAQs</router-link>
             <router-link class="navbar-item" to="/sponsor">Patrocinadores</router-link>
+            <hr class="navbar-divider" />
             <router-link class="navbar-item" to="/about">Sobre nós</router-link>
-            <!-- <hr class="navbar-divider" />
-            <div class="navbar-item has-text-white-ter">Version 0.8.0</div> -->
+            <router-link class="navbar-item" to="/#ra-bookmark-contacts">Contactar</router-link>
+            <!-- <div class="navbar-item has-text-white-ter">Version 0.8.0</div> -->
           </div>
         </div>
       </div>

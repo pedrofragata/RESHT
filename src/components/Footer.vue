@@ -10,7 +10,7 @@
         <p>4480-876 Vila do Conde</p>
         <p>Portugal</p>
       </div>
-      <div class="ra-footer-item">
+      <div id="ra-bookmark-contacts" class="ra-footer-item">
         <p class="is-primary is-family-secondary is-size-5 has-text-primary">Contacto</p>
         <hr class="has-background-primary">
         <p>Telefone: 252 291 700</p>
