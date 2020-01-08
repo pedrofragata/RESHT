@@ -23,6 +23,7 @@
                 class="input"
                 data-type="password"
                 v-model="logPassword"
+                required
               />
             </div>
             <div class="group">
@@ -111,13 +112,7 @@ export default {
       logPassword: "",
       email: "",
       confPassword: "",
-      loggedUser: this.$store.getters.isLogged,
-      isLoggedStatus: false
     };
-  },
-  created() {
-    this.users = this.$store.getters.getUsers;
-    console.log(this.users);
   },
   methods: {
     //obter o ultimo Id
@@ -170,28 +165,36 @@ export default {
       }
     },
     login() {
-      this.users.filter(user => {
-        if (user.email == this.logEmail && user.password == this.logPassword) {
-          this.$store.commit("LOGIN", (this.logEmail, this.logPassword));
-          this.isLoggedStatus = true;
-          console.log("LOGADO");
-          console.log("IFFFFFFFFFFFFFF");
-          this.$router.push("/");
-        } else {
-          console.log("ELSEEEEEEE");
+      if (this.users.some(user => user.email === this.logEmail && user.password === this.logPassword)) {
+        this.$store.commit("LOGIN", (this.logEmail, this.logPassword));
+        // console.log("LOGADO");
+        // console.log("IFFFFFFFFFFFFFF");
+        this.$router.push("/");
+      } else {
+        // console.log("ELSEEEEEEE");
           Swal.fire({
             icon: "error",
             title: "Oops..",
             text: "Credenciais incorretas!"
           });
-        }
-      });
+      }
     },
 
     logout() {
       this.$store.commit("LOGOUT");
-      this.isLoggedStatus = false;
     }
+  },
+  computed: {
+    loggedUser() {
+      return this.$store.getters.loggedUser;
+    },
+    isLogged() {
+      return this.$store.getters.isLogged;
+    }
+  },
+  created() {
+    this.users = this.$store.getters.getUsers;
+    console.log(this.users);
   }
 };
 </script>

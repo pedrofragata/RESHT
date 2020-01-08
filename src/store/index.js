@@ -20,8 +20,8 @@ class User {
 export default new Vuex.Store({
   state: {
     users:[],
-    loggedUser: {}
-
+    loggedUser: {},
+    isLogged: false
   },
   mutations: {
     //regist user
@@ -39,6 +39,7 @@ export default new Vuex.Store({
          {
            state.loggedUser= state.users[user] // obtem-se o user loggado
            console.log("LOGIn",state.loggedUser)
+           state.isLogged = true;
          }
       }
 
@@ -47,14 +48,18 @@ export default new Vuex.Store({
     LOGOUT(state){
       state.loggedUser={}
       console.log("LOGOUT",state.loggedUser)
-
+      state.isLogged = false;
     },
 
   },
   getters: {
     //return loggedUser
+    loggedUser: state => {
+      return state.loggedUser;
+    },
+
     isLogged: state =>{
-      return state.loggedUser
+      return state.isLogged
     },
 
     //get all users
