@@ -20,8 +20,8 @@
     <div id="ra-navbar" class="navbar-menu">
       <div class="navbar-start">
         <router-link v-show="!isLogged" class="navbar-item" to="/login">Login</router-link>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <router-link v-show="isLogged" class="navbar-link is-arrowless" to="/profile">
+        <div v-show="isLogged" class="navbar-item has-dropdown is-hoverable">
+          <router-link class="navbar-link is-arrowless" to="/profile">
             <span class="icon is-medium">
               <i class="fas fa-2x fa-user-circle"></i>
             </span>
@@ -65,6 +65,7 @@ export default {
   methods: {
     logout() {
       this.$store.commit("LOGOUT");
+      this.$router.push("/");
     }
   },
   computed: {
