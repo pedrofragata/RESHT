@@ -19,9 +19,13 @@
 
     <div id="ra-navbar" class="navbar-menu">
       <div class="navbar-start">
-        <div class="navbar-item">  
-              <strong><router-link class="navbar-item" to="/login">Login</router-link></strong>
-        </div>
+        <router-link v-if="!isLogged" class="navbar-item" to="/login">Login</router-link>
+        <router-link v-if="isLogged" class="navbar-item" to="/profile">
+          <span class="icon is-medium">
+            <i class="fas fa-2x fa-user-circle"></i>
+          </span>
+          <span class="ra-username">{{loggedUser.username}}</span>
+        </router-link>
       </div>
 
       <div class="navbar-end">
@@ -37,9 +41,10 @@
             <router-link class="navbar-item" to="/#ra-bookmark-gallery">Galeria</router-link>
             <router-link class="navbar-item" to="/#ra-bookmark-faqs">FAQs</router-link>
             <router-link class="navbar-item" to="/sponsor">Patrocinadores</router-link>
+            <hr class="navbar-divider" />
             <router-link class="navbar-item" to="/about">Sobre nós</router-link>
-            <!-- <hr class="navbar-divider" />
-            <div class="navbar-item has-text-white-ter">Version 0.8.0</div> -->
+            <router-link class="navbar-item" to="/#ra-bookmark-contacts">Contactar</router-link>
+            <!-- <div class="navbar-item has-text-white-ter">Version 0.8.0</div> -->
           </div>
         </div>
       </div>
@@ -50,7 +55,15 @@
 <script>
 export default {
   name: "nav",
-  props: {}
+  props: {},
+  computed: {
+    loggedUser() {
+      return this.$store.getters.loggedUser;
+    },
+    isLogged() {
+      return this.$store.getters.isLogged;
+    }
+  }
 };
 </script>
 

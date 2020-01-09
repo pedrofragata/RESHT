@@ -8,10 +8,11 @@
         color: hsl(0, 0%, 96%);
     }
 }
-.navbar-item .button{
-    background: r !important;
-    color: white;
+
+.ra-username {
+    margin-left: 1em;
 }
+
 .navbar-item.has-dropdown {
     &:hover {
         .icon {

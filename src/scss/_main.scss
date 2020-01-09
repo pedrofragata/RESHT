@@ -26,6 +26,8 @@ $input-hover-color: hsl(0, 0%, 96%);                        // white-ter
 $input-hover-border-color: hsl(0, 0%, 96%);                 // white-ter
 $input-focus-border-color: $primary;
 $input-arrow: hsl(0, 0%, 71%);                              // grey-light
+// box
+$box-background-color: hsl(0, 0%, 14%);                     // black-ter
 
 // importar Bulma
 @import "~bulma/bulma.sass";
