@@ -23,8 +23,8 @@ export default new Vuex.Store({
         about: ""
       }
       state.users.push(newUser);
-      console.log(user)
-      console.log(user.email + "LALALALAL")
+      console.log(payload)
+      console.log(payload.email + "LALALALAL")
       console.log(state.users)
     },
     //login
