@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="content has-text-left has-text-grey-light is-size-7">
-      <div class="ra-footer-item">
+      <div class="ra-footer-item is-family-sans-serif">
         <p class="is-primary is-family-secondary is-size-5 has-text-primary ra-footer-header">Endereço</p>
         <hr class="has-background-primary">
         <p>Escola Superior de Hotelaria e Turismo</p>
@@ -13,7 +13,7 @@
       <div id="ra-bookmark-contacts" class="ra-footer-item">
         <p class="is-primary is-family-secondary is-size-5 has-text-primary">Contacto</p>
         <hr class="has-background-primary">
-        <p>Telefone: 252 291 700</p>
+        <p class="is-family-sans-serif">Telefone: 252 291 700</p>
       </div>
       <div class="ra-footer-item">
         <img src="@/assets/logo_pporto_branco.png" />

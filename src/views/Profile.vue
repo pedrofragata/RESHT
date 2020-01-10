@@ -9,14 +9,15 @@
                             <h4 class="title is-4 has-text-grey-light">Dados Pessoais</h4>
                             <form>
                                 <div class="field is-horizontal">
-                                    <div class="field-label is-normal">
-                                        <label class="label has-text-grey-lighter">Avatar</label>
+                                    <!-- div dummy -->
+                                    <div class="field-label">
+                                        <label class="label"></label>
                                     </div>
                                     <div class="field-body">
                                         <div class="field">
-                                            <p class="control has-icons-right">
+                                            <p class="control has-icons-left">
                                                 <img src="https://via.placeholder.com/150" />
-                                                <span class="icon is-small is-right">
+                                                <span class="icon is-small is-pulled-right">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </span>
                                             </p>
@@ -29,8 +30,11 @@
                                     </div>
                                     <div class="field-body">
                                         <div class="field">
-                                            <p class="control">
+                                            <p class="control has-icons-right">
                                                 <input class="input is-static" type="text" value="Nome Apelido" readonly>
+                                                <span class="icon is-small is-right">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </span>
                                             </p>
                                         </div>
                                     </div>

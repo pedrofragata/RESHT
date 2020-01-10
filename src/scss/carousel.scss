@@ -42,7 +42,7 @@ $owl-color-gray:			#D6D6D6 !default;
 
 $owl-nav-color: 			$owl-color-white !default;
 $owl-nav-color-hover:		$owl-color-white !default;
-$owl-nav-font-size: 		14px !default;
+$owl-nav-font-size: 		42px !default;		// 14px
 $owl-nav-rounded: 			3px !default;
 $owl-nav-margin: 			5px !default;
 $owl-nav-padding: 			4px 7px !default;
@@ -71,8 +71,8 @@ $owl-dot-background-active:	$owl-color-base !default;
 			font-size: $owl-nav-font-size;
 			margin: $owl-nav-margin;
 			padding: $owl-nav-padding;
-      background: transparent; // $owl-nav-background
-      border: none; //
+			background: transparent; // $owl-nav-background
+      		border: none; //
 			display: inline-block;
 			cursor: pointer;
 			border-radius: 3px;
@@ -81,54 +81,56 @@ $owl-dot-background-active:	$owl-color-base !default;
 				background: $owl-nav-background-hover;
 				color:$owl-nav-color-hover;
 				text-decoration: none;
-      }
-      
-      &:focus {                     //
-        outline-color: $primary;    //
-      }                             //
-		}
-		.disabled {
-			opacity: $owl-nav-disabled-opacity;
-			cursor: default;
-		}
-	}
-
-	// Styling dots
-	.owl-nav.disabled + .owl-dots {
-		margin-top: 10px;
-	}
-
-	.owl-dots {
-		text-align: center;
-    -webkit-tap-highlight-color: transparent;
-
-		.owl-dot {
-			display: inline-block;
-			zoom: 1;
-      *display: inline;
-      background: transparent; //
-      border: none;            //
-
-			span {
-				width: $owl-dot-width;
-				height: $owl-dot-height;
-				margin: $owl-dot-margin;
-				background: $owl-dot-background;
-				display: block;
-				-webkit-backface-visibility: visible;
-				transition: opacity 200ms ease;
-				border-radius: $owl-dot-rounded;
 			}
+      	}
 
-			&.active,
-			&:hover {
-				span {
-					background: $owl-dot-background-active;
-				}
-      }
-      &:focus {                     //
-        outline-color: $primary;    //
-      }                             //
+		&:focus {                    	//
+			outline-color: $primary;    //
+		}                             	//
+	}
+
+	.disabled {
+		opacity: $owl-nav-disabled-opacity;
+		cursor: default;
+	}
+}
+
+// Styling dots
+.owl-nav.disabled + .owl-dots {
+	margin-top: 10px;
+}
+
+.owl-dots {
+	text-align: center;
+	-webkit-tap-highlight-color: transparent;
+
+	.owl-dot {
+		display: inline-block;
+		zoom: 1;
+		*display: inline;
+		background: transparent; //
+		border: none;            //
+
+		span {
+			width: $owl-dot-width;
+			height: $owl-dot-height;
+			margin: $owl-dot-margin;
+			background: $owl-dot-background;
+			display: block;
+			-webkit-backface-visibility: visible;
+			transition: opacity 200ms ease;
+			border-radius: $owl-dot-rounded;
 		}
+
+		&.active,
+		&:hover {
+			span {
+				background: $owl-dot-background-active;
+			}
+		}
+
+		&:focus {                     	//
+			outline-color: $primary;    //
+		}                             	//
 	}
 }

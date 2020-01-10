@@ -7,12 +7,16 @@
     background-position: center;
 
     .container {
-        padding-top: 2em;
-        padding-bottom: 4em;
+        padding-top: 1em;
+        padding-bottom: 2em;
     
         .columns {
             padding-top: inherit;
             padding-bottom: inherit;
+
+            .column.is-family-sans-serif {
+                line-height: 2.5;
+            }
         }
     }
 }
@@ -21,5 +25,9 @@
     .about {
         background-size: 100% auto;
         background-position: 0% 0%;
+    }
+
+    .column:last-child {
+        justify-content: space-around;
     }
 }

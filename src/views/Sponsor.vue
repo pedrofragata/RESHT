@@ -11,7 +11,7 @@
     </section>
     <div class="container is-fluid">
       <Divider title="Patrocinadores" />
-      <div class="columns">
+      <div class="columns is-multiline">
         <div class="column is-8 is-offset-2">
           <div class="tile is-ancestor is-flex-tablet">
             <SponsorTile

@@ -1,17 +1,17 @@
 // importar fonts
 @import url("https://fonts.googleapis.com/css?family=Domine&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Cardo&display=swap");
-@import url("https://rsms.me/inter/inter.css");
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,400&display=swap');
 
 // substituir as variaveis predefenidas da Bulma
 // fonts
 $family-primary: "Domine", serif;
 $family-secondary: "Cardo", serif;
-$family-sans-serif: "Inter", sans-serif;
+$family-sans-serif: "Work Sans", sans-serif;
 // cores
 $primary: hsl(74, 50%, 54%);
 // navbar
-$navbar-height: 4rem;
+$navbar-height: 5rem;
 $navbar-item-color: hsl(0, 0%, 96%);                        // white-ter
 $navbar-item-hover-color: hsl(0, 0%, 14%);                  // black-ter
 $navbar-dropdown-border-top: 2px solid hsl(0, 0%, 14%);     // black-ter

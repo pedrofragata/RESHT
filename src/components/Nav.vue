@@ -6,7 +6,7 @@
   >
     <div class="navbar-brand">
       <router-link
-        class="has-text-white-ter is-family-secondary is-size-5-mobile is-size-2-desktop ra-brand"
+        class="has-text-white-ter is-family-secondary is-size-5-mobile is-size-3-desktop ra-brand"
         to="/"
       >Restaurante de Aplicação</router-link>
 
@@ -19,7 +19,7 @@
 
     <div id="ra-navbar" class="navbar-menu">
       <div class="navbar-start">
-        <router-link v-show="!isLogged" class="navbar-item" to="/login">Login</router-link>
+        <router-link v-show="!isLogged" class="navbar-item is-size-7 is-uppercase" to="/login">Login</router-link>
         <div v-show="isLogged" class="navbar-item has-dropdown is-hoverable">
           <router-link class="navbar-link is-arrowless" :to="{name: 'profile', params: { userId: idUser }}">
             <span class="icon is-medium">
@@ -35,8 +35,8 @@
       </div>
 
       <div class="navbar-end">
-        <router-link class="navbar-item" to="/#ra-bookmark-booking">Reservar</router-link>
-        <router-link class="navbar-item" to="/#ra-bookmark-todays-special">Prato do dia</router-link>
+        <router-link class="navbar-item is-size-7 is-uppercase" to="/#ra-bookmark-booking">Reservar</router-link>
+        <router-link class="navbar-item is-size-7 is-uppercase" to="/#ra-bookmark-todays-special">Prato do dia</router-link>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link is-arrowless">
             <span class="icon is-large">
@@ -44,12 +44,12 @@
             </span>
           </a>
           <div class="navbar-dropdown is-right has-background-black-bis">
-            <router-link class="navbar-item" to="/#ra-bookmark-gallery">Galeria</router-link>
-            <router-link class="navbar-item" to="/#ra-bookmark-faqs">FAQs</router-link>
-            <router-link class="navbar-item" to="/sponsor">Patrocinadores</router-link>
+            <router-link class="navbar-item is-size-7 is-uppercase" to="/#ra-bookmark-gallery">Galeria</router-link>
+            <router-link class="navbar-item is-size-7 is-uppercase" to="/#ra-bookmark-faqs">FAQs</router-link>
+            <router-link class="navbar-item is-size-7 is-uppercase" to="/sponsor">Patrocinadores</router-link>
             <hr class="navbar-divider" />
-            <router-link class="navbar-item" to="/about">Sobre nós</router-link>
-            <router-link class="navbar-item" to="/#ra-bookmark-contacts">Contactar</router-link>
+            <router-link class="navbar-item is-size-7 is-uppercase" to="/about">Sobre nós</router-link>
+            <router-link class="navbar-item is-size-7 is-uppercase" to="/#ra-bookmark-contacts">Contactar</router-link>
             <!-- <div class="navbar-item has-text-white-ter">Version 0.8.0</div> -->
           </div>
         </div>

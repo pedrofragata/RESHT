@@ -17,10 +17,10 @@
         <div class="column is-4 is-offset-2">
           <div>
             <h4
-              class="title is-size-5-mobile is-size-4-desktop has-text-weight-bold has-text-white"
+              class="title is-size-5-mobile is-size-4-desktop has-text-weight-medium has-text-white"
             >Amêijoas à Bulhão Pato</h4>
             <p
-              class="is-size-6 has-text-grey-light ra-dish-desc"
+              class="is-family-sans-serif has-text-weight-light is-size-6 has-text-grey-light ra-dish-desc"
             >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices tincidunt arcu non sodales neque sodales. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.</p>
           </div>
           <figure class="is-hidden-tablet image is-1by1">

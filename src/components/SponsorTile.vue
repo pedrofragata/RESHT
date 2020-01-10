@@ -1,10 +1,12 @@
 <template>
-  <div class="tile is-parent">
-    <div class="tile is-child box">
-      <p class="title">{{name}}</p>
-      <figure class="image is-1by1">
-        <img :src="image" />
-      </figure>
+  <div class="column is-one-third">
+    <div class="tile is-parent">
+      <div class="tile is-child box has-background-grey-darker">
+        <p class="title has-text-weight-normal has-text-grey-lighter">{{name}}</p>
+        <figure class="image is-1by1">
+          <img :src="image" />
+        </figure>
+      </div>
     </div>
   </div>
 </template>

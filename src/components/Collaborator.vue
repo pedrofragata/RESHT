@@ -1,9 +1,13 @@
 <template>
-  <div>
-        <figure class="image is-128x128" style="margin-bottom: 2em">
-            <img :src="photo" style="width: inherit; height: inherit; object-fit: cover" />
+  <div style="margin-bottom: 3em;">
+        <figure class="image is-flex-mobile" style="margin-bottom: 2em; justify-content: center;">
+            <img :src="photo" style="width: 150px;
+                                    height: 150px;
+                                    border-radius: 50%;
+                                    object-fit: cover;
+                                    object-position: center center;" />
         </figure>
-        <h5 class="title is-5 has-text-white has-text-centered">{{name}}</h5>
+        <h5 class="title is-spaced is-5 is-family-secondary has-text-white has-text-centered">{{name}}</h5>
         <h6 class="subtitle is-6 has-text-grey-light has-text-centered">{{role}}</h6>
     </div>
 </template>
