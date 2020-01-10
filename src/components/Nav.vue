@@ -63,7 +63,7 @@ export default {
   name: "nav",
   data(){
     return{
-      idUser: Number(this.loggedUser.uID)
+      idUser: this.loggedUser.uID
     }
   },
   props: {},
