@@ -3,68 +3,63 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-class User {
-  constructor(
-    id,
-    username,
-    password,
-    email
-    ){
-    this.id = id
-    this.username=username,
-    this.password=password,
-    this.email=email   
-  }
-}
-
 export default new Vuex.Store({
   state: {
-    users:[],
+    users: [],
     loggedUser: {},
     isLogged: false
   },
   mutations: {
-    //regist user
-    ADD_USER(state, user) {
-      let newUser= new User (user.id, user.username, user.password, user.email)
-      state.users.push(newUser)
-      console.log(user)
-      console.log(user.email + "LALALALAL")
+    //registar utilizador
+    ADD_USER(state, payload) {
+      const newUser = {
+        uID: payload.uID,
+        accessLevel: 2,
+        firstName: payload.firstName,
+        lastName: payload.lastName,
+        email: payload.email,
+        password: payload.password,
+        avatar: "",
+        about: ""
+      }
+      state.users.push(newUser);
+      console.log(payload)
+      console.log(payload.email + "LALALALAL")
       console.log(state.users)
     },
     //login
     LOGIN(state, payload){
-      for (let user in state.users){
-        if(user.email==payload.logEmail && user.password==payload.logPassword)
-         {
-           state.loggedUser= state.users[user] // obtem-se o user loggado
-           console.log("LOGIn",state.loggedUser)
+      for (const user in state.users) {
+        if (user.email === payload.logEmail && user.password === payload.logPassword) {
+           state.loggedUser = state.users[user]; // obtem-se o user loggado
+           console.log("LOGIN", state.loggedUser);
            state.isLogged = true;
-         }
+           break;
+        }
       }
 
     },
     //logout
-    LOGOUT(state){
-      state.loggedUser={}
-      console.log("LOGOUT",state.loggedUser)
+    LOGOUT(state) {
+      state.loggedUser = {};
+      console.log("LOGOUT", state.loggedUser);
       state.isLogged = false;
     },
 
   },
   getters: {
-    //return loggedUser
+    //returna loggedUser
     loggedUser: state => {
       return state.loggedUser;
     },
 
-    isLogged: state =>{
-      return state.isLogged
+    isLogged: state => {
+      return state.isLogged;
     },
 
-    //get all users
-    getUsers: state =>{
-      return state.users
+    //obter todos os utilizadores
+    getUsers: state => {
+      return state.users;
     }
   },
 

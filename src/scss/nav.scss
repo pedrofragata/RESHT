@@ -9,14 +9,14 @@
     }
 }
 
-.ra-username {
-    margin-left: 1em;
-}
-
 .navbar-item.has-dropdown {
     &:hover {
         .icon {
             color: $navbar-item-hover-color;
+        }
+
+        .ra-username {
+            color: $scheme-invert;
         }
     }
 }

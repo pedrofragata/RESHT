@@ -70,14 +70,14 @@ router.beforeEach((to, from, next) => {
   console.log(idLogin, "IDLOGIIIIIIIIIN")
 
   if (to.matched.some(record => record.meta.requiresAuth) && !auth) {
-    alert("NOT LOGGED IN");
+    alert("Não se encontra logado");
     next("/");
   } else if (to.matched.some(record => record.meta.requiresAuth) && auth) {
     if (idLogin != 0) {
       if (to.params.userId== idLogin) {
         next();
       } else {
-        alert("You can't go there!");
+        alert("Não pode aceder a essa página!");
         router.go(-1);
       }
     }

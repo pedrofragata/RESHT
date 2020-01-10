@@ -20,12 +20,19 @@
     <div id="ra-navbar" class="navbar-menu">
       <div class="navbar-start">
         <router-link v-if="!isLogged" class="navbar-item" to="/login">Login</router-link>
-        <router-link v-if="isLogged" class="navbar-item" :to="{name: 'profile', params: { userId: idUser }}">
+        
+        <div v-show="isLogged" class="navbar-item has-dropdown is-hoverable">
+         <router-link  class="navbar-item" :to="{name: 'profile', params: { userId: idUser }}">
           <span class="icon is-medium">
             <i class="fas fa-2x fa-user-circle"></i>
           </span>
           <span class="ra-username">{{loggedUser.username}}</span>
-        </router-link>
+        </router-link> 
+          <div class="navbar-dropdown is-left has-background-black-bis">
+            <router-link class="navbar-item" :to="{name: 'profile', params: { userId: idUser }}">O meu perfil</router-link>
+            <a class="navbar-item" @click="logout()">Terminar sessão</a>
+          </div>
+        </div>
       </div>
 
       <div class="navbar-end">
@@ -61,6 +68,12 @@ export default {
     }
   },
   props: {},
+  methods: {
+    logout() {
+      this.$store.commit("LOGOUT");
+      this.$router.push("/");
+    }
+  },
   computed: {
     loggedUser() {
       return this.$store.getters.loggedUser;
