@@ -64,7 +64,7 @@ export default {
   name: "nav",
   data(){
     return{
-      idUser: this.$store.getters.loggedUser.id
+      idUser: this.loggedUser.uID
     }
   },
   props: {},
