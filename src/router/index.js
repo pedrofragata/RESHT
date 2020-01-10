@@ -5,6 +5,7 @@ import Login from "../views/Login.vue"
 import Sponsor from "../views/Sponsor.vue";
 import About from "../views/About.vue";
 import Profile from "../views/Profile.vue";
+import store from "../store/index.js";
 
 Vue.use(VueRouter);
 
@@ -37,9 +38,12 @@ const routes = [
     component: About
   },
   {
-    path: "/profile",
+    path: "/profile/:userId",
     name: "profile",
-    component: Profile
+    component: Profile,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 
@@ -57,6 +61,30 @@ const router = new VueRouter({
 
     return { x: 0, y: 0 }
   }
+});
+
+router.beforeEach((to, from, next) => {
+
+  let auth = store.getters.isLogged;
+  let idLogin = store.getters.loggedUser.id;
+  console.log(idLogin, "IDLOGIIIIIIIIIN")
+
+  if (to.matched.some(record => record.meta.requiresAuth) && !auth) {
+    alert("NOT LOGGED IN");
+    next("/");
+  } else if (to.matched.some(record => record.meta.requiresAuth) && auth) {
+    if (idLogin != 0) {
+      if (to.params.userId== idLogin) {
+        next();
+      } else {
+        alert("You can't go there!");
+        router.go(-1);
+      }
+    }
+  } else {
+    next();
+  }
+ 
 });
 
 export default router;

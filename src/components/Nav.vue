@@ -20,7 +20,7 @@
     <div id="ra-navbar" class="navbar-menu">
       <div class="navbar-start">
         <router-link v-if="!isLogged" class="navbar-item" to="/login">Login</router-link>
-        <router-link v-if="isLogged" class="navbar-item" to="/profile">
+        <router-link v-if="isLogged" class="navbar-item" :to="{name: 'profile', params: { userId: idUser }}">
           <span class="icon is-medium">
             <i class="fas fa-2x fa-user-circle"></i>
           </span>
@@ -55,6 +55,11 @@
 <script>
 export default {
   name: "nav",
+  data(){
+    return{
+      idUser: this.$store.getters.loggedUser.id
+    }
+  },
   props: {},
   computed: {
     loggedUser() {
