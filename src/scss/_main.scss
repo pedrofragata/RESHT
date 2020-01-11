@@ -11,7 +11,7 @@ $family-sans-serif: "Work Sans", sans-serif;
 // cores
 $primary: hsl(74, 50%, 54%);
 // navbar
-$navbar-height: 5rem;
+$navbar-height: 5rem;                               // vvvvv Nome da cor na Bulma vvvvv
 $navbar-item-color: hsl(0, 0%, 96%);                        // white-ter
 $navbar-item-hover-color: hsl(0, 0%, 14%);                  // black-ter
 $navbar-dropdown-border-top: 2px solid hsl(0, 0%, 14%);     // black-ter
@@ -28,6 +28,9 @@ $input-focus-border-color: $primary;
 $input-arrow: hsl(0, 0%, 71%);                              // grey-light
 // box
 $box-background-color: hsl(0, 0%, 14%);                     // black-ter
+// menu
+$menu-item-color: hsl(0, 0%, 71%);                          // grey-light
+$menu-item-active-background-color: $primary;
 
 // importar Bulma
 @import "~bulma/bulma.sass";
