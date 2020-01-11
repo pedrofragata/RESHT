@@ -1,3 +1,9 @@
+// importar font do IPP
+@font-face {
+    font-family: "PortoSans";
+    src: url("../assets/PortoSans-Regular.otf");
+}
+
 .footer {
     .content {
         display: flex;
@@ -24,6 +30,8 @@
         .ra-esht {
             line-height: 1;
             margin-top: 2em;
+            font-family: "PortoSans";
+            letter-spacing: 1px;
         }
     }
 }

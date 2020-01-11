@@ -16,8 +16,8 @@
         <p class="is-family-sans-serif">Telefone: 252 291 700</p>
       </div>
       <div class="ra-footer-item">
-        <img src="@/assets/logo_pporto_branco.png" />
-        <div class="is-family-sans-serif has-text-white has-text-weight-bold is-uppercase ra-esht">
+        <img src="@/assets/PPorto—branco—vazado-01.png" />
+        <div class="has-text-white has-text-weight-bold is-uppercase ra-esht">
           <p>Escola</p>
           <p>Superior</p>
           <p>de Hotelaria</p>
