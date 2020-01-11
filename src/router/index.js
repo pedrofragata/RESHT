@@ -5,6 +5,7 @@ import Login from "../views/Login.vue"
 import Sponsor from "../views/Sponsor.vue";
 import About from "../views/About.vue";
 import Profile from "../views/Profile.vue";
+import Backoffice from "../views/Backoffice.vue";
 import store from "../store/index.js";
 
 Vue.use(VueRouter);
@@ -43,6 +44,14 @@ const routes = [
     component: Profile,
     meta: {
       requiresAuth: true
+    }
+  },
+  {
+    path: "/backoffice",
+    name: "backoffice",
+    component: Backoffice,
+    meta: {
+      requiresAuth: false
     }
   }
 ];

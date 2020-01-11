@@ -1,0 +1,14 @@
+.ra-draggable-artboard {
+    height: 400px;
+    border: 1px solid $grey-light;
+
+    #draggable1,
+    #draggable2 {
+        width: 100px;
+        height: 100px;
+        background-color: teal !important;
+        color: #fff;
+        padding: 5px;
+        position: absolute;
+    }
+}

@@ -14,6 +14,7 @@ module.exports = {
             alias: {
                 'jquery': 'jquery/dist/jquery.min.js',
                 'owl.carousel': 'owl.carousel/dist/owl.carousel.min.js',
+                'iteractjs': 'interactjs/dist/interact.min.js'
             }
         }
     },
