@@ -13,6 +13,15 @@
         .columns {
             padding-top: inherit;
             padding-bottom: inherit;
+
+            .table-container {
+                overflow-x: scroll;
+
+                th,
+                td {
+                    white-space: nowrap;
+                }
+            }
         }
     }
 }
