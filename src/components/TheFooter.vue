@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: "footer",
+  name: "TheFooter",
   props: {}
 };
 </script>

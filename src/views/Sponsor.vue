@@ -45,7 +45,7 @@ import SponsorTile from "@/components/SponsorTile.vue";
 import TheFooter from "@/components/TheFooter.vue";
 
 export default {
-  name: "sponsor",
+  name: "Sponsor",
   components: {
     TheNav,
     Divider,

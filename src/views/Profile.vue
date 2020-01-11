@@ -105,7 +105,7 @@ import TheNav from "@/components/TheNav.vue";
 import TheFooter from "@/components/TheFooter.vue";
 
 export default {
-    name: "sponsor",
+    name: "Profile",
     components: {
         TheNav,
         TheFooter

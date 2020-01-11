@@ -60,7 +60,7 @@
 
 <script>
 export default {
-  name: "nav",
+  name: "TheNav",
   data(){
     return{
       idUser: this.loggedUser.uID

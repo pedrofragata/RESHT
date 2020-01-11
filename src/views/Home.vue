@@ -198,7 +198,7 @@ import TheFooter from "@/components/TheFooter.vue";
 
 
 export default {
-  name: "home",
+  name: "Home",
   components: {
     TheNav,
     Divider,

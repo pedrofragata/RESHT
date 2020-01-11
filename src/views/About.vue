@@ -34,7 +34,7 @@ import Collaborator from "@/components/Collaborator.vue";
 import TheFooter from "@/components/TheFooter.vue";
 
 export default {
-    name: "sponsor",
+    name: "About",
     components: {
         TheNav,
         Divider,

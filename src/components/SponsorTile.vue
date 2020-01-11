@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "sponsortile",
+  name: "SponsorTile",
   props: {
     name: {
       type: String,

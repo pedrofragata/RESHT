@@ -48,7 +48,7 @@ $(document).ready(function() {
 });
 
 export default {
-  name: "carousel",
+  name: "Carousel",
   props: {}
 };
 </script>
