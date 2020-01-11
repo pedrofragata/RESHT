@@ -22,7 +22,7 @@ module.exports = {
             sass: {
                 prependData: `
                     @import "@/scss/_main.scss";
-                    @import "@/scss/base.scss";
+                    @import "@/scss/scrollbar.scss";
                 `
             }
         }
