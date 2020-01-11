@@ -26,30 +26,29 @@ import "jquery";
 import $ from "jquery";
 import "owl.carousel";
 
-$(document).ready(function() {
-  $(".owl-carousel").owlCarousel({
-    center: true,
-    loop: true,
-    margin: 20,
-    nav: true,
-    dots: false,
-    // autoplay: true,
-    // autoplayTimeout: 5000,
-    // autoplayHoverPause: true,
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 3
-      }
-    }
-  });
-});
-
 export default {
   name: "Carousel",
-  props: {}
+  props: {},
+  mounted() {
+    $(".owl-carousel").owlCarousel({
+      center: true,
+      loop: true,
+      margin: 20,
+      nav: true,
+      dots: false,
+      // autoplay: true,
+      // autoplayTimeout: 5000,
+      // autoplayHoverPause: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 3
+        }
+      }
+    });
+  }
 };
 </script>
 
