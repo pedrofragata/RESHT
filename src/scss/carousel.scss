@@ -117,6 +117,7 @@ $owl-dot-background-active:	$owl-color-base !default;
 			margin: $owl-dot-margin;
 			background: $owl-dot-background;
 			display: block;
+			backface-visibility: visible;
 			-webkit-backface-visibility: visible;
 			transition: opacity 200ms ease;
 			border-radius: $owl-dot-rounded;
