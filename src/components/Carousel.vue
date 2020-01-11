@@ -53,4 +53,4 @@ export default {
 };
 </script>
 
-<style src="@/scss/carousel.scss" lang="scss"></style>
+<style src="@/scss/carousel.scss" lang="scss" scoped></style>

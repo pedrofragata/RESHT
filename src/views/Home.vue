@@ -210,4 +210,4 @@ export default {
 };
 </script>
 
-<style src="@/scss/home.scss" lang="scss"></style>
+<style src="@/scss/home.scss" lang="scss" scoped></style>

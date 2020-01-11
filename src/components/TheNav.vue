@@ -84,4 +84,4 @@ export default {
 };
 </script>
 
-<style src="@/scss/nav.scss" lang="scss"></style>
+<style src="@/scss/nav.scss" lang="scss" scoped></style>

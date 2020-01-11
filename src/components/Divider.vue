@@ -14,4 +14,4 @@ export default {
 };
 </script>
 
-<style src="@/scss/divider.scss" lang="scss"></style>
+<style src="@/scss/divider.scss" lang="scss" scoped></style>

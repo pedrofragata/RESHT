@@ -113,4 +113,4 @@ export default {
 }
 </script>
 
-<style src="@/scss/profile.scss" lang="scss"></style>
+<style src="@/scss/profile.scss" lang="scss" scoped></style>

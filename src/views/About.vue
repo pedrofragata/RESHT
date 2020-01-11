@@ -44,4 +44,4 @@ export default {
 }
 </script>
 
-<style src="@/scss/about.scss" lang="scss"></style>
+<style src="@/scss/about.scss" lang="scss" scoped></style>
