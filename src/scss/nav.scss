@@ -3,20 +3,25 @@
     top: 50%;
     transform: translate(0, -50%);
     margin-left: 24px;
+    outline-color: $primary;
 
     &:hover {
         color: hsl(0, 0%, 96%);
     }
 }
 
-.navbar-item.has-dropdown {
-    &:hover {
-        .icon {
-            color: $navbar-item-hover-color;
-        }
+.navbar-item {
+    outline-color: $primary !important;
 
-        .ra-name {
-            color: $scheme-invert-bis;
+    &.has-dropdown {
+        &:hover {
+            .icon {
+                color: $navbar-item-hover-color;
+            }
+
+            .ra-name {
+                color: $scheme-invert-bis;
+            }
         }
     }
 }

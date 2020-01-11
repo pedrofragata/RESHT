@@ -20,32 +20,40 @@
         .columns {
             padding-top: inherit;
             padding-bottom: inherit;
-        }
+
+            .ra-dish-desc {
+                line-height: 1.8;
+            }
+            
+            .ra-dish-image-mobile {
+                object-fit: cover;
+                object-position: center center;
+                margin: 10% 0 0 0;
+            }
+            
+            .ra-weekday-wrapper {
+                display: flex;
+                justify-content: space-around;
+                align-items: flex-end;
+                padding-top: 4em;
+            
+                .button {
+                    border-color: $black-ter;
+                    width: 40px;
+                    height: 40px;
+                }
+            }
     
-        textarea::placeholder {
-            color: hsl(0, 0%, 48%);
-        }
-        
-        .ra-dish-desc {
-            line-height: 1.8;
-        }
-        
-        .ra-dish-image-mobile {
-            object-fit: cover;
-            object-position: center center;
-            margin: 10% 0 0 0;
-        }
-        
-        .ra-weekday-wrapper {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            padding-top: 4em;
-        
-            .button {
-                border-color: $black-ter;
-                width: 40px;
-                height: 40px;
+            form {
+                textarea::placeholder {
+                    color: hsl(0, 0%, 48%);
+                }
+                
+                .button[type="submit"] {
+                    &:focus {
+                        border-color: $primary;
+                    }
+                }
             }
         }
     }
