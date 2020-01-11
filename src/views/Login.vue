@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="hero-head">
-      <Nav />
+      <TheNav />
     </div>
     <div class="login-html">
       <input id="tab-1" type="radio" name="tab" class="sign-in" checked />
@@ -76,7 +76,7 @@
         </div>
       </div>
     </div>
-    <Footer />
+    <TheFooter />
   </div>
 </template>
 
@@ -92,16 +92,16 @@ class User {
   }
 }
 
-import Nav from "@/components/Nav.vue";
-import Footer from "@/components/Footer.vue";
+import TheNav from "@/components/TheNav.vue";
+import TheFooter from "@/components/TheFooter.vue";
 
 import Swal from "../../node_modules/sweetalert2/dist/sweetalert2.js";
 import "../../node_modules/sweetalert2/src/sweetalert2.scss";
 
 export default {
   components: {
-    Nav,
-    Footer
+    TheNav,
+    TheFooter
   },
   data() {
     return {

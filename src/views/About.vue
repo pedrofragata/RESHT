@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <Nav />
+    <TheNav />
     <div class="container is-fluid">
         <Divider title="Sobre nós" />
         <div class="columns">
@@ -23,23 +23,23 @@
             </div>
         </div>
     </div>
-    <Footer />
+    <TheFooter />
   </div>
 </template>
 
 <script>
-import Nav from "@/components/Nav.vue";
+import TheNav from "@/components/TheNav.vue";
 import Divider from "@/components/Divider.vue";
 import Collaborator from "@/components/Collaborator.vue";
-import Footer from "@/components/Footer.vue";
+import TheFooter from "@/components/TheFooter.vue";
 
 export default {
     name: "sponsor",
     components: {
-        Nav,
+        TheNav,
         Divider,
         Collaborator,
-        Footer
+        TheFooter
     }
 }
 </script>

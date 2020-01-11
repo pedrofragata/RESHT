@@ -1,6 +1,6 @@
 <template>
   <div class="sponsor">
-    <Nav />
+    <TheNav />
     <section class="hero is-primary">
       <div class="hero-body">
         <div class="container">
@@ -34,23 +34,23 @@
         </div>
       </div>
     </div>
-    <Footer />
+    <TheFooter />
   </div>
 </template>
 
 <script>
-import Nav from "@/components/Nav.vue";
+import TheNav from "@/components/TheNav.vue";
 import Divider from "@/components/Divider.vue";
 import SponsorTile from "@/components/SponsorTile.vue";
-import Footer from "@/components/Footer.vue";
+import TheFooter from "@/components/TheFooter.vue";
 
 export default {
   name: "sponsor",
   components: {
-    Nav,
+    TheNav,
     Divider,
     SponsorTile,
-    Footer
+    TheFooter
   }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Nav />
+        <TheNav />
         <div class="profile">
             <div class="container is-fluid">
                 <div class="columns">
@@ -96,19 +96,19 @@
                 </div>
             </div>
         </div>
-        <Footer />
+        <TheFooter />
     </div>
 </template>
 
 <script>
-import Nav from "@/components/Nav.vue";
-import Footer from "@/components/Footer.vue";
+import TheNav from "@/components/TheNav.vue";
+import TheFooter from "@/components/TheFooter.vue";
 
 export default {
     name: "sponsor",
     components: {
-        Nav,
-        Footer
+        TheNav,
+        TheFooter
     }
 }
 </script>

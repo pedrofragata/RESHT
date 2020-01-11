@@ -2,7 +2,7 @@
   <div class="home">
     <section class="hero is-fullheight-with-navbar">
       <div class="hero-head">
-        <Nav />
+        <TheNav />
       </div>
       <div class="hero-body">
         <div class="container">
@@ -183,30 +183,29 @@
         </div>
       </div>
     </div>
-    <Footer />
+    <TheFooter />
   </div>
 
 </template>
 
 <script>
-// @ is an alias to /src
-import Nav from "@/components/Nav.vue";
+import TheNav from "@/components/TheNav.vue";
 import Divider from "@/components/Divider.vue";
 import Weekday from "@/components/Weekday.vue";
 import Carousel from "@/components/Carousel.vue";
 import Faq from "@/components/Faq.vue";
-import Footer from "@/components/Footer.vue";
+import TheFooter from "@/components/TheFooter.vue";
 
 
 export default {
   name: "home",
   components: {
-    Nav,
+    TheNav,
     Divider,
     Weekday,
     Carousel,
     Faq,
-    Footer
+    TheFooter
   }
 };
 </script>
