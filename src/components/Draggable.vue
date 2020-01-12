@@ -20,29 +20,57 @@ export default {
           id: 0,
           desc: "Mesa 1",
           categoria: 1,
-          screenX: 0,
-          screenY: 0
+          screenX: 100,
+          screenY: 60
         },
         {
           id: 1,
           desc: "Mesa 2",
           categoria: 2,
-          screenX: 0,
-          screenY: 0
+          screenX: 300,
+          screenY: 60
         },
         {
           id: 2,
           desc: "Mesa 3",
           categoria: 2,
-          screenX: 0,
-          screenY: 0
+          screenX: 500,
+          screenY: 60
         },
         {
           id: 3,
           desc: "Mesa 4",
           categoria: 3,
-          screenX: 0,
-          screenY: 0
+          screenX: 700,
+          screenY: 60
+        },
+        {
+          id: 4,
+          desc: "Mesa 5",
+          categoria: 3,
+          screenX: 100,
+          screenY: 240
+        },
+        {
+          id: 5,
+          desc: "Mesa 6",
+          categoria: 3,
+          screenX: 300,
+          screenY: 240
+        },
+        {
+          id: 6,
+          desc: "Mesa 7",
+          categoria: 3,
+          screenX: 500,
+          screenY: 240
+        },
+        {
+          id: 7,
+          desc: "Mesa 8",
+          categoria: 3,
+          screenX: 700,
+          screenY: 240
         }
       ]
     };
@@ -96,7 +124,14 @@ export default {
   },
   mounted() {
     const draggables = document.querySelectorAll(".draggable");
-    draggables.forEach(draggable => this.initInteract(draggable));
+    for(let i = 0; i < draggables.length; i++) {
+      // inicializar interactjs no elemento
+      this.initInteract(draggables[i]);
+      // colocar na posição definida no objeto
+      draggables[i].style.webkitTransform = draggables[i].style.transform = `
+        translate(${this.tables[i].screenX}px, ${this.tables[i].screenY}px)
+      `;
+    }
   }
 };
 </script>
