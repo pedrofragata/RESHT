@@ -21,56 +21,81 @@ export default {
           desc: "Mesa 1",
           categoria: 1,
           screenX: 100,
-          screenY: 60
+          screenY: 60,
+          width: 100,
+          height: 100
         },
         {
           id: 1,
           desc: "Mesa 2",
           categoria: 2,
           screenX: 300,
-          screenY: 60
+          screenY: 60,
+          width: 100,
+          height: 100
         },
         {
           id: 2,
           desc: "Mesa 3",
           categoria: 2,
           screenX: 500,
-          screenY: 60
+          screenY: 60,
+          width: 100,
+          height: 100
         },
         {
           id: 3,
           desc: "Mesa 4",
           categoria: 3,
           screenX: 700,
-          screenY: 60
+          screenY: 60,
+          width: 100,
+          height: 100
         },
         {
           id: 4,
           desc: "Mesa 5",
           categoria: 3,
           screenX: 100,
-          screenY: 240
+          screenY: 240,
+          width: 100,
+          height: 100
         },
         {
           id: 5,
           desc: "Mesa 6",
           categoria: 3,
           screenX: 300,
-          screenY: 240
+          screenY: 240,
+          width: 100,
+          height: 100
         },
         {
           id: 6,
           desc: "Mesa 7",
           categoria: 3,
           screenX: 500,
-          screenY: 240
+          screenY: 240,
+          width: 100,
+          height: 100
         },
         {
           id: 7,
           desc: "Mesa 8",
           categoria: 3,
           screenX: 700,
-          screenY: 240
+          screenY: 240,
+          width: 100,
+          height: 100
+        },
+        {
+          id: 8,
+          desc: "Mesa 9",
+          categoria: 3,
+          screenX: 900,
+          screenY: 100,
+          width: 100,
+          height: 200
         }
       ]
     };
@@ -127,10 +152,14 @@ export default {
     for(let i = 0; i < draggables.length; i++) {
       // inicializar interactjs no elemento
       this.initInteract(draggables[i]);
+      
+      const dStyle = draggables[i].style;
       // colocar na posição definida no objeto
-      draggables[i].style.webkitTransform = draggables[i].style.transform = `
+      dStyle.webkitTransform = dStyle.transform = `
         translate(${this.tables[i].screenX}px, ${this.tables[i].screenY}px)
       `;
+      dStyle.width = `${this.tables[i].width}px`;
+      dStyle.height = `${this.tables[i].height}px`;
     }
   }
 };
