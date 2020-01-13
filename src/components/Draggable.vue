@@ -19,7 +19,7 @@ export default {
         {
           id: 0,
           desc: "Mesa 1",
-          categoria: 1,
+          category: 1,
           screenX: 100,
           screenY: 60,
           width: 100,
@@ -28,7 +28,7 @@ export default {
         {
           id: 1,
           desc: "Mesa 2",
-          categoria: 2,
+          category: 2,
           screenX: 300,
           screenY: 60,
           width: 100,
@@ -37,7 +37,7 @@ export default {
         {
           id: 2,
           desc: "Mesa 3",
-          categoria: 2,
+          category: 2,
           screenX: 500,
           screenY: 60,
           width: 100,
@@ -46,7 +46,7 @@ export default {
         {
           id: 3,
           desc: "Mesa 4",
-          categoria: 3,
+          category: 3,
           screenX: 700,
           screenY: 60,
           width: 100,
@@ -55,7 +55,7 @@ export default {
         {
           id: 4,
           desc: "Mesa 5",
-          categoria: 3,
+          category: 3,
           screenX: 100,
           screenY: 240,
           width: 100,
@@ -64,7 +64,7 @@ export default {
         {
           id: 5,
           desc: "Mesa 6",
-          categoria: 3,
+          category: 3,
           screenX: 300,
           screenY: 240,
           width: 100,
@@ -73,7 +73,7 @@ export default {
         {
           id: 6,
           desc: "Mesa 7",
-          categoria: 3,
+          category: 3,
           screenX: 500,
           screenY: 240,
           width: 100,
@@ -82,7 +82,7 @@ export default {
         {
           id: 7,
           desc: "Mesa 8",
-          categoria: 3,
+          category: 3,
           screenX: 700,
           screenY: 240,
           width: 100,
@@ -91,7 +91,7 @@ export default {
         {
           id: 8,
           desc: "Mesa 9",
-          categoria: 3,
+          category: 3,
           screenX: 900,
           screenY: 100,
           width: 100,
@@ -150,7 +150,7 @@ export default {
 
           target.setAttribute('data-x', x);
           target.setAttribute('data-y', y);
-        })
+        });
     },
     dragMoveListener(event) {
       const target = event.target;
@@ -197,6 +197,9 @@ export default {
       dStyle.width = `${this.tables[i].width}px`;
       dStyle.height = `${this.tables[i].height}px`;
       dStyle.lineHeight = dStyle.height;   // centrar texto na vertical
+      dStyle.boxShadow = (this.tables[draggables[i].id].category === 1) ? "0 0 5px 2px #ff0000"
+                        : (this.tables[draggables[i].id].category === 2) ? "0 0 5px 2px #00ff00"
+                        : "0 0 5px 2px #0000ff";
     }
   }
 };
