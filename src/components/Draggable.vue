@@ -1,8 +1,10 @@
 <template>
   <div class="ra-draggable-artboard">
+    <button @click="onClickAction='add'">adicionar pessoas</button>
+    <button @click="onClickAction='remove'">remover pessoas</button>
     <div v-for="table in tables" :key="table.id">
       <div :id="table.id" class="ra-draggable has-background-grey-light has-text-grey-dark">
-        {{table.desc}}
+        {{table.desc}} <small> {{table.people}} / {{numOfGuests}}</small>
       </div>
     </div>
   </div>
@@ -117,7 +119,8 @@ export default {
         }
       ],
       numOfGuests: 3,
-      guestCounter: 0
+      guestCounter: 0,
+      onClickAction: "add"
     };
   },
   methods: {
@@ -206,18 +209,20 @@ export default {
     onClick(event) {
       const target = event.target;
 
-      if (this.guestCounter < this.numOfGuests && !target.classList.contains("ra-selected")) {
-        target.classList.add("ra-selected");
+      if (this.onClickAction === "add" && this.guestCounter < this.numOfGuests) {
         this.tables[target.id].people++;
         this.guestCounter++;
-      } else if (target.classList.contains("ra-selected")) {
-        target.classList.remove("ra-selected");
+        if (!target.classList.contains("ra-selected")) target.classList.add("ra-selected");
+      }
+      else if (this.onClickAction === "remove" && this.tables[target.id].people) {
         this.tables[target.id].people--;
         this.guestCounter--;
-      } else {
+        if (!this.tables[target.id].people) target.classList.remove("ra-selected");
+      }
+      else if (this.guestCounter) {
         alert(" As pessoas foram todas colocadas ");
       }
-
+      
       event.preventDefault();
     }
   },
