@@ -2,9 +2,11 @@
   <div class="ra-draggable-artboard">
     <button @click="onClickAction='add'">adicionar pessoas</button>
     <button @click="onClickAction='remove'">remover pessoas</button>
+    <small class="has-text-white">Há {{numOfClients}} clientes.</small>
+    <small class="has-text-white">Ao clicar: {{onClickAction === "add" ? "adicionar" : "remover"}}</small>
     <div v-for="table in tables" :key="table.id">
       <div :id="table.id" class="ra-draggable has-background-grey-light has-text-grey-dark">
-        {{table.desc}} <small> {{table.people}} / {{numOfGuests}}</small>
+        {{table.desc}} <small> {{table.people}} / {{table.capacity}}</small>
       </div>
     </div>
   </div>
@@ -118,8 +120,8 @@ export default {
           people: 0
         }
       ],
-      numOfGuests: 3,
-      guestCounter: 0,
+      numOfClients: 10,
+      clientCounter: 0,
       onClickAction: "add"
     };
   },
@@ -209,20 +211,28 @@ export default {
     onClick(event) {
       const target = event.target;
 
-      if (this.onClickAction === "add" && this.guestCounter < this.numOfGuests) {
+      if (this.onClickAction === "add"
+      && this.clientCounter < this.numOfClients
+      && this.tables[target.id].people < this.tables[target.id].capacity) {
         this.tables[target.id].people++;
-        this.guestCounter++;
+        this.clientCounter++;
         if (!target.classList.contains("ra-selected")) target.classList.add("ra-selected");
       }
       else if (this.onClickAction === "remove" && this.tables[target.id].people) {
         this.tables[target.id].people--;
-        this.guestCounter--;
+        this.clientCounter--;
         if (!this.tables[target.id].people) target.classList.remove("ra-selected");
       }
-      else if (this.guestCounter) {
+      else if (this.clientCounter === this.numOfClients && this.onClickAction === "add") {
         alert(" As pessoas foram todas colocadas ");
       }
-      
+      else if (this.tables[target.id].people === this.tables[target.id].capacity && this.onClickAction === "add") {
+        alert(" Não cabe mais ninguém ");
+      }
+      else if (!this.tables[target.id].people && this.onClickAction === "remove") {
+        alert(" A mesa já se encontra vazia ");
+      }
+
       event.preventDefault();
     }
   },
