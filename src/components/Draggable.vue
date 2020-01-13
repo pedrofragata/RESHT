@@ -1,7 +1,7 @@
 <template>
   <div class="ra-draggable-artboard">
     <div v-for="table in tables" :key="table.id">
-      <div :id="table.id" class="draggable has-background-grey-light has-text-grey-dark">
+      <div :id="table.id" class="ra-draggable has-background-grey-light has-text-grey-dark">
         {{table.desc}}
       </div>
     </div>
@@ -23,7 +23,9 @@ export default {
           screenX: 100,
           screenY: 60,
           width: 100,
-          height: 100
+          height: 100,
+          capacity: 4,  // a ser implementado
+          people: 0
         },
         {
           id: 1,
@@ -32,7 +34,9 @@ export default {
           screenX: 300,
           screenY: 60,
           width: 100,
-          height: 100
+          height: 100,
+          capacity: 4,
+          people: 0
         },
         {
           id: 2,
@@ -41,7 +45,9 @@ export default {
           screenX: 500,
           screenY: 60,
           width: 100,
-          height: 100
+          height: 100,
+          capacity: 4,
+          people: 0
         },
         {
           id: 3,
@@ -50,7 +56,9 @@ export default {
           screenX: 700,
           screenY: 60,
           width: 100,
-          height: 100
+          height: 100,
+          capacity: 4,
+          people: 0
         },
         {
           id: 4,
@@ -59,7 +67,9 @@ export default {
           screenX: 100,
           screenY: 240,
           width: 100,
-          height: 100
+          height: 100,
+          capacity: 4,
+          people: 0
         },
         {
           id: 5,
@@ -68,7 +78,9 @@ export default {
           screenX: 300,
           screenY: 240,
           width: 100,
-          height: 100
+          height: 100,
+          capacity: 4,
+          people: 0
         },
         {
           id: 6,
@@ -77,7 +89,9 @@ export default {
           screenX: 500,
           screenY: 240,
           width: 100,
-          height: 100
+          height: 100,
+          capacity: 4,
+          people: 0
         },
         {
           id: 7,
@@ -86,7 +100,9 @@ export default {
           screenX: 700,
           screenY: 240,
           width: 100,
-          height: 100
+          height: 100,
+          capacity: 4,
+          people: 0
         },
         {
           id: 8,
@@ -95,14 +111,19 @@ export default {
           screenX: 900,
           screenY: 100,
           width: 100,
-          height: 200
+          height: 200,
+          capacity: 8,
+          people: 0
         }
-      ]
+      ],
+      numOfGuests: 3,
+      guestCounter: 0
     };
   },
   methods: {
     initInteract(selector) {
       const data = this.$data; // palavra reservada "this" retorna undefined quando invocada dentro das props do interact
+                               // à exceção de onmove e onend da prop draggable
       interact(selector)
         .draggable({
           inertia: true, // animação de aceleração e desaceleração da forma se a ação de arrasto for interrompida em movimento
@@ -181,10 +202,27 @@ export default {
       // atualizar os x e y no objeto
       this.tables[tableIndex].screenX = target.getBoundingClientRect().left;
       this.tables[tableIndex].screenY = target.getBoundingClientRect().top;
+    },
+    onClick(event) {
+      const target = event.target;
+
+      if (this.guestCounter < this.numOfGuests && !target.classList.contains("ra-selected")) {
+        target.classList.add("ra-selected");
+        this.tables[target.id].people++;
+        this.guestCounter++;
+      } else if (target.classList.contains("ra-selected")) {
+        target.classList.remove("ra-selected");
+        this.tables[target.id].people--;
+        this.guestCounter--;
+      } else {
+        alert(" As pessoas foram todas colocadas ");
+      }
+
+      event.preventDefault();
     }
   },
   mounted() {
-    const draggables = document.querySelectorAll(".draggable");
+    const draggables = document.querySelectorAll(".ra-draggable");
     for(let i = 0; i < draggables.length; i++) {
       // inicializar interactjs no elemento
       this.initInteract(draggables[i]);
@@ -194,6 +232,7 @@ export default {
       dStyle.webkitTransform = dStyle.transform = `
         translate(${this.tables[i].screenX}px, ${this.tables[i].screenY}px)
       `;
+      // outros estilos
       dStyle.width = `${this.tables[i].width}px`;
       dStyle.height = `${this.tables[i].height}px`;
       dStyle.lineHeight = dStyle.height;   // centrar texto na vertical
@@ -201,6 +240,11 @@ export default {
                         : (this.tables[draggables[i].id].category === 2) ? "0 0 5px 2px #00ff00"
                         : "0 0 5px 2px #0000ff";
     }
+
+    window.addEventListener("click", this.onClick);
+  },
+  beforeDestroy() {
+    window.removeEventListener("click", this.onClick);
   }
 };
 </script>
