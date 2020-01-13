@@ -102,19 +102,55 @@ export default {
   },
   methods: {
     initInteract(selector) {
-      interact(selector).draggable({
-        inertia: true, // animação de aceleração e desaceleração da forma se a ação de arrasto for interrompida em movimento
-        restrict: {
-          restriction: ".ra-draggable-artboard",  // contentor limite das formas
-          elementRect: { top: 0, left: 0, bottom: 1, right: 1 } // manter formas totalmente dentro do contentor
-        },
-        autoScroll: false,  // não permite scroll enquanto arrasta a forma para um dos extremos direito ou inferior da página 
-                            // (permitia navegar para fora da página)
-        // possivelmente desnecessário em conjunto com o restrict.elementRect
+      const data = this.$data; // palavra reservada "this" retorna undefined quando invocada dentro das props do interact
+      interact(selector)
+        .draggable({
+          inertia: true, // animação de aceleração e desaceleração da forma se a ação de arrasto for interrompida em movimento
+          restrict: {
+            restriction: ".ra-draggable-artboard",  // contentor limite das formas
+            elementRect: { top: 0, left: 0, bottom: 1, right: 1 } // manter formas totalmente dentro do contentor
+          },
+          autoScroll: false,  // não permite scroll enquanto arrasta a forma para um dos extremos direito ou inferior da página 
+                              // (permitia navegar para fora da página)
+          // possivelmente desnecessário em conjunto com o restrict.elementRect
 
-        onmove: this.dragMoveListener,
-        onend: this.onDragEnd
-      });
+          onmove: this.dragMoveListener,
+          onend: this.onDragEnd
+        })
+        .resizable({
+          edges: { left: true, right: true, bottom: true, top: true },  // redimensionar de todos os lados
+
+          modifiers: [
+            interact.modifiers.restrictEdges({
+              outer: ".ra-draggable-artboard"   // manter dentro do contentor
+            }),
+            interact.modifiers.restrictSize({
+              min: { width: 100, height: 100 }   // tamanho mínimo
+            })
+          ],
+
+          inertia: true
+        })
+        .on("resizemove", function (event) {
+          const target = event.target;
+          const tableIndex = target.id;
+          let x = (parseFloat(target.getAttribute("data-x")) || (data.tables[tableIndex].screenX)),
+              y = (parseFloat(target.getAttribute("data-y")) || (data.tables[tableIndex].screenY));
+
+          target.style.width = `${event.rect.width}px`;
+          target.style.height = `${event.rect.height}px`;
+          target.style.lineHeight = target.style.height;
+
+          // topo e lado esquerdo
+          x += event.deltaRect.left;
+          y += event.deltaRect.top;
+
+          target.style.webkitTransform = target.style.transform =
+            `translate(${x}px, ${y}px)`;
+
+          target.setAttribute('data-x', x);
+          target.setAttribute('data-y', y);
+        })
     },
     dragMoveListener(event) {
       const target = event.target;
@@ -152,7 +188,7 @@ export default {
     for(let i = 0; i < draggables.length; i++) {
       // inicializar interactjs no elemento
       this.initInteract(draggables[i]);
-      
+
       const dStyle = draggables[i].style;
       // colocar na posição definida no objeto
       dStyle.webkitTransform = dStyle.transform = `
@@ -160,6 +196,7 @@ export default {
       `;
       dStyle.width = `${this.tables[i].width}px`;
       dStyle.height = `${this.tables[i].height}px`;
+      dStyle.lineHeight = dStyle.height;   // centrar texto na vertical
     }
   }
 };
