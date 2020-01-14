@@ -25,7 +25,7 @@
             <span class="icon is-medium">
               <i class="fas fa-2x fa-user-circle"></i>
             </span>
-            <span class="navbar-item ra-name">{{loggedUser.username}}</span>
+            <span class="navbar-item ra-name">{{loggedUser.firstName}}</span>
           </router-link>
           <div class="navbar-dropdown is-left has-background-black-bis">
             <router-link class="navbar-item" :to="{name: 'profile', params: { userId: idUser }}">O meu perfil</router-link>
@@ -63,7 +63,7 @@ export default {
   name: "TheNav",
   data(){
     return{
-      idUser: this.loggedUser.uID
+      idUser: -1
     }
   },
   props: {},
@@ -75,11 +75,14 @@ export default {
   },
   computed: {
     loggedUser() {
-      return this.$store.getters.loggedUser;
+      return this.$store.getters["loggedUser"];
     },
     isLogged() {
-      return this.$store.getters.isLogged;
+      return this.$store.getters["isLogged"];
     }
+  },
+  mounted() {
+    this.idUser = this.loggedUser.uID
   }
 };
 </script>

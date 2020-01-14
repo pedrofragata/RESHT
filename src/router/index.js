@@ -75,7 +75,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
 
   let auth = store.getters.isLogged;
-  let idLogin = store.getters.loggedUser.id;
+  let idLogin = store.getters.loggedUser.uID;
   console.log(idLogin, "IDLOGIIIIIIIIIN")
 
   if (to.matched.some(record => record.meta.requiresAuth) && !auth) {

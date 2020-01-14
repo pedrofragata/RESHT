@@ -82,16 +82,6 @@
 
 
 <script>
-//isto vai mudar
-class User {
-  constructor(id, username, password, email) {
-    (this.id = id),
-      (this.username = username),
-      (this.password = password),
-      (this.email = email);
-  }
-}
-
 import TheNav from "@/components/TheNav.vue";
 import TheFooter from "@/components/TheFooter.vue";
 
@@ -119,7 +109,7 @@ export default {
     //obter o ultimo Id
     getLastId() {
       if (this.users.length) {
-        return this.users[this.users.length - 1].id;
+        return this.users[this.users.length - 1].id + 1;
       } else {
         return 0;
       }
@@ -147,7 +137,7 @@ export default {
           let id = this.getLastId() + 1;
           this.$store.commit(
             "ADD_USER",
-            new User(id, this.newUsername, this.newPassword, this.email)
+            { uID: id, firstName: this.newUsername, lastName: "Apelido", email: this.email, password: this.newPassword }
           );
           console.log(this.email);
           Swal.fire({
@@ -187,14 +177,14 @@ export default {
   },
   computed: {
     loggedUser() {
-      return this.$store.getters.loggedUser;
+      return this.$store.getters["loggedUser"];
     },
     isLogged() {
-      return this.$store.getters.isLogged;
+      return this.$store.getters["isLogged"];
     }
   },
   created() {
-    this.users = this.$store.getters.getUsers;
+    this.users = this.$store.getters["getUsers"];
     console.log(this.users);
   }
 };
