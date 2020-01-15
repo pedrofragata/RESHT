@@ -115,7 +115,7 @@
                         </table>
                     </div>
                     <h5 class="subtitle is-5 has-text-grey-light">Atribuir mesa</h5>
-                    <Draggable />
+                    <TablesLayout />
                 </div>
             </div>
         </div>
@@ -127,14 +127,14 @@
 
 <script>
 import TheNav from "@/components/TheNav.vue";
-import Draggable from "@/components/Draggable.vue";
+import TablesLayout from "@/components/TablesLayout.vue";
 import TheFooter from "@/components/TheFooter.vue";
 
 export default {
   name: "Backoffice",
   components: {
     TheNav,
-    Draggable,
+    TablesLayout,
     TheFooter
   }
 };

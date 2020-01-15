@@ -1,12 +1,26 @@
 <template>
-  <div class="ra-draggable-artboard">
-    <button @click="onClickAction='add'">adicionar pessoas</button>
-    <button @click="onClickAction='remove'">remover pessoas</button>
+  <div>
     <small class="has-text-white">Há {{numOfClients}} clientes.</small>
-    <small class="has-text-white">Ao clicar: {{onClickAction === "add" ? "adicionar" : "remover"}}</small>
-    <div v-for="table in tables" :key="table.id">
-      <div :id="table.id" class="ra-draggable has-background-grey-light has-text-grey-dark">
-        {{table.desc}} <small> {{table.people}} / {{table.capacity}}</small>
+    <div class="ra-interactables-toolbar has-background-grey-light has-text-grey-darker has-text-weight-semibold">
+      <p>Barra de ferramentas:</p>
+      <button @click.prevent="selectTool('add')" class="button ra-toolbar-button"
+              :class="{'ra-plus': selectedTool === 'add'}">
+        <span class="icon is-medium">
+          <i class="fas fa-2x fa-plus"></i>
+        </span>
+      </button>
+      <button @click.prevent="selectTool('remove')" class="button ra-toolbar-button"
+              :class="{'ra-minus': selectedTool === 'remove'}">
+        <span class="icon is-medium">
+          <i class="fas fa-2x fa-minus"></i>
+        </span>
+      </button>
+    </div>
+    <div class="ra-interactables-screen">
+      <div v-for="table in tables" :key="table.id">
+        <div :id="table.id" class="ra-interactable has-background-grey-light has-text-grey-dark">
+          {{table.people}} de {{table.capacity}}
+        </div>
       </div>
     </div>
   </div>
@@ -16,7 +30,7 @@
 import interact from "interactjs";
 
 export default {
-  name: "Draggable",
+  name: "TablesLayout",
   data() {
     return {
       tables: [
@@ -122,7 +136,15 @@ export default {
       ],
       numOfClients: 10,
       clientCounter: 0,
-      onClickAction: "add"
+      tools: [
+        {
+          action: "add",
+          isActive: true
+        } , {
+          action: "remove",
+          isActive: false
+        }
+      ]
     };
   },
   methods: {
@@ -133,7 +155,7 @@ export default {
         .draggable({
           inertia: true, // animação de aceleração e desaceleração da forma se a ação de arrasto for interrompida em movimento
           restrict: {
-            restriction: ".ra-draggable-artboard",  // contentor limite das formas
+            restriction: ".ra-interactables-screen",  // contentor limite das formas
             elementRect: { top: 0, left: 0, bottom: 1, right: 1 } // manter formas totalmente dentro do contentor
           },
           autoScroll: false,  // não permite scroll enquanto arrasta a forma para um dos extremos direito ou inferior da página 
@@ -148,7 +170,7 @@ export default {
 
           modifiers: [
             interact.modifiers.restrictEdges({
-              outer: ".ra-draggable-artboard"   // manter dentro do contentor
+              outer: ".ra-interactables-screen"   // manter dentro do contentor
             }),
             interact.modifiers.restrictSize({
               min: { width: 100, height: 100 }   // tamanho mínimo
@@ -208,60 +230,78 @@ export default {
       this.tables[tableIndex].screenX = target.getBoundingClientRect().left;
       this.tables[tableIndex].screenY = target.getBoundingClientRect().top;
     },
-    onClick(event) {
+    onInteractableClick(event) {
       const target = event.target;
+      const clickedTable = this.tables[parseInt(target.id)];
 
-      if (this.onClickAction === "add"
+      if (this.selectedTool === "add"
       && this.clientCounter < this.numOfClients
-      && this.tables[target.id].people < this.tables[target.id].capacity) {
-        this.tables[target.id].people++;
+      && clickedTable.people < clickedTable.capacity)
+      {
+        clickedTable.people++;
         this.clientCounter++;
-        if (!target.classList.contains("ra-selected")) target.classList.add("ra-selected");
+        if (!target.classList.contains("ra-selected")) target.classList.add("ra-selected"); // a alterar
       }
-      else if (this.onClickAction === "remove" && this.tables[target.id].people) {
-        this.tables[target.id].people--;
+      else if (this.selectedTool === "remove" && clickedTable.people) {
+        clickedTable.people--;
         this.clientCounter--;
-        if (!this.tables[target.id].people) target.classList.remove("ra-selected");
+        if (!clickedTable.people) target.classList.remove("ra-selected"); // a alterar
       }
-      else if (this.clientCounter === this.numOfClients && this.onClickAction === "add") {
-        alert(" As pessoas foram todas colocadas ");
+
+      // a alterar alertas
+      else if (this.clientCounter === this.numOfClients && this.selectedTool === "add") {
+        alert(" As pessoas foram todas colocadas nas mesas ");
       }
-      else if (this.tables[target.id].people === this.tables[target.id].capacity && this.onClickAction === "add") {
-        alert(" Não cabe mais ninguém ");
+      else if (clickedTable.people === clickedTable.capacity && this.selectedTool === "add") {
+        alert(" Não cabe mais ninguém na mesa ");
       }
-      else if (!this.tables[target.id].people && this.onClickAction === "remove") {
+      else if (!clickedTable.people && this.selectedTool === "remove") {
         alert(" A mesa já se encontra vazia ");
       }
 
       event.preventDefault();
+    },
+    selectTool(action) {
+      this.tools.forEach(tool => tool.isActive = (tool.action === action));
+    },
+    onLoadStyles(interactable, table) {
+      const style = interactable.style;
+
+      // colocar na posição definida no objeto
+      interactable.style.webkitTransform = interactable.style.transform = `
+        translate(${table.screenX}px, ${table.screenY}px)
+      `;
+
+      style.width = `${table.width}px`;
+      style.height = `${table.height}px`;
+      style.lineHeight = style.height;   // centrar texto na vertical
+      style.boxShadow = (table.category === 1) ? "0 0 5px 2px #ff0000"
+                        : (table.category === 2) ? "0 0 5px 2px #00ff00"
+                        : "0 0 5px 2px #0000ff";
+    }
+  },
+  computed: {
+    selectedTool() {
+      return this.tools.filter(tool => tool.isActive)[0].action;
     }
   },
   mounted() {
-    const draggables = document.querySelectorAll(".ra-draggable");
-    for(let i = 0; i < draggables.length; i++) {
+    const interactables = document.querySelectorAll(".ra-interactable");
+    for(let i = 0; i < interactables.length; i++) {
       // inicializar interactjs no elemento
-      this.initInteract(draggables[i]);
+      this.initInteract(interactables[i]);
+      // aplicar estilos
+      this.onLoadStyles(interactables[i], this.tables[i]);
 
-      const dStyle = draggables[i].style;
-      // colocar na posição definida no objeto
-      dStyle.webkitTransform = dStyle.transform = `
-        translate(${this.tables[i].screenX}px, ${this.tables[i].screenY}px)
-      `;
-      // outros estilos
-      dStyle.width = `${this.tables[i].width}px`;
-      dStyle.height = `${this.tables[i].height}px`;
-      dStyle.lineHeight = dStyle.height;   // centrar texto na vertical
-      dStyle.boxShadow = (this.tables[draggables[i].id].category === 1) ? "0 0 5px 2px #ff0000"
-                        : (this.tables[draggables[i].id].category === 2) ? "0 0 5px 2px #00ff00"
-                        : "0 0 5px 2px #0000ff";
+      interactables[i].addEventListener("click", this.onInteractableClick);
     }
-
-    window.addEventListener("click", this.onClick);
   },
   beforeDestroy() {
-    window.removeEventListener("click", this.onClick);
+    document.querySelectorAll(".ra-interactable").forEach(element => {
+      element.removeEventListener("click", this.onInteractableClick)
+    });
   }
 };
 </script>
 
-<style src="@/scss/draggable.scss" lang="scss"></style>
+<style src="@/scss/tables-layout.scss" lang="scss"></style>
