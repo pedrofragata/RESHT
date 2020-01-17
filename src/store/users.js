@@ -1,63 +1,61 @@
 export default {
+    namespaced: true,
+
     state: {
         users: [],
-        loggedUser: {},
-        isLogged: false
+        loginStatus: {
+            isLogged: false,
+            loggedUser: {}
+        }
     },
     mutations: {
-        //registar utilizador
         ADD_USER(state, payload) {
-            const newUser = {
+            state.users.push({
                 uID: payload.uID,
-                accessLevel: 2,
+                accessLevel: 0,
                 firstName: payload.firstName,
                 lastName: payload.lastName,
+                fullName: payload.firstName + " " + payload.lastName,
                 email: payload.email,
                 password: payload.password,
                 avatar: "",
                 about: ""
-            }
-            state.users.push(newUser);
-            console.log(payload)
-            console.log(payload.email + "LALALALAL")
-            console.log(state.users)
+            });
         },
-        //login
-        LOGIN(state, payload){
-            for (const user in state.users) {
-                if (user.email === payload.logEmail && user.password === payload.logPassword) {
-                    state.loggedUser = state.users[user]; // obtem-se o user loggado
-                    console.log("LOGIN", state.loggedUser);
-                    state.isLogged = true;
-                    break;
-                }
-            }
+        LOGIN(state, payload){;
+            state.loginStatus.isLogged = true;
+            state.loginStatus.loggedUser = payload;
         },
-        //logout
         LOGOUT(state) {
-            state.loggedUser = {};
-            console.log("LOGOUT", state.loggedUser);
-            state.isLogged = false;
+            if (state.loginStatus.isLogged) {
+                state.loginStatus.isLogged = false;
+                state.loginStatus.loggedUser = {};
+            }
         },
         SAVE_TO_LOCALSTORAGE(state) {
-            localStorage.setItem("users-state", JSON.stringify(state));
+            localStorage.setItem("users-state", JSON.stringify(state.users));
+            sessionStorage.setItem("login-status", JSON.stringify(state.loginStatus));
         },
         GET_FROM_LOCALSTORAGE(state) {
-            if (localStorage.getItem("users-state")) state = JSON.parse(localStorage.getItem("users-state"));
-            localStorage.setItem("users-state", state);
+            localStorage.getItem("users-state")
+            ? state.users = JSON.parse(localStorage.getItem("users-state"))
+            : localStorage.setItem("users-state", JSON.stringify(state.users));
+
+            sessionStorage.getItem("login-status")
+            ? state.loginStatus = JSON.parse(sessionStorage.getItem("login-status"))
+            : sessionStorage.setItem("login-status", JSON.stringify(state.loginStatus));
         }
     },
     getters: {
-        //retorna loggedUser
-        loggedUser: state => {
-            return state.loggedUser;
+        allUsers: state => state.users,
+        loginStatus: state => state.loginStatus,
+        newId: (state) => { return state.users.length ? state.users.length + 1 : 0 },
+        emailInUse: (state) => (email) => { return state.users.find(user => user.email === email)},
+        foundUser: (state) => (email, password) => {
+            return state.users.find(user => user.email === email && user.password === password)
         },
-        isLogged: state => {
-            return state.isLogged;
-        },
-        //obter todos os utilizadores
-        getUsers: state => {
-            return state.users;
-        }
+        fullNameByID: (state) => (uID) => { return state.users.find(user => user.uID === uID).fullName},
+        isStaffMember: (state) => (uID) => { return state.users.find(user => user.uID === uID).accessLevel === 1},
+        isAdmin: (state) => (uID) => { return state.users.find(user => user.uID === uID).accessLevel === 2}
     }
 }

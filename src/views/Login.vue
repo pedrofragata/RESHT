@@ -39,11 +39,15 @@
           <form v-on:submit.prevent="addUser">
             <div class="group">
               <label for="email" class="label">Email</label>
-              <input id="email" type="email" class="input" v-model="email" required />
+              <input id="email" type="email" class="input" v-model="newEmail" required />
             </div>
             <div class="group">
-              <label for="newUsername" class="label">Nome de utilizador</label>
-              <input id="newUsername" type="text" class="input" v-model="newUsername" required />
+              <label for="newFirstName" class="label">Nome</label>
+              <input id="newFirstName" type="text" class="input" v-model="newFirstName" required />
+            </div>
+            <div class="group">
+              <label for="newLastName" class="label">Apelido</label>
+              <input id="newLastName" type="text" class="input" v-model="newLastName" required />
             </div>
             <div class="group">
               <label for="newPassword" class="label">Password</label>
@@ -82,6 +86,8 @@
 
 
 <script>
+import { mapGetters } from "vuex";
+
 import TheNav from "@/components/TheNav.vue";
 import TheFooter from "@/components/TheFooter.vue";
 
@@ -96,96 +102,68 @@ export default {
   },
   data() {
     return {
-      users: [],
-      newUsername: "",
+      newEmail: "",
+      newFirstName: "",
+      newLastName: "",
       newPassword: "",
-      logEmail: "",
-      logPassword: "",
-      email: "",
       confPassword: "",
+      logEmail: "",
+      logPassword: ""
     };
   },
   methods: {
-    //obter o ultimo Id
-    getLastId() {
-      if (this.users.length) {
-        return this.users[this.users.length - 1].id + 1;
-      } else {
-        return 0;
-      }
-    },
-
     addUser() {
-      //verificar se email já existe
-      let emailAlreadyExists = this.users.some(
-        user => user.email == this.email
-      );
-      console.log("email existe?" + emailAlreadyExists);
-
-      // verificar passwords
-      if (this.newPassword == this.confPassword) {
-        if (emailAlreadyExists) {
-          Swal.fire({
-            icon: "error",
-            title: "Oops..",
-            text: "Esse email já se encontra registado!"
-          });
-        }
-        // se estiver tudo bem, cria o utilizador
-        else {
-          //fazer o ID aqui
-          let id = this.getLastId() + 1;
-          this.$store.commit(
-            "ADD_USER",
-            { uID: id, firstName: this.newUsername, lastName: "Apelido", email: this.email, password: this.newPassword }
-          );
-          console.log(this.email);
-          Swal.fire({
-            icon: "success",
-            title: "Registo efetuado com sucesso!",
-            showConfirmButton: false,
-            timer: 1500
-          });
-        }
-      } else {
+      if (this.emailInUse(this.newEmail)) {
         Swal.fire({
           icon: "error",
           title: "Oops..",
-          text: "As passwords não coincidem!"
+          text: "Esse email já se encontra registado!"
+        });
+      }
+      else if (this.newPassword !== this.confPassword) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops..",
+          text: "As palavra-passe não são iguais!"
+        });
+      }
+      else {
+        this.$store.commit(
+          "users/ADD_USER",
+          {
+            uID: this.newId,
+            firstName: this.newFirstName,
+            lastName: this.newLastName,
+            email: this.newEmail,
+            password: this.newPassword
+          }
+        );
+        this.$store.commit("users/SAVE_TO_LOCALSTORAGE");
+        Swal.fire({
+          icon: "success",
+          title: "Registo efetuado com sucesso!",
+          showConfirmButton: false,
+          timer: 1500
         });
       }
     },
     login() {
-      if (this.users.some(user => user.email === this.logEmail && user.password === this.logPassword)) {
-        this.$store.commit("LOGIN", (this.logEmail, this.logPassword));
-        // console.log("LOGADO");
-        // console.log("IFFFFFFFFFFFFFF");
+      if (this.foundUser(this.logEmail, this.logPassword)) {
+        this.$store.commit("users/LOGIN", this.foundUser(this.logEmail, this.logPassword));
+        this.$store.commit("users/SAVE_TO_LOCALSTORAGE");
         this.$router.push("/");
-      } else {
-        // console.log("ELSEEEEEEE");
-          Swal.fire({
-            icon: "error",
-            title: "Oops..",
-            text: "Credenciais incorretas!"
-          });
       }
-    },
-
-    logout() {
-      this.$store.commit("LOGOUT");
+      else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops..",
+          text: "Credenciais incorretas!"
+        });
+      }
     }
   },
   computed: {
-    loggedUser() {
-      return this.$store.getters["loggedUser"];
-    },
-    isLogged() {
-      return this.$store.getters["isLogged"];
-    }
-  },
-  created() {
-    this.users = this.$store.getters["getUsers"];
-    console.log(this.users);
+    ...mapGetters("users", ["loginStatus", "newId", "emailInUse", "foundUser"])
   }
 };
 </script>

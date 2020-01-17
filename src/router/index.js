@@ -6,7 +6,7 @@ import Sponsor from "../views/Sponsor.vue";
 import About from "../views/About.vue";
 import Profile from "../views/Profile.vue";
 import Backoffice from "../views/Backoffice.vue";
-import store from "../store/index.js";
+// import store from "../store/index.js";
 
 Vue.use(VueRouter);
 
@@ -20,18 +20,11 @@ const routes = [
     path: "/sponsor",
     name: "sponsor",
     component: Sponsor,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    // component: () =>
-    //   import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
     path: "/login",
     name: "login",
     component: Login
-    // component: () =>
-    //   import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
     path: "/about",
@@ -39,7 +32,7 @@ const routes = [
     component: About
   },
   {
-    path: "/profile/:userId",
+    path: "/profile/:userID",
     name: "profile",
     component: Profile,
     meta: {
@@ -51,12 +44,19 @@ const routes = [
     name: "backoffice",
     component: Backoffice,
     meta: {
-      requiresAuth: false
-    }
+      requiresAuth: true
+    },
+    // beforeEnter (to, from, next) {
+    //   console.log(to)
+    //   console.log(from)
+    //   console.log(next)
+    //   console.log(store.getters["users/loginStatus"].loggedUser)
+    // },
   }
 ];
 
 const router = new VueRouter({
+  mode: "history",
   routes,
   scrollBehavior (to, from, savedPosition) {
     if (to.hash) {
@@ -73,27 +73,20 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  const loginStatus = JSON.parse(sessionStorage.getItem("login-status"));
 
-  let auth = store.getters.isLogged;
-  let idLogin = store.getters.loggedUser.uID;
-  console.log(idLogin, "IDLOGIIIIIIIIIN")
-
-  if (to.matched.some(record => record.meta.requiresAuth) && !auth) {
-    alert("Não se encontra logado");
-    next("/");
-  } else if (to.matched.some(record => record.meta.requiresAuth) && auth) {
-    if (idLogin != 0) {
-      if (to.params.userId== idLogin) {
-        next();
-      } else {
-        alert("Não pode aceder a essa página!");
-        router.go(-1);
-      }
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!loginStatus.isLogged) {
+      alert("Não se encontra logado");
+      next("/login");
     }
-  } else {
+    else {
+      next();
+    }
+  }
+  else {
     next();
   }
- 
 });
 
 export default router;

@@ -1,34 +1,13 @@
 <template>
-  <div id="app" class="has-navbar-fixed-top has-background-black-ter">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
+  <div id="app">
     <router-view />
   </div>
 </template>
-<script>
 
+<script>
 export default {
   created() {
-  
-  if(localStorage.getItem("users")) {
-          this.$store.state.users = JSON.parse(localStorage.getItem("users"))
-        }        
-},
-updated()
-{
-      window.addEventListener(
-      "unload",
-      () =>
-        localStorage.setItem(
-          "users",
-          JSON.stringify(this.$store.state.users)
-        )
-    );
-
-    }
-  
+    this.$store.commit("users/GET_FROM_LOCALSTORAGE");
+  }
 }
-
 </script>

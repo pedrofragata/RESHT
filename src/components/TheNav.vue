@@ -19,16 +19,16 @@
 
     <div id="ra-navbar" class="navbar-menu">
       <div class="navbar-start">
-        <router-link v-show="!isLogged" class="navbar-item is-size-7 is-uppercase" to="/login">Login</router-link>
-        <div v-show="isLogged" class="navbar-item has-dropdown is-hoverable">
-          <router-link class="navbar-link is-arrowless" :to="{name: 'profile', params: { userId: idUser }}">
+        <router-link v-show="!loginStatus.isLogged" class="navbar-item is-size-7 is-uppercase" to="/login">Login</router-link>
+        <div v-show="loginStatus.isLogged" class="navbar-item has-dropdown is-hoverable">
+          <router-link class="navbar-link is-arrowless" :to="{name: 'profile', params: { userID: userID }}">
             <span class="icon is-medium">
               <i class="fas fa-2x fa-user-circle"></i>
             </span>
-            <span class="navbar-item ra-name">{{loggedUser.firstName}}</span>
+            <span class="navbar-item ra-name">{{loginStatus.loggedUser.fullName}}</span>
           </router-link>
           <div class="navbar-dropdown is-left has-background-black-bis">
-            <router-link class="navbar-item" :to="{name: 'profile', params: { userId: idUser }}">O meu perfil</router-link>
+            <router-link class="navbar-item" :to="{name: 'profile', params: { userID: userID }}">O meu perfil</router-link>
             <a class="navbar-item" @click="logout()">Terminar sessão</a>
           </div>
         </div>
@@ -59,31 +59,23 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "TheNav",
-  data(){
-    return{
-      idUser: -1
-    }
-  },
-  props: {},
   methods: {
     logout() {
-      this.$store.commit("LOGOUT");
+      this.$store.commit("users/LOGOUT");
+      this.$store.commit("users/SAVE_TO_LOCALSTORAGE");
       this.$router.push("/");
     }
   },
   computed: {
-    loggedUser() {
-      return this.$store.getters["loggedUser"];
-    },
-    isLogged() {
-      return this.$store.getters["isLogged"];
+    ...mapGetters("users", ["loginStatus"]),
+    userID() {
+      return this.loginStatus.loggedUser.uID;
     }
   },
-  mounted() {
-    this.idUser = this.loggedUser.uID
-  }
 };
 </script>
 

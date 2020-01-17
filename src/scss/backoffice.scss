@@ -1,3 +1,7 @@
+@mixin svg-color($color) {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8' standalone='no'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg width='100%25' height='100%25' viewBox='0 0 512 512' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' xmlns:serif='http://www.serif.com/' style='fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;'%3E%3Cpath d='M256,0c-141.163,0 -256,114.837 -256,256c0,141.163 114.837,256 256,256c141.163,0 256,-114.837 256,-256c0,-141.163 -114.837,-256 -256,-256Z' style='fill-rule:nonzero;'/%3E%3C/svg%3E");
+}
+
 .backoffice {
     padding-top: $navbar-height;
     background-image: url("../assets/bg.jpg");
@@ -20,6 +24,18 @@
                 th,
                 td {
                     white-space: nowrap;
+
+                    .ra-status-indicator {
+                        @include svg-color("%23" + "FFDD57");
+                        background-color: transparent;
+                        background-repeat: no-repeat;
+                        background-size: 10% 10%;
+                        background-position: center;
+                    }
+
+                    .ra-status-green {
+                        @include svg-color("%23" + "23D160");
+                    }
                 }
             }
         }
