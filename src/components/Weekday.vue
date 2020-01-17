@@ -18,19 +18,15 @@ export default {
     name: "Weekday",
     props: {
         letter: {
-            type: String,
             required: true
         },
         day: {
-            type: Number,
             required: true
         },
         isToday: {
-            type: Boolean,
             default: false
         },
         isOpen: {
-            type: Boolean,
             default: false
         }
     }

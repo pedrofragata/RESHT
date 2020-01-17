@@ -10,12 +10,12 @@
         </div>
         <div class="columns">
             <div class="column is-6 is-offset-3 has-text-grey-light is-flex-tablet">
-                <Collaborator
+                <StaffMember
                     name="José António"
                     role="Chefe de Mesa"
                     photo="https://restaurante.esht.ipp.pt/images/jose_silva.jpg"
                 />
-                <Collaborator
+                <StaffMember
                     name="Rui Fonseca"
                     role="Chefe de Cozinha"
                     photo="https://restaurante.esht.ipp.pt/images/rui_fonseca.jpg"
@@ -30,7 +30,7 @@
 <script>
 import TheNav from "@/components/TheNav.vue";
 import Divider from "@/components/Divider.vue";
-import Collaborator from "@/components/Collaborator.vue";
+import StaffMember from "@/components/StaffMember.vue";
 import TheFooter from "@/components/TheFooter.vue";
 
 export default {
@@ -38,7 +38,7 @@ export default {
     components: {
         TheNav,
         Divider,
-        Collaborator,
+        StaffMember,
         TheFooter
     }
 }

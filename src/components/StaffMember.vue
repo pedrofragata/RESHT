@@ -14,7 +14,7 @@
 
 <script>
 export default {
-    name: "Collaborator",
+    name: "StaffMember",
     props: {
         name: {
             type: String,
