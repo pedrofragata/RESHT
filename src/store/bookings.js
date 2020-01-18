@@ -22,10 +22,14 @@ export default {
                 dishes: [
                     {
                         dID: 0,
-                        quantity: 0
+                        quantity: 2
+                    },
+                    {
+                        dID: 2,
+                        quantity: 1
                     }
                 ],
-                totalPrice: 0,
+                totalPrice: 20.50,
                 message: "Não como doces"
             },
             {
@@ -49,12 +53,12 @@ export default {
                         quantity: 1
                     }
                 ],
-                totalPrice: 0,
+                totalPrice: 7.00,
                 message: "Espero que seja bom"
             },
             {
                 bID: 2,
-                uID: 2,
+                uID: 0,
                 sID: 0,
                 dateRequest: "16/01/2015 00:00",
                 dateOpening: "17/01/2015 19:00",
@@ -69,20 +73,68 @@ export default {
                 ],
                 dishes: [
                     {
-                        dID: 0,
+                        dID: 1,
+                        quantity: 4
+                    },
+                    {
+                        dID: 4,
                         quantity: 5
                     },
+                    {
+                        dID: 0,
+                        quantity: 1
+                    },
+                    {
+                        dID: 2,
+                        quantity: 3
+                    },
+                    {
+                        dID: 3,
+                        quantity: 7
+                    }
+                ],
+                totalPrice: 97.50,
+                message: "Esta é uma descrição de elevada extensão para ser possível avaliar o comportamento da tabela face a um grande número de caracteres presentes no campo de observação."
+            },
+            {
+                bID: 3,
+                uID: 0,
+                sID: 0,
+                dateRequest: "16/01/2015 00:00",
+                dateOpening: "17/01/2015 19:00",
+                dateClosing: "17/01/2015 20:00",
+                dateArrival: "17/01/2015 19:10",
+                numOfPeople: 10,
+                tables: [
+                    {
+                        tID: 9,
+                        people: 0
+                    }                    
+                ],
+                dishes: [
                     {
                         dID: 1,
                         quantity: 4
                     },
                     {
-                        dID: 2,
+                        dID: 4,
+                        quantity: 5
+                    },
+                    {
+                        dID: 0,
                         quantity: 1
+                    },
+                    {
+                        dID: 2,
+                        quantity: 3
+                    },
+                    {
+                        dID: 3,
+                        quantity: 7
                     }
                 ],
-                totalPrice: 0,
-                message: "Vem a família toda"
+                totalPrice: 97.50,
+                message: "Esta é uma descrição de elevada extensão para ser possível avaliar o comportamento da tabela face a um grande número de caracteres presentes no campo de observação."
             }
         ],
         tables: [
@@ -188,33 +240,36 @@ export default {
             }
             
         ],
-        dishes: [
-            // objetos para efeitos de teste
-        ],
         status: [
             {
                 sID: 0,
-                desc: "Em revisão"
+                desc: "Em revisão",
+                color: "yellow"
             },
             {
                 sID: 1,
-                desc: "Confirmada"
+                desc: "Confirmada",
+                color: "green"
             },
             {
                 sID: 2,
-                desc: "Mesa atribuída"
+                desc: "Mesa atribuída",
+                color: "lightgrey"
             },
             {
                 sID: 3,
-                desc: "Paga"
+                desc: "Paga",
+                color: "blue"
             },
             {
                 sID: 4,
-                desc: "A reembolsar"
+                desc: "A reembolsar",
+                color: "red"
             },
             {
                 sID: 5,
-                desc: "Reembolsada"
+                desc: "Reembolsada",
+                color: "black"
             }
         ]
     },
@@ -236,7 +291,7 @@ export default {
             });
         },
         ADD_TABLE(state, payload) {
-            const newTable = {
+            state.tables.push({
                 tID: payload.tID,
                 desc: payload.desc,
                 category: payload.category,
@@ -246,33 +301,14 @@ export default {
                 screenY: 0,
                 tWidth: 100,
                 tHeight: 100
-            }
-            state.tables.push(newTable);
+            });
         },
         REMOVE_TABLE(state, payload) {
             state.tables = state.tables.filter(table => table.tID === payload);
         },
-        ADD_DISH(state, payload) {
-            state.dishes.push({
-                dID: payload.dID,
-                name: payload.name,
-                basePrice: payload.basePrice,
-                category: payload.category,
-                subcategory: payload.subcategory,
-                desc: payload.desc,
-                image: payload.image,
-                dateAvailableSince: payload.availableSince,
-                dateAvailableUpTo: payload.availableUpTo,
-                discounts: payload.discounts
-            });
-        },
-        REMOVE_DISH(state, payload) {
-            state.dishes = state.dishes.filter(dish => dish.dID !== payload);
-        },
         SAVE_TO_LOCALSTORAGE(state) {
             localStorage.setItem("bookings-state", JSON.stringify(state.bookings));
             localStorage.setItem("tables-state", JSON.stringify(state.table));
-            localStorage.setItem("dishes-state", JSON.stringify(state.dishes));
         },
         GET_FROM_LOCALSTORAGE(state) {
             localStorage.getItem("bookings-state")
@@ -282,15 +318,12 @@ export default {
             localStorage.getItem("tables-state")
             ? state.tables = JSON.parse(localStorage.getItem("tables-state"))
             : localStorage.setItem("tables-state", JSON.stringify(state.tables));
-
-            localStorage.getItem("dishes-state")
-            ? state.dishes = JSON.parse(localStorage.getItem("dishes-state"))
-            : localStorage.setItem("dishes-state", JSON.stringify(state.dishes));
         }
     },
     getters: {
-        statusDescFromID: (state) => (sID) => { return state.status.find(status => status.sD === sID).firstName },
         allBookings: state => state.bookings,
-        allTables: state => state.tables
+        allTables: state => state.tables,
+        statusDescByID: (state) => (sID) => { return state.status.find(status => status.sID === sID).desc },
+        statusColorByID: (state) => (sID) => { return state.status.find(status => status.sID === sID).color }
     }
 }

@@ -36,10 +36,8 @@ $table-head-background-color: hsl(0, 0%, 7%);
 $table-head-cell-color: hsl(0, 0%, 96%);
 $table-foot-background-color: hsl(0, 0%, 7%);
 $table-foot-cell-color: hsl(0, 0%, 96%);
-$table-background-color: hsl(0, 0%, 29%);
+$table-background-color: hsl(0, 0%, 21%);
 $table-row-hover-background-color: hsl(0, 0%, 14%);
-$table-striped-row-even-background-color: hsl(0, 0%, 21%);
-$table-striped-row-even-hover-background-color: hsl(0, 0%, 14%);
 
 // importar Bulma
 @import "~bulma/bulma.sass";

@@ -43,66 +43,73 @@
                     <h4 class="title is-4 is-spaced has-text-grey-light">Reservas</h4>
                     <h5 class="subtitle is-5 has-text-grey-light">Lista</h5>
                     <div class="table-container">
-                        <table class="table is-striped is-narrow is-hoverable is-fullwidth has-text-grey-lighter">
+                        <table class="table ra-stripes is-narrow is-hoverable is-fullwidth has-text-grey-lighter">
                             <thead>
                                 <tr>
-                                    <th>Estado</th>
-                                    <th>Data do Pedido</th>
-                                    <th>Utilizador</th>
-                                    <th>Data Abertura</th>
-                                    <th>Data Fecho</th>
-                                    <th><abbr title="Hora de chegada">HC</abbr></th>
-                                    <th><abbr title="Número de pessoas">Nº</abbr></th>
-                                    <th>Pratos</th>
-                                    <th>Preço</th>
-                                    <th><abbr title="Observações">Obs.</abbr></th>
-                                    <th>Atribuir mesa</th>
+                                    <th class="ra-sticky-top"></th>
+                                    <th class="ra-sticky-top">Data do Pedido</th>
+                                    <th class="ra-sticky-top">Utilizador</th>
+                                    <th class="ra-sticky-top">Data Abertura</th>
+                                    <th class="ra-sticky-top">Data Fecho</th>
+                                    <th class="ra-sticky-top">Hora Chegada</th>
+                                    <th class="ra-sticky-top">Pessoas</th>
+                                    <th class="ra-sticky-top">Preço</th>
+                                    <th class="ra-sticky-top">Atribuir mesa</th>
+                                    <th class="ra-sticky-top">Rejeitar</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Estado</th>
-                                    <th>Data do Pedido</th>
-                                    <th>Utilizador</th>
-                                    <th>Data Abertura</th>
-                                    <th>Data Fecho</th>
-                                    <th><abbr title="Hora de chegada">HC</abbr></th>
-                                    <th><abbr title="Número de pessoas">Nº</abbr></th>
-                                    <th>Pratos</th>
-                                    <th>Preço</th>
-                                    <th><abbr title="Observações">Obs.</abbr></th>
-                                    <th>Atribuir mesa</th>
+                                    <th class="ra-sticky-bottom"></th>
+                                    <th class="ra-sticky-bottom">Data do Pedido</th>
+                                    <th class="ra-sticky-bottom">Utilizador</th>
+                                    <th class="ra-sticky-bottom">Data Abertura</th>
+                                    <th class="ra-sticky-bottom">Data Fecho</th>
+                                    <th class="ra-sticky-bottom">Hora Chegada</th>
+                                    <th class="ra-sticky-bottom">Pessoas</th>
+                                    <th class="ra-sticky-bottom">Preço</th>
+                                    <th class="ra-sticky-bottom">Atribuir mesa</th>
+                                    <th class="ra-sticky-bottom">Rejeitar</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                <tr v-for="booking in allBookings" :key="booking.bID">
-                                    <td :class="'ra-status-green'">
-                                        {{ (booking.status === "pending-approval") ? true : false}}
-                                    </td>
-                                    <th 
-                                        class="has-text-grey-lighter has-text-weight-normal">
-                                        {{ booking.dateRequest }}
-                                    </th>
-                                    <td>{{ booking.uID }}</td>
-                                    <td>{{ booking.dateOpening }}</td>
-                                    <td>{{ booking.dateClosing }}</td>
-                                    <td>{{ booking.dateArrival }}</td>
-                                    <td>{{ booking.numOfPeople }}</td>
-                                    <td>
-                                        <ul>
-                                            <li v-for="dish in booking.dishes" :key="dish.id">{{ dish.requestDate }}</li>
-                                        </ul>
-                                    </td>
-                                    <td>{{ booking.totalPrice }}</td>
-                                    <td>{{ booking.message }}</td>
-                                    <td>
-                                        <button class="button">
-                                            <span class="icon">
-                                                <img src="" />
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
+                                <template v-for="(booking, bIdx) in allBookings">
+                                    <tr :key="booking.bID + 'first-row'"
+                                        class="first-row"
+                                        :class="{'ra-striped' : bIdx % 2 !== 0}">
+                                        <td class="is-relative">
+                                            <abbr :title="statusDescByID(booking.sID)">
+                                                <div class="ra-status-indicator"
+                                                    :class="statusColorByID(booking.sID)">
+                                                </div>
+                                            </abbr>
+                                        </td>
+                                        <td>{{ booking.dateRequest }}</td>
+                                        <td>{{ fullNameByID(booking.uID) }}</td>
+                                        <td>{{ booking.dateOpening }}</td>
+                                        <td>{{ booking.dateClosing }}</td>
+                                        <td>{{ booking.dateArrival }}</td>
+                                        <td class="has-text-centered">{{ booking.numOfPeople }}</td>
+                                        <td class="has-text-centered">{{ `${booking.totalPrice} €` }}</td>
+                                        <td class="has-text-centered">
+                                            <button class="button is-small ra-table-icon"></button>
+                                        </td>
+                                        <td class="has-text-centered">
+                                            <button class="button is-small ra-reject-icon"></button>
+                                        </td>
+                                    </tr>
+                                    <tr v-for="(dish, dIdx) in booking.dishes" :key="dIdx"
+                                        :class="{'ra-striped' : bIdx % 2 !== 0}">
+                                        <td v-if="!dIdx" class="has-text-weight-semibold">Pratos:</td>
+                                        <td v-else></td>
+                                        <td colspan="9">{{ `${dish.quantity}x ${dishNameByID(dish.dID)}` }}</td>
+                                    </tr>
+                                    <tr :key="booking.bID + 'last-row'"
+                                        :class="{'ra-striped' : bIdx % 2 !== 0}">
+                                        <td class="has-text-weight-semibold">Obs:</td>
+                                        <td colspan="9">{{ booking.message }}</td>
+                                    </tr>
+                                </template>
                             </tbody>
                         </table>
                     </div>
@@ -133,7 +140,8 @@ export default {
   },
   computed: {
       ...mapGetters("users", ["allUsers", "fullNameByID"]),
-      ...mapGetters("bookings", ["allBookings", "allTables"])
+      ...mapGetters("bookings", ["allBookings", "allTables", "statusDescByID", "statusColorByID"]),
+      ...mapGetters("dishes", ["dishNameByID"])
   }
 };
 </script>
