@@ -2,7 +2,19 @@ export default {
     namespaced: true,
 
     state: {
-        users: [],
+        users: [
+            {
+                uID: 0,
+                accessLevel: 2,
+                firstName: "Administrador",
+                lastName: "User",
+                fullName: "Administrador User",
+                email: "admin@hotmail.com",
+                password:"123",
+                avatar:"",
+                about:""
+
+        }],
         loginStatus: {
             isLogged: false,
             loggedUser: {}
@@ -47,6 +59,7 @@ export default {
         }
     },
     getters: {
+        isAdmin: (state) => (uID) => { return state.users.find(user => user.uID === uID).accessLevel === 2},
         allUsers: state => state.users,
         loginStatus: state => state.loginStatus,
         newId: (state) => { return state.users.length ? state.users.length + 1 : 0 },
@@ -56,6 +69,7 @@ export default {
         },
         fullNameByID: (state) => (uID) => { return state.users.find(user => user.uID === uID).fullName},
         isStaffMember: (state) => (uID) => { return state.users.find(user => user.uID === uID).accessLevel === 1},
-        isAdmin: (state) => (uID) => { return state.users.find(user => user.uID === uID).accessLevel === 2}
+        
+        
     }
 }

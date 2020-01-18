@@ -6,7 +6,7 @@ import Sponsor from "../views/Sponsor.vue";
 import About from "../views/About.vue";
 import Profile from "../views/Profile.vue";
 import Backoffice from "../views/Backoffice.vue";
-// import store from "../store/index.js";
+//import store from "../store/index.js";
 
 Vue.use(VueRouter);
 
@@ -44,7 +44,7 @@ const routes = [
     name: "backoffice",
     component: Backoffice,
     meta: {
-      requiresAuth: true
+      admin: true
     },
     // beforeEnter (to, from, next) {
     //   console.log(to)
@@ -74,6 +74,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const loginStatus = JSON.parse(sessionStorage.getItem("login-status"));
+  const accessLevel = loginStatus.loggedUser.accessLevel
+  
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!loginStatus.isLogged) {
@@ -86,6 +88,15 @@ router.beforeEach((to, from, next) => {
   }
   else {
     next();
+  }
+  
+  if (to.meta.admin) {
+    if (accessLevel == 2 || accessLevel == 1 ) {
+      next();
+    } else {
+      alert("Não é administrador");
+      router.go(-1);
+    }
   }
 });
 
