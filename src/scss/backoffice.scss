@@ -20,49 +20,6 @@
 
             .table-container {
                 overflow-x: scroll;
-                overflow-y: scroll;
-                max-height: 600px;
-
-                .ra-sticky {
-                    position: sticky;
-                    z-index: 10;
-                    background-color: $table-head-background-color;
-                }
-
-                .ra-sticky-top {
-                    @extend .ra-sticky;
-                    top: 0;
-
-                    &:after {
-                        content: '';
-                        position: absolute;
-                        left: 0;
-                        width: 100%;
-                        bottom: 0;
-                        border-bottom: 1px solid $white-ter;
-                    }
-                }
-
-                .ra-sticky-bottom {
-                    @extend .ra-sticky;
-                    bottom: 0;
-
-                    &:before {
-                        content: '';
-                        position: absolute;
-                        left: 0;
-                        width: 100%;
-                        top: 0;
-                        border-top: 1px solid $white-ter;
-                    }
-                }
-
-                .ra-sticky-cell {
-                    position: sticky;
-                    z-index: 10;
-                    right: 0;
-                    background-color: inherit;
-                }
 
                 .ra-striped {
                     background-color: darken($grey-darker, 5%);
