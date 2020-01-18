@@ -55,5 +55,3 @@ export default {
     }
 };
 </script>
-
-<style src="@/scss/carousel.scss" lang="scss"></style>
