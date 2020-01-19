@@ -100,10 +100,62 @@ export default {
                 bID: 3,
                 uID: 0,
                 sID: 0,
-                dateRequest: "16/01/2015 00:00",
-                dateOpening: "17/01/2015 19:00",
-                dateClosing: "17/01/2015 20:00",
-                dateArrival: "17/01/2015 19:10",
+                dateRequest: "11/01/2015 00:00",
+                dateOpening: "11/01/2015 12:00",
+                dateClosing: "11/01/2015 14:00",
+                dateArrival: "11/01/2015 12:30",
+                numOfPeople: 3,
+                tables: [
+                    {
+                        tID: 0,
+                        people: 0
+                    }
+                ],
+                dishes: [
+                    {
+                        dID: 0,
+                        quantity: 2
+                    },
+                    {
+                        dID: 2,
+                        quantity: 1
+                    }
+                ],
+                totalPrice: 20.50,
+                message: "Teste paginação 1"
+            },
+            {
+                bID: 4,
+                uID: 0,
+                sID: 0,
+                dateRequest: "10/01/2015 02:00",
+                dateOpening: "10/01/2015 12:00",
+                dateClosing: "10/01/2015 14:00",
+                dateArrival: "10/01/2015 13:00",
+                numOfPeople: 1,
+                tables: [
+                    {
+                        tID: 1,
+                        people: 4
+                    }                    
+                ],
+                dishes: [
+                    {
+                        dID: 1,
+                        quantity: 1
+                    }
+                ],
+                totalPrice: 7.00,
+                message: "Teste paginação 2"
+            },
+            {
+                bID: 5,
+                uID: 0,
+                sID: 0,
+                dateRequest: "9/01/2015 00:00",
+                dateOpening: "9/01/2015 19:00",
+                dateClosing: "9/01/2015 20:00",
+                dateArrival: "9/01/2015 19:10",
                 numOfPeople: 10,
                 tables: [
                     {
@@ -134,7 +186,7 @@ export default {
                     }
                 ],
                 totalPrice: 97.50,
-                message: "Esta é uma descrição de elevada extensão para ser possível avaliar o comportamento da tabela face a um grande número de caracteres presentes no campo de observação."
+                message: "Teste paginação 3"
             }
         ],
         tables: [

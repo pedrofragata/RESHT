@@ -38,6 +38,8 @@ $table-foot-background-color: hsl(0, 0%, 7%);
 $table-foot-cell-color: hsl(0, 0%, 96%);
 $table-background-color: hsl(0, 0%, 21%);
 $table-row-hover-background-color: hsl(0, 0%, 14%);
+//pagination
+$pagination-current-border-color: $primary;
 
 // importar Bulma
 @import "~bulma/bulma.sass";

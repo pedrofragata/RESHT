@@ -17,7 +17,7 @@
       </button>
     </div>
     <div class="ra-interactables-screen">
-      <div v-for="table in allTables" :key="table.tID">
+      <div v-for="table in allTables" :key="table.tID + '-interactable'">
         <div :id="table.tID" class="ra-interactable has-text-weight-semibold"
         :class="{'ra-table-filled': isTableFilled(table), 'ra-table-full': isTableFull(table)}">
           {{table.people}} / {{table.capacity}}
