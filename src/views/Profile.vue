@@ -16,7 +16,7 @@
                                     <div class="field-body">
                                         <div class="field">
                                             <p class="control has-icons-left">
-                                                <img src="https://via.placeholder.com/150" />
+                                                <img :src="photo" />
                                                 <span class="icon is-small is-pulled-right">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </span>
@@ -31,7 +31,7 @@
                                     <div class="field-body">
                                         <div class="field">
                                             <p class="control has-icons-right">
-                                                <input class="input is-static" type="text" value="Nome Apelido" readonly>
+                                                <input class="input is-static" type="text" v-model="fullName" readonly>
                                                 <span class="icon is-small is-right">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </span>
@@ -46,7 +46,7 @@
                                     <div class="field-body">
                                         <div class="field">
                                             <div class="control">
-                                                <textarea class="textarea" readonly>Sou um utilizador desta bela plataforma.</textarea>
+                                                <textarea class="textarea" v-model="about" readonly></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@
                                     <div class="field-body">
                                         <div class="field">
                                             <p class="control has-icons-left">
-                                                <input class="input is-static" type="email" value="91-----@esmad.ipp.pt" readonly>
+                                                <input class="input is-static" type="email" v-model="email" readonly>
                                                 <span class="icon is-small is-left">
                                                     <i class="fas fa-envelope"></i>
                                                 </span>
@@ -73,7 +73,7 @@
                                     <div class="field-body">
                                         <div class="field">
                                             <p class="control has-icons-left has-icons-right">
-                                                <input class="input is-static" type="password" value="---" readonly>
+                                                <input class="input is-static" type="password" v-model="password" readonly>
                                                 <span class="icon is-small is-left">
                                                     <i class="fas fa-key"></i>
                                                 </span>
@@ -109,7 +109,33 @@ export default {
     components: {
         TheNav,
         TheFooter
+    },
+    data(){
+        return{
+            users: [],
+            fullName:"",
+            email:"",
+            photo:"",
+            password:"",
+            about:"",
+            
+        }
+    },
+    created() {
+         this.users = this.$store.getters["users/allUsers"],
+         this.fullName = this.getUser(this.$route.params.userID).fullName
+         this.photo = this.getUser(this.$route.params.userID).avatar
+         this.email = this.getUser(this.$route.params.userID).email
+         this.password = this.getUser(this.$route.params.userID).password
+         this.about = this.getUser(this.$route.params.userID).about
+
+    },
+    methods: {
+        getUser(id) {
+            return this.users.filter(user => user.uID == id)[0]
+        }
     }
+
 }
 </script>
 

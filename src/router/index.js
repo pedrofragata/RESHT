@@ -74,7 +74,11 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const loginStatus = JSON.parse(sessionStorage.getItem("login-status"));
-  const accessLevel = loginStatus.loggedUser.accessLevel
+  let accessLevel
+
+  if (loginStatus!=null){
+    accessLevel = loginStatus.loggedUser.accessLevel
+  }
   
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
