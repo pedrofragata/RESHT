@@ -44,13 +44,13 @@ export default {
     },
     methods: {
         toPrevPage() {
-            if (this.page > 1) this.$emit('page-changed', this.page - 1);
+            if (this.page > 1) this.$emit("page-changed", this.page - 1);
         },
         toPage(pageNumber) {
-            this.$emit('page-changed', pageNumber);
+            this.$emit("page-changed", pageNumber);
         },
         toNextPage() {
-            if (this.page < this.pages.length) this.$emit('page-changed', this.page + 1);
+            if (this.page < this.pages.length) this.$emit("page-changed", this.page + 1);
         }
     }
 };

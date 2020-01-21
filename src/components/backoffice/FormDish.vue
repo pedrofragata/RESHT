@@ -11,11 +11,11 @@
                 </select>
             </div>
         </VSplit>
-        <VFile id="ra-backoffice-dish-image"
+        <VFile id="ra-dish-image"
             label="Imagem:"
             buttonLabel="Carregar"
             placeholder="Clique aqui para carregar um ficheiro." />
-        <VInput id="ra-backoffice-dish-basePrice" type="number" label="Preço base:" />
+        <VInput id="ra-dish-basePrice" type="number" label="Preço base:" />
         <VSubmit value="Adicionar" size="is-size-6" />
     </form>
 </template>

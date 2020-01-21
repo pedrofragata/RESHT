@@ -76,14 +76,14 @@ export default {
             type: String
         }
     },
+    components: {
+        Pagination
+    },
     data() {
         return {
             page: 1,
             perPage: 6
         }
-    },
-    components: {
-        Pagination
     },
     methods: {
         paginate (dishes) {
