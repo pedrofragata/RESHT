@@ -131,7 +131,7 @@ export default {
     },
     watch: {
         getBookings() {
-            this.$emit("filter-applied", this.getBookings);
+            this.$emit("bookings-filter-applied", this.getBookings);
         }
     }
 }
