@@ -7,7 +7,9 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title is-spaced has-text-white-bis">Bem vindo</h1>
-          <h3 class="subtitle has-text-white-bis">Os estudantes de Gestão e Administração Hoteleira, convidam-no a saborear as receitas especialmente criadas para si. Venha conhecer-nos.</h3>
+          <h3
+            class="subtitle has-text-white-bis"
+          >Os estudantes de Gestão e Administração Hoteleira, convidam-no a saborear as receitas especialmente criadas para si. Venha conhecer-nos.</h3>
         </div>
       </div>
     </section>
@@ -40,9 +42,10 @@
           </figure>
         </div>
       </div>
-      <Divider id="ra-bookmark-booking" title="Reservar" />
+      <Divider id="ra-bookmark-" title="Reservar" />
       <div class="columns">
         <div class="column is-9 is-offset-1">
+          <!--FORM RESERVAS-->
           <form>
             <div class="field is-horizontal">
               <div class="field-label">
@@ -51,7 +54,7 @@
               <div class="field-body">
                 <div class="field">
                   <div class="control has-icons-left">
-                    <input id="ra-form-day" class="input" type="date" />
+                    <input id="ra-form-day" class="input" type="date" v-model="inputDateOpening" />
                     <span class="icon is-small is-left">
                       <i class="fas fa-calendar-alt"></i>
                     </span>
@@ -59,7 +62,7 @@
                 </div>
                 <div class="field">
                   <div class="control has-icons-left">
-                    <input id="ra-form-hour" class="input" type="time" />
+                    <input id="ra-form-hour" class="input" type="time" v-model="inputTimeOpening" />
                     <span class="icon is-small is-left">
                       <i class="fas fa-clock"></i>
                     </span>
@@ -74,7 +77,12 @@
               <div class="field-body">
                 <div class="field">
                   <div class="control has-icons-left">
-                    <input id="ra-form-arrival" class="input" type="time" />
+                    <input
+                      id="ra-form-arrival"
+                      class="input"
+                      type="time"
+                      v-model="inputTimeArrival"
+                    />
                     <span class="icon is-small is-left">
                       <i class="fas fa-user-clock"></i>
                     </span>
@@ -89,7 +97,14 @@
               <div class="field-body">
                 <div class="field">
                   <div class="control has-icons-left">
-                    <input id="ra-form-people" class="input" type="number" value="1" min="1" />
+                    <input
+                      id="ra-form-people"
+                      class="input"
+                      type="number"
+                      value="1"
+                      min="1"
+                      v-model.lazy="inputNumOfPeople"
+                    />
                     <span class="icon is-small is-left">
                       <i class="fas fa-user"></i>
                     </span>
@@ -97,9 +112,12 @@
                 </div>
               </div>
             </div>
-            <div class="field is-horizontal">
+            <div v-for="dish in dishes" class="field is-horizontal" v-bind:key="dish">
               <div class="field-label">
-                <label class="label has-text-grey-lighter" for="ra-form-dish">Prato 1</label>
+                <label
+                  class="label has-text-grey-lighter"
+                  for="ra-form-dish"
+                >Prato {{dishes.indexOf(dish)+1}}</label>
               </div>
               <div class="field-body">
                 <div class="field">
@@ -124,6 +142,7 @@
                 <div class="field">
                   <div class="control">
                     <textarea
+                      v-model="inputHealthInfo"
                       id="ra-form-health"
                       class="textarea"
                       rows="1"
@@ -141,6 +160,7 @@
                 <div class="field">
                   <div class="control">
                     <textarea
+                      v-model="inputOtherInfo"
                       id="ra-form-message"
                       class="textarea"
                       rows="2"
@@ -176,16 +196,27 @@
       <Divider id="ra-bookmark-faqs" title="FAQs" />
       <div class="columns">
         <div class="column is-8 is-offset-2">
-          <Faq question="Em que dias está o restaurante aberto?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
-          <Faq question="Não pertenço ao IPP. Posso efetuar uma reserva?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
-          <Faq question="Servem jantares?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
-          <Faq question="Emitem fatura?" answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+          <Faq
+            question="Em que dias está o restaurante aberto?"
+            answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+          <Faq
+            question="Não pertenço ao IPP. Posso efetuar uma reserva?"
+            answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+          <Faq
+            question="Servem jantares?"
+            answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+          <Faq
+            question="Emitem fatura?"
+            answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
         </div>
       </div>
     </div>
     <TheFooter />
   </div>
-
 </template>
 
 <script>
@@ -196,7 +227,6 @@ import Carousel from "@/components/Carousel.vue";
 import Faq from "@/components/Faq.vue";
 import TheFooter from "@/components/layout/TheFooter.vue";
 
-
 export default {
   name: "Home",
   components: {
@@ -206,8 +236,37 @@ export default {
     Carousel,
     Faq,
     TheFooter
+  },
+  data: function() {
+    return {
+      inputDateOpening: "",
+      inputTimeOpening: "",
+      inputTimeArrival: "",
+      inputNumOfPeople: 1,
+      inputDishes: [],
+      inputHealthInfo: "",
+      inputOtherInfo: ""
+    };
+  },
+  methods: {
+    addReservation: function() {
+      //INCOMPLETO FALTA VERIFICAR SE A HORA DE CHEGADA SE ENQUADARA NO HORARIO SELECIONADO
+      // let newReservation = [
+      // ]
+    }
+  },
+  computed: {
+    dishes: function() {
+      let arrayDishes = [];
+      for (let i = 0; i < this.inputNumOfPeople; i++) {
+        let newDish = {};
+        arrayDishes.push(newDish);
+      }
+      return arrayDishes;
+    }
   }
 };
 </script>
 
 <style src="@/scss/home.scss" lang="scss"></style>
+
