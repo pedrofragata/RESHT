@@ -39,12 +39,11 @@
 @include tablet {
     .footer {
         .content {
-            padding: 0 20em;
+            padding: 0 24em 0 23em;
             display: flex;
             flex-direction: row;
             align-items: flex-start;
             justify-content: space-around;
-            width: 95%;
 
             .ra-footer-item:not(:first-child):not(:last-child) {
                 margin: 0;

@@ -1,25 +1,23 @@
 <template>
-  <div>
-    <small class="has-text-white">Há {{numOfClients}} clientes.</small>
-    <div class="ra-interactables-toolbar has-background-grey-light has-text-grey-darker has-text-weight-semibold">
+  <div class="restaurant-layout">
+    <div class="ra-interactables-toolbar">
       <p>Barra de ferramentas:</p>
-      <button @click.prevent="selectTool('add')" class="button ra-toolbar-button"
-              :class="{'ra-plus': selectedTool === 'add'}">
-        <span class="icon is-medium">
-          <i class="fas fa-2x fa-plus"></i>
-        </span>
+      <button @click.prevent="selectTool('add')" class="button ra-tool-plus"
+              :class="{'ra-tool-plus-active': selectedTool === 'add'}">
       </button>
-      <button @click.prevent="selectTool('remove')" class="button ra-toolbar-button"
-              :class="{'ra-minus': selectedTool === 'remove'}">
-        <span class="icon is-medium">
-          <i class="fas fa-2x fa-minus"></i>
-        </span>
+      <button @click.prevent="selectTool('remove')" class="button ra-tool-minus"
+              :class="{'ra-tool-minus-active': selectedTool === 'remove'}">
+      </button>
+      <button @click.prevent="selectTool('move')" class="button ra-tool-move"
+              :class="{'ra-tool-move-active': selectedTool === 'move'}">
       </button>
     </div>
     <div class="ra-interactables-screen">
       <div v-for="table in allTables" :key="table.tID + '-interactable'">
-        <div :id="table.tID" class="ra-interactable has-text-weight-semibold"
-        :class="{'ra-table-filled': isTableFilled(table), 'ra-table-full': isTableFull(table)}">
+        <div :id="table.tID" class="ra-interactable"
+        :class="{'ra-table-filled': isTableFilled(table),
+                'ra-table-full': isTableFull(table),
+                'ra-can-move': selectedTool === 'move'}">
           {{table.people}} / {{table.capacity}}
         </div>
       </div>
@@ -33,7 +31,7 @@ import { mapGetters } from "vuex";
 import interact from "interactjs";
 
 export default {
-  name: "TablesLayout",
+  name: "RestaurantLayout",
   data() {
     return {
       numOfClients: 10,
@@ -44,6 +42,9 @@ export default {
           isActive: true
         } , {
           action: "remove",
+          isActive: false
+        } , {
+          action: "move",
           isActive: false
         }
       ]
@@ -67,50 +68,53 @@ export default {
           onmove: this.dragMoveListener,
           onend: this.onDragEnd
         })
+        .styleCursor(false);
 
         /*
           Funcionalidade de redimensionar em pausa
           
 
-        // .resizable({
-        //   edges: { left: true, right: true, bottom: true, top: true },  // redimensionar de todos os lados
+          .resizable({
+            edges: { left: true, right: true, bottom: true, top: true },  // redimensionar de todos os lados
 
-        //   modifiers: [
-        //     interact.modifiers.restrictEdges({
-        //       outer: ".ra-interactables-screen"   // manter dentro do contentor
-        //     }),
-        //     interact.modifiers.restrictSize({
-        //       min: { width: 100, height: 100 }   // tamanho mínimo
-        //     })
-        //   ],
+            modifiers: [
+              interact.modifiers.restrictEdges({
+                outer: ".ra-interactables-screen"   // manter dentro do contentor
+              }),
+              interact.modifiers.restrictSize({
+                min: { width: 100, height: 100 }   // tamanho mínimo
+              })
+            ],
 
-        //   inertia: true
-        // })
-        // .on("resizemove", function (event) {
-        //   const target = event.target;
-        //   const tableIndex = target.id;
-        //   let x = (parseFloat(target.getAttribute("data-x")) || (this.tables[tableIndex].screenX)),
-        //       y = (parseFloat(target.getAttribute("data-y")) || (this.tables[tableIndex].screenY));
+            inertia: true
+          })
+          .on("resizemove", function (event) {
+            const target = event.target;
+            const tableIndex = target.id;
+            let x = (parseFloat(target.getAttribute("data-x")) || (this.tables[tableIndex].screenX)),
+                y = (parseFloat(target.getAttribute("data-y")) || (this.tables[tableIndex].screenY));
 
-        //   target.style.width = `${event.rect.width}px`;
-        //   target.style.height = `${event.rect.height}px`;
-        //   target.style.lineHeight = target.style.height;
+            target.style.width = `${event.rect.width}px`;
+            target.style.height = `${event.rect.height}px`;
+            target.style.lineHeight = target.style.height;
 
-        //   // topo e lado esquerdo
-        //   x += event.deltaRect.left;
-        //   y += event.deltaRect.top;
+            // topo e lado esquerdo
+            x += event.deltaRect.left;
+            y += event.deltaRect.top;
 
-        //   target.style.webkitTransform = target.style.transform =
-        //     `translate(${x}px, ${y}px)`;
+            target.style.webkitTransform = target.style.transform =
+              `translate(${x}px, ${y}px)`;
 
-        //   target.setAttribute('data-x', x);
-        //   target.setAttribute('data-y', y);
-        // });
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
+          });
 
 
         */
     },
     dragMoveListener(event) {
+      if (this.selectedTool !== "move") return;
+
       const target = event.target;
       const tableIndex = target.id; // o índice do objeto no array é igual ao id do seu elemento no html (pelo ciclo v-for)
 
@@ -217,4 +221,4 @@ export default {
 };
 </script>
 
-<style src="@/scss/tables-layout.scss" lang="scss"></style>
+<style src="@/scss/restaurant-layout.scss" lang="scss" scoped></style>

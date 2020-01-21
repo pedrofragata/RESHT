@@ -88,8 +88,8 @@
 <script>
 import { mapGetters } from "vuex";
 
-import TheNav from "@/components/TheNav.vue";
-import TheFooter from "@/components/TheFooter.vue";
+import TheNav from "@/components/layout/TheNav.vue";
+import TheFooter from "@/components/layout/TheFooter.vue";
 
 import Swal from "../../node_modules/sweetalert2/dist/sweetalert2.js";
 import "../../node_modules/sweetalert2/src/sweetalert2.scss";

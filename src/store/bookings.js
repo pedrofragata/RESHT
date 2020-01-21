@@ -8,10 +8,10 @@ export default {
                 bID: 0,
                 uID: 0,
                 sID: 0,
-                dateRequest: "15/01/2015 00:00",
-                dateOpening: "16/01/2015 12:00",
-                dateClosing: "16/01/2015 14:00",
-                dateArrival: "16/01/2015 12:30",
+                dateRequest: "15/01/2015, 00:00:00",
+                dateOpening: "16/01/2015, 12:00:00",
+                dateClosing: "16/01/2015, 14:00:00",
+                dateArrival: "16/01/2015, 12:30:00",
                 numOfPeople: 3,
                 tables: [
                     {
@@ -36,10 +36,10 @@ export default {
                 bID: 1,
                 uID: 0,
                 sID: 0,
-                dateRequest: "15/01/2015 02:00",
-                dateOpening: "16/01/2015 12:00",
-                dateClosing: "16/01/2015 14:00",
-                dateArrival: "16/01/2015 13:00",
+                dateRequest: "15/01/2015, 02:00:00",
+                dateOpening: "16/01/2015, 12:00:00",
+                dateClosing: "16/01/2015, 14:00:00",
+                dateArrival: "16/01/2015, 13:00:00",
                 numOfPeople: 1,
                 tables: [
                     {
@@ -60,10 +60,10 @@ export default {
                 bID: 2,
                 uID: 0,
                 sID: 0,
-                dateRequest: "16/01/2015 00:00",
-                dateOpening: "17/01/2015 19:00",
-                dateClosing: "17/01/2015 20:00",
-                dateArrival: "17/01/2015 19:10",
+                dateRequest: "16/01/2015, 00:00:00",
+                dateOpening: "17/01/2015, 19:00:00",
+                dateClosing: "17/01/2015, 20:00:00",
+                dateArrival: "17/01/2015, 19:10:00",
                 numOfPeople: 10,
                 tables: [
                     {
@@ -100,10 +100,10 @@ export default {
                 bID: 3,
                 uID: 0,
                 sID: 0,
-                dateRequest: "11/01/2015 00:00",
-                dateOpening: "11/01/2015 12:00",
-                dateClosing: "11/01/2015 14:00",
-                dateArrival: "11/01/2015 12:30",
+                dateRequest: "11/01/2015, 00:00:00",
+                dateOpening: "11/01/2015, 12:00:00",
+                dateClosing: "11/01/2015, 14:00:00",
+                dateArrival: "11/01/2015, 12:30:00",
                 numOfPeople: 3,
                 tables: [
                     {
@@ -128,10 +128,10 @@ export default {
                 bID: 4,
                 uID: 0,
                 sID: 0,
-                dateRequest: "10/01/2015 02:00",
-                dateOpening: "10/01/2015 12:00",
-                dateClosing: "10/01/2015 14:00",
-                dateArrival: "10/01/2015 13:00",
+                dateRequest: "10/01/2015, 02:00:00",
+                dateOpening: "10/01/2015, 12:00:00",
+                dateClosing: "10/01/2015, 14:00:00",
+                dateArrival: "10/01/2015, 13:00:00",
                 numOfPeople: 1,
                 tables: [
                     {
@@ -152,10 +152,10 @@ export default {
                 bID: 5,
                 uID: 0,
                 sID: 0,
-                dateRequest: "9/01/2015 00:00",
-                dateOpening: "9/01/2015 19:00",
-                dateClosing: "9/01/2015 20:00",
-                dateArrival: "9/01/2015 19:10",
+                dateRequest: "9/01/2015, 00:00:00",
+                dateOpening: "9/01/2015, 19:00:00",
+                dateClosing: "9/01/2015, 20:00:00",
+                dateArrival: "9/01/2015, 19:10:00",
                 numOfPeople: 10,
                 tables: [
                     {
@@ -306,7 +306,7 @@ export default {
             {
                 sID: 2,
                 desc: "Mesa atribuída",
-                color: "lightgrey"
+                color: "white"
             },
             {
                 sID: 3,

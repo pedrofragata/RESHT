@@ -13,6 +13,16 @@
         .columns {
             padding-top: inherit;
             padding-bottom: inherit;
+
+            h4,
+            h5 {
+                color: $grey-light;
+            }
+
+            // .column.is-3-desktop > .box {
+            //     // position: fixed;
+            //     width: 340px;
+            // }
         }
     }
 }

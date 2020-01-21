@@ -3,7 +3,7 @@
     <TheNav />
     <div class="container is-fluid is-relative">
         <div class="columns">
-            <div class="column is-3">
+            <div class="column is-12 is-3-desktop">
                 <div class="box">
                     <aside class="menu">
                         <p class="menu-label">
@@ -38,15 +38,23 @@
                     </aside>
                 </div>
             </div>
-            <div class="column is-9">
+            <div class="column is-12 is-9-desktop">
                 <div class="box">
-                    <h4 class="title is-4 is-spaced has-text-grey-light">Reservas</h4>
-                    <h5 class="subtitle is-5 has-text-grey-light">Lista</h5>
-                    <Pagination :page="page" :pages="pages" @page-changed="updatePage" />
-                    <BookingsTable :displayedBookings="displayedBookings" />
-                    <Pagination :page="page" :pages="pages" @page-changed="updatePage" />
-                    <h5 class="subtitle is-5 has-text-grey-light">Atribuir mesa</h5>
-                    <TablesLayout />
+                    <h4 class="title is-4 is-spaced">Reservas</h4>
+                    <h5 class="subtitle is-5">Lista</h5>
+                    <TableBookings />
+                    <h5 class="subtitle is-5">Atribuir mesa</h5>
+                    <RestaurantLayout class="is-hidden-touch" />
+                </div>
+                <div class="box">
+                    <h4 class="title is-4 is-spaced">Pratos e Ementas</h4>
+                    <h5 class="subtitle is-5">Adicionar Prato</h5>
+                    <TableDishes />
+                    <div class="columns">
+                        <div class="column is-10 is-offset-1">
+                            <FormDish />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,55 +65,22 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
-import TheNav from "@/components/TheNav.vue";
-import Pagination from "@/components/Pagination.vue";
-import BookingsTable from "@/components/BookingsTable.vue";
-import TablesLayout from "@/components/TablesLayout.vue";
-import TheFooter from "@/components/TheFooter.vue";
+import TheNav from "@/components/layout/TheNav.vue";
+import TableBookings from "@/components/backoffice/TableBookings.vue";
+import RestaurantLayout from "@/components/backoffice/RestaurantLayout.vue";
+import TableDishes from "@/components/backoffice/TableDishes.vue";
+import FormDish from "@/components/backoffice/FormDish.vue";
+import TheFooter from "@/components/layout/TheFooter.vue";
 
 export default {
     name: "Backoffice",
-    data() {
-        return {
-            page: 1,
-            perPage: 4
-        }
-    },
     components: {
         TheNav,
-        Pagination,
-        BookingsTable,
-        TablesLayout,
+        TableBookings,
+        RestaurantLayout,
+        TableDishes,
+        FormDish,
         TheFooter
-    },
-    methods: {
-        paginate (bookings) {
-            const page = this.page;
-            const perPage = this.perPage;
-            const from = (page * perPage) - perPage;
-            const to = (page * perPage);
-            return bookings.slice(from, to);
-        },
-        updatePage(page) {
-            this.page = page;
-        }
-    },
-    computed: {
-        ...mapGetters("bookings", ["allBookings", "allTables"]),
-
-        pages() {
-            const numberOfPages = Math.ceil(this.allBookings.length / this.perPage);
-            const pages = [];
-            for (let i = 1; i <= numberOfPages; i++) {
-                pages.push(i);
-            }
-            return pages;
-        },
-        displayedBookings() {
-            return this.paginate(this.allBookings);
-        }
     }
 };
 </script>

@@ -101,8 +101,8 @@
 </template>
 
 <script>
-import TheNav from "@/components/TheNav.vue";
-import TheFooter from "@/components/TheFooter.vue";
+import TheNav from "@/components/layout/TheNav.vue";
+import TheFooter from "@/components/layout/TheFooter.vue";
 
 export default {
     name: "Profile",

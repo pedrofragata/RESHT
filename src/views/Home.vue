@@ -189,12 +189,12 @@
 </template>
 
 <script>
-import TheNav from "@/components/TheNav.vue";
-import Divider from "@/components/Divider.vue";
+import TheNav from "@/components/layout/TheNav.vue";
+import Divider from "@/components/ui/Divider.vue";
 import Weekday from "@/components/Weekday.vue";
 import Carousel from "@/components/Carousel.vue";
 import Faq from "@/components/Faq.vue";
-import TheFooter from "@/components/TheFooter.vue";
+import TheFooter from "@/components/layout/TheFooter.vue";
 
 
 export default {

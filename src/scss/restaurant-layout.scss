@@ -1,0 +1,141 @@
+@mixin seat-color($color, $colorDarker) {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8' standalone='no'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg width='100%25' height='100%25' viewBox='0 0 512 512' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' xmlns:serif='http://www.serif.com/' style='fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;'%3E%3Cg%3E%3Cpath d='M88.301,194.199l-61.801,0l0,132.403l61.801,0' style='fill:#{$colorDarker};fill-rule:nonzero;'/%3E%3Cpath d='M194.199,414.898l0,79.403l132.403,0l0,-79.403' style='fill:#{$colorDarker};fill-rule:nonzero;'/%3E%3Cpath d='M317.801,97.102l0,-79.403l-132.403,0l0,79.403' style='fill:#{$colorDarker};fill-rule:nonzero;'/%3E%3C/g%3E%3Cpath d='M17.699,172.102c9.801,0 17.699,7.898 17.699,17.699l0,141.199c0,9.801 -7.898,17.699 -17.699,17.699c-9.801,0 -17.699,-7.898 -17.699,-17.699l0,-141.199c0,-9.801 7.898,-17.699 17.699,-17.699Z' style='fill:#{$color};fill-rule:nonzero;'/%3E%3Cpath d='M172.102,494.301c0,-9.801 7.898,-17.699 17.699,-17.699l141.199,0c9.801,0 17.699,7.898 17.699,17.699c0,9.801 -7.898,17.699 -17.699,17.699l-141.199,0c-9.801,0 -17.699,-7.898 -17.699,-17.699Z' style='fill:#{$color};fill-rule:nonzero;'/%3E%3Cpath d='M423.699,326.602l61.801,0l0,-132.403l-61.801,0' style='fill:#{$colorDarker};fill-rule:nonzero;'/%3E%3Cpath d='M494.301,348.699c-9.801,0 -17.699,-7.898 -17.699,-17.699l0,-141.199c0,-9.801 7.898,-17.699 17.699,-17.699c9.801,0 17.699,7.898 17.699,17.699l0,141.199c0,9.801 -7.898,17.699 -17.699,17.699Z' style='fill:#{$color};fill-rule:nonzero;'/%3E%3Cpath d='M339.898,17.699c0,9.801 -7.898,17.699 -17.699,17.699l-141.199,0c-9.801,0 -17.699,-7.898 -17.699,-17.699c0,-9.801 7.898,-17.699 17.699,-17.699l141.199,0c9.801,0 17.699,7.898 17.699,17.699Z' style='fill:#{$color};fill-rule:nonzero;'/%3E%3Cpath d='M97.102,79.398l317.796,0c9.801,0 17.704,7.903 17.704,17.704l0,317.796c0,9.801 -7.903,17.704 -17.704,17.704l-317.796,0c-9.801,0 -17.704,-7.903 -17.704,-17.704l0,-317.796c0,-9.704 8,-17.704 17.704,-17.704Z' style='fill:%23cb8252;fill-rule:nonzero;'/%3E%3Cpath d='M114.801,132.398c-4.903,0 -8.801,-4 -8.801,-8.796l0,-8.801c0,-4.903 4,-8.801 8.801,-8.801c4.801,0 8.801,4 8.801,8.801l0,8.801c0,4.898 -4,8.796 -8.801,8.796Z' style='fill:%23804537;fill-rule:nonzero;'/%3E%3Cpath d='M114.801,282.5c-4.903,0 -8.801,-4 -8.801,-8.801l0,-114.801c0,-4.898 4,-8.796 8.801,-8.796c4.801,0 8.801,4 8.801,8.796l0,114.801c0,4.801 -4,8.801 -8.801,8.801Z' style='fill:%23804537;fill-rule:nonzero;'/%3E%3C/svg%3E");
+}
+
+@mixin tool-color-plus($color) {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8' standalone='no'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg width='100%25' height='100%25' viewBox='0 0 42 42' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' xmlns:serif='http://www.serif.com/' style='fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;'%3E%3Cpath d='M42,20l-20,0l0,-20l-2,0l0,20l-20,0l0,2l20,0l0,20l2,0l0,-20l20,0l0,-2Z' style='fill:#{$color};fill-rule:nonzero;'/%3E%3C/svg%3E");
+}
+@mixin tool-color-minus($color) {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8' standalone='no'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg width='100%25' height='100%25' viewBox='0 0 42 42' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' xmlns:serif='http://www.serif.com/' style='fill:#{$color};fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;'%3E%3Crect x='0' y='20' width='42' height='2'/%3E%3C/svg%3E");
+}
+@mixin tool-color-move($color) {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8' standalone='no'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg width='100%25' height='100%25' viewBox='0 0 60 60' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' xmlns:serif='http://www.serif.com/' style='fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;'%3E%3Cg%3E%3Cpath d='M19.999,11.999c0.256,0 0.512,-0.098 0.707,-0.293l8.293,-8.293l0,18.586c0,0.552 0.447,1 1,1c0.553,0 1,-0.448 1,-1l0,-18.586l8.293,8.293c0.195,0.195 0.451,0.293 0.707,0.293c0.256,0 0.512,-0.098 0.707,-0.293c0.391,-0.391 0.391,-1.023 0,-1.414l-9.999,-9.999c-0.092,-0.093 -0.203,-0.166 -0.326,-0.217c-0.244,-0.101 -0.52,-0.101 -0.764,0c-0.123,0.051 -0.233,0.124 -0.326,0.217l-9.999,9.999c-0.391,0.391 -0.391,1.023 0,1.414c0.196,0.195 0.451,0.293 0.707,0.293Z' style='fill:#{$color};fill-rule:nonzero;'/%3E%3Cpath d='M39.292,48.292l-8.293,8.293l0,-18.586c0,-0.552 -0.447,-1 -1,-1c-0.553,0 -1,0.448 -1,1l0,18.586l-8.293,-8.293c-0.391,-0.391 -1.023,-0.391 -1.414,0c-0.391,0.391 -0.391,1.023 0,1.414l9.999,9.999c0.092,0.093 0.203,0.166 0.326,0.217c0.122,0.051 0.252,0.077 0.382,0.077c0.13,0 0.26,-0.027 0.382,-0.077c0.123,-0.051 0.233,-0.124 0.326,-0.217l9.999,-9.999c0.391,-0.391 0.391,-1.023 0,-1.414c-0.391,-0.391 -1.023,-0.391 -1.414,0Z' style='fill:#{$color};fill-rule:nonzero;'/%3E%3Cpath d='M59.922,30.381c0.101,-0.244 0.101,-0.52 0,-0.764c-0.051,-0.123 -0.124,-0.233 -0.217,-0.326l-9.999,-9.999c-0.391,-0.391 -1.023,-0.391 -1.414,0c-0.391,0.391 -0.391,1.023 0,1.414l8.293,8.293l-18.586,0c-0.553,0 -1,0.448 -1,1c0,0.552 0.447,1 1,1l18.586,0l-8.293,8.293c-0.391,0.391 -0.391,1.023 0,1.414c0.195,0.195 0.451,0.293 0.707,0.293c0.256,0 0.512,-0.098 0.707,-0.293l9.999,-9.999c0.093,-0.093 0.167,-0.204 0.217,-0.326Z' style='fill:#{$color};fill-rule:nonzero;'/%3E%3Cpath d='M3.413,30.999l18.586,0c0.553,0 1,-0.448 1,-1c0,-0.552 -0.447,-1 -1,-1l-18.586,0l8.293,-8.293c0.391,-0.391 0.391,-1.023 0,-1.414c-0.391,-0.391 -1.023,-0.391 -1.414,0l-9.999,9.999c-0.093,0.092 -0.166,0.203 -0.217,0.326c-0.101,0.244 -0.101,0.52 0,0.764c0.051,0.123 0.124,0.233 0.217,0.326l9.999,9.999c0.195,0.195 0.451,0.293 0.707,0.293c0.256,0 0.512,-0.098 0.707,-0.293c0.391,-0.391 0.391,-1.023 0,-1.414l-8.293,-8.293Z' style='fill:#{$color};fill-rule:nonzero;'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.restaurant-layout {
+    border: 2px solid $black-bis;
+    border-radius: 6px;
+}
+
+.ra-interactables-screen {
+    height: 400px;
+
+    .ra-interactable {
+        @include seat-color("%23" + "126D32", "%23" + "0D4E24"); // '#' é um caracter especial em URL. Substituir pelo equivalente '%23'
+        cursor: pointer;
+        touch-action: none;
+        user-select: none;
+        border-radius: 50%;
+        position: absolute;
+        text-align: center;
+        margin: 0 auto;
+        color: #804537;
+        font-weight: 600;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: 90% 90%;
+        background-position: center;
+    }
+
+    .ra-table-filled {
+        @include seat-color("%23" + "D6AB00", "%23" + "A38300");
+    }
+
+    .ra-table-full {
+        @include seat-color("%23" + "931F36", "%23" + "691626");
+    }
+
+    .ra-can-move {
+        cursor: move;
+    }
+}
+
+.ra-interactables-toolbar {
+    padding: 10px 20px;
+    border-radius: 6px 6px 0 0;
+    background-color: $black-bis;
+    color: $white-ter;
+
+    p {
+        display: inline-block;
+        padding: 8px 0;
+        margin-right: 1em;
+    }
+}
+
+.ra-tool {
+    border: none;
+    width: 40px;
+    margin: 0 4px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 70% 70%;
+    background-position: center;
+}
+
+.ra-tool-plus {
+    @extend .ra-tool;
+    background-size: 66% 66%;
+    @include tool-color-plus("%23" + "7A7A7A");
+
+    &:hover,
+    &:focus {
+        @include tool-color-plus("%23" + "4A4A4A");
+    }
+}
+
+.ra-tool-plus-active {
+    @extend .ra-tool;
+    background-size: 66% 66%;
+    @include tool-color-plus("%23" + "126D32");
+
+    &:hover,
+    &:focus,
+    &:active {
+        @include tool-color-plus("%23" + "126D32");
+    }
+}
+
+.ra-tool-minus {
+    @extend .ra-tool;
+    background-size: 66% 66%;
+    @include tool-color-minus("%23" + "7A7A7A");
+
+    &:hover,
+    &:focus {
+        @include tool-color-minus("%23" + "4A4A4A");
+    }
+}
+
+.ra-tool-minus-active {
+    @extend .ra-tool;
+    background-size: 66% 66%;
+    @include tool-color-minus("%23" + "931F36");
+
+    &:hover,
+    &:focus,
+    &:active {
+        @include tool-color-minus("%23" + "931F36");
+    }
+}
+
+.ra-tool-move {
+    @extend .ra-tool;
+    @include tool-color-move("%23" + "7A7A7A");
+
+    &:hover,
+    &:focus {
+        @include tool-color-move("%23" + "4A4A4A");
+    }
+}
+
+.ra-tool-move-active {
+    @extend .ra-tool;
+    @include tool-color-move("%23" + "D6AB00");
+
+    &:hover,
+    &:focus,
+    &:active {
+        @include tool-color-move("%23" + "D6AB00");
+    }
+}
