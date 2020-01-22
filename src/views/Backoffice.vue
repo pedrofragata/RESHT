@@ -52,6 +52,7 @@
                     <TableDishes :dishes="dishes" />
                     <div class="columns">
                         <div class="column is-10 is-offset-1">
+                            <h5 class="subtitle is-5 has-text-centered">Criar ou alterar prato</h5>
                             <FormDish />
                         </div>
                     </div>
