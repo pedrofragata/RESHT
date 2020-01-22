@@ -8,10 +8,10 @@ export default {
                 bID: 0,
                 uID: 0,
                 sID: 0,
-                dateRequest: "15/01/2015, 00:00:00",
-                dateOpening: "16/01/2015, 12:00:00",
-                dateClosing: "16/01/2015, 14:00:00",
-                dateArrival: "16/01/2015, 12:30:00",
+                dateRequest: "2020-01-15 00:00:00",
+                dateOpening: "2020-01-16 12:00:00",
+                dateClosing: "2020-01-16 14:00:00",
+                dateArrival: "2020-01-16 12:30:00",
                 numOfPeople: 3,
                 tables: [
                     {
@@ -35,11 +35,11 @@ export default {
             {
                 bID: 1,
                 uID: 0,
-                sID: 0,
-                dateRequest: "15/01/2015, 02:00:00",
-                dateOpening: "16/01/2015, 12:00:00",
-                dateClosing: "16/01/2015, 14:00:00",
-                dateArrival: "16/01/2015, 13:00:00",
+                sID: 1,
+                dateRequest: "2020-01-15 02:00:00",
+                dateOpening: "2020-01-16 12:00:00",
+                dateClosing: "2020-01-16 14:00:00",
+                dateArrival: "2020-01-16 13:00:00",
                 numOfPeople: 1,
                 tables: [
                     {
@@ -59,11 +59,11 @@ export default {
             {
                 bID: 2,
                 uID: 0,
-                sID: 0,
-                dateRequest: "16/01/2015, 00:00:00",
-                dateOpening: "17/01/2015, 19:00:00",
-                dateClosing: "17/01/2015, 20:00:00",
-                dateArrival: "17/01/2015, 19:10:00",
+                sID: 1,
+                dateRequest: "2020-01-16 00:00:00",
+                dateOpening: "2020-01-17 19:00:00",
+                dateClosing: "2020-01-17 20:00:00",
+                dateArrival: "2020-01-17 19:10:00",
                 numOfPeople: 10,
                 tables: [
                     {
@@ -99,11 +99,11 @@ export default {
             {
                 bID: 3,
                 uID: 0,
-                sID: 0,
-                dateRequest: "11/01/2015, 00:00:00",
-                dateOpening: "11/01/2015, 12:00:00",
-                dateClosing: "11/01/2015, 14:00:00",
-                dateArrival: "11/01/2015, 12:30:00",
+                sID: 2,
+                dateRequest: "2020-01-11 00:00:00",
+                dateOpening: "2020-01-11 12:00:00",
+                dateClosing: "2020-01-11 14:00:00",
+                dateArrival: "2020-01-11 12:30:00",
                 numOfPeople: 3,
                 tables: [
                     {
@@ -127,11 +127,11 @@ export default {
             {
                 bID: 4,
                 uID: 0,
-                sID: 0,
-                dateRequest: "10/01/2015, 02:00:00",
-                dateOpening: "10/01/2015, 12:00:00",
-                dateClosing: "10/01/2015, 14:00:00",
-                dateArrival: "10/01/2015, 13:00:00",
+                sID: 3,
+                dateRequest: "2020-01-10 02:00:00",
+                dateOpening: "2020-01-10 12:00:00",
+                dateClosing: "2020-01-10 14:00:00",
+                dateArrival: "2020-01-10 13:00:00",
                 numOfPeople: 1,
                 tables: [
                     {
@@ -151,11 +151,11 @@ export default {
             {
                 bID: 5,
                 uID: 0,
-                sID: 0,
-                dateRequest: "9/01/2015, 00:00:00",
-                dateOpening: "9/01/2015, 19:00:00",
-                dateClosing: "9/01/2015, 20:00:00",
-                dateArrival: "9/01/2015, 19:10:00",
+                sID: 4,
+                dateRequest: "2015-01-09 00:00:00",
+                dateOpening: "2015-01-09 19:00:00",
+                dateClosing: "2015-01-09 20:00:00",
+                dateArrival: "2015-01-09 19:10:00",
                 numOfPeople: 10,
                 tables: [
                     {
@@ -187,7 +187,55 @@ export default {
                 ],
                 totalPrice: 97.50,
                 message: "Teste paginação 3"
-            }
+            },
+            {
+                bID: 6,
+                uID: 0,
+                sID: 0,
+                dateRequest: "2020-01-21 00:00:00",
+                dateOpening: "2020-01-22 12:00:00",
+                dateClosing: "2020-01-22 14:00:00",
+                dateArrival: "2020-01-22 12:30:00",
+                numOfPeople: 3,
+                tables: [
+                    {
+                        tID: 0,
+                        people: 0
+                    }
+                ],
+                dishes: [
+                    {
+                        dID: 2,
+                        quantity: 1
+                    }
+                ],
+                totalPrice: 20.50,
+                message: "Testar datas"
+            },
+            {
+                bID: 7,
+                uID: 0,
+                sID: 0,
+                dateRequest: "2020-01-22 00:00:00",
+                dateOpening: "2020-01-23 12:00:00",
+                dateClosing: "2020-01-23 14:00:00",
+                dateArrival: "2020-01-23 12:30:00",
+                numOfPeople: 3,
+                tables: [
+                    {
+                        tID: 0,
+                        people: 0
+                    }
+                ],
+                dishes: [
+                    {
+                        dID: 2,
+                        quantity: 1
+                    }
+                ],
+                totalPrice: 20.50,
+                message: "Testar datas 2"
+            },
         ],
         tables: [
             // objetos para efeitos de teste

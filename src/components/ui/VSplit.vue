@@ -1,7 +1,7 @@
 <template>
   <div class="field is-horizontal">
         <div class="field-label">
-            <label class="label has-text-grey-lighter" for="ra-form-day">{{ label }}</label>
+            <label class="label has-text-grey-lighter" :for="id">{{ label }}</label>
         </div>
         <div class="field-body">
             <div class="field">
@@ -22,6 +22,9 @@
 export default {
     name: "VSplit",
     props: {
+        id: {
+            type: String
+        },
         label: {
             type: String
         }

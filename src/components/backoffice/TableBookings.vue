@@ -43,11 +43,11 @@
                                     </div>
                                 </abbr>
                             </td>
-                            <td>{{ booking.dateRequest }}</td>
+                            <td>{{ convertDate(booking.dateRequest) }}</td>
                             <td>{{ fullNameByID(booking.uID) }}</td>
-                            <td>{{ booking.dateOpening }}</td>
-                            <td>{{ booking.dateClosing }}</td>
-                            <td>{{ booking.dateArrival }}</td>
+                            <td>{{ convertDate(booking.dateOpening) }}</td>
+                            <td>{{ convertDate(booking.dateClosing) }}</td>
+                            <td>{{ convertDate(booking.dateArrival) }}</td>
                             <td class="has-text-centered">{{ booking.numOfPeople }}</td>
                             <td class="has-text-centered">{{ `${booking.totalPrice} €` }}</td>
                             <td class="has-text-centered">
@@ -83,34 +83,49 @@ import Pagination from "@/components/ui/Pagination.vue";
 
 export default {
     name: "TableBookings",
+    props: {
+        bookings: {
+            type: Array,
+            required: true
+        }
+    },
+    components: {
+        Pagination
+    },
     data() {
         return {
             page: 1,
             perPage: 4
         }
     },
-    components: {
-        Pagination
-    },
     methods: {
-        paginate (bookings) {
+        paginate (bookingsList) {
             const page = this.page;
             const perPage = this.perPage;
             const from = (page * perPage) - perPage;
             const to = (page * perPage);
-            return bookings.slice(from, to);
+            return bookingsList.slice(from, to);
         },
         updatePage(page) {
             this.page = page;
+        },
+        convertDate(date) {
+            let day = date.split(" ")[0];
+            day = day.split("-").reverse().join("-").replace(/-/g, "/");
+
+            let time = date.split(" ")[1];
+            time = time.slice(0, 5);
+
+            return `${day} ${time}`;
         }
     },
     computed: {
         ...mapGetters("users", ["fullNameByID"]),
-        ...mapGetters("bookings", ["allBookings", "statusDescByID", "statusColorByID"]),
+        ...mapGetters("bookings", ["statusDescByID", "statusColorByID"]),
         ...mapGetters("dishes", ["dishNameByID"]),
 
         pages() {
-            const numberOfPages = Math.ceil(this.allBookings.length / this.perPage);
+            const numberOfPages = Math.ceil(this.bookings.length / this.perPage);
             const pages = [];
             for (let i = 1; i <= numberOfPages; i++) {
                 pages.push(i);
@@ -118,7 +133,7 @@ export default {
             return pages;
         },
         displayedBookings() {
-            return this.paginate(this.allBookings);
+            return this.paginate(this.bookings);
         }
     },
     created() {
