@@ -29,6 +29,21 @@
                     object-position: center center;
                 }
             }
+            .cancelButton {
+                border-color: $black-ter;
+                width: 80px;
+                height: 40px;
+                background-color: hsl(0, 0%, 76%);
+            }
+
+            .editButton{
+                    background-color: hsl(74, 50%, 54%);
+                    color: white;
+                    border-color: $black-ter;
+                    width: 90px;
+                    height: 40px;
+            }
+            
         }
     }
 }
