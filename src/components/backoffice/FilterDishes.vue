@@ -58,7 +58,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters("dishes", ["allDishes", "allCategories", "allSubcategories", "catDescByID", "subCatDescByID"]),
+        ...mapGetters("dishes", ["allDishes", "allCategories", "allSubcategories"]),
 
         getDishes() {
             const filteredCategories = (this.filterCat === "")
@@ -75,7 +75,7 @@ export default {
 
             const filteredPriceMax = (this.filterPriceMax === "Infinity")
                                     ? filteredPriceMin
-                                    : filteredPriceMin.filter(booking => booking.basePrice <= parseFloat(this.filterPriceMax));
+                                    : filteredPriceMin.filter(dish => dish.basePrice <= parseFloat(this.filterPriceMax));
 
             return filteredPriceMax;
         }

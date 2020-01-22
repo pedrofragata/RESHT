@@ -75,9 +75,6 @@ export default {
         dishes: {
             type: Array,
             required: true
-        },
-        label: {
-            type: String
         }
     },
     components: {
@@ -124,6 +121,9 @@ export default {
         displayedDishes() {
             return this.paginate(this.dishes);
         }
+    },
+    created() {
+        this.$store.commit("dishes/GET_FROM_LOCALSTORAGE");
     }
 }
 </script>
