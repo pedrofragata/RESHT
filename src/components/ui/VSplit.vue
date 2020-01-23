@@ -5,12 +5,12 @@
         </div>
         <div class="field-body">
             <div class="field">
-                <div class="control">
+                <div class="control" :class="modifier">
                     <slot name="first-field"></slot>
                 </div>
             </div>
             <div class="field">
-                <div class="control">
+                <div class="control" :class="modifier">
                     <slot name="second-field"></slot>
                 </div>
             </div>
@@ -27,6 +27,9 @@ export default {
         },
         label: {
             type: String
+        },
+        modifier: {
+            tpye: String
         }
     }
 }

@@ -5,7 +5,7 @@
         </div>
         <div class="field-body">
             <div class="field">
-                <div class="control has-icons-left">
+                <div class="control" :class="modifier">
                     <div class="select" :class="size">
                         <slot></slot>
                     </div>
@@ -28,6 +28,9 @@ export default {
         },
         size: {
             type: String
+        },
+        modifier: {
+            tpye: String
         }
     }
 }

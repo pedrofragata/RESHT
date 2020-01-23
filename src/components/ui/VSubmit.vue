@@ -1,5 +1,5 @@
 <template>
-  <div class="field is-horizontal">
+  <div class="field is-horizontal" style="margin-top: 1.5em;">
     <div class="field-label"></div>
     <div class="field-body">
     <div class="field">

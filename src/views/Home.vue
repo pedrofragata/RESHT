@@ -47,143 +47,46 @@
         <div class="column is-9 is-offset-1">
           <!--FORM RESERVAS-->
           <form>
-            <div class="field is-horizontal">
-              <div class="field-label">
-                <label class="label has-text-grey-lighter" for="ra-form-day">Horário</label>
+            <VSplit id="ra-form-day" label="Horário" modifier="has-icons-left">
+              <template slot="first-field">
+                <input id="ra-form-day" class="input" type="date" v-model="inputDateOpening" />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-calendar-alt"></i>
+                </span>
+              </template>
+              <template slot="second-field">
+                <input id="ra-form-hour" class="input" type="time" v-model="inputTimeOpening" />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-clock"></i>
+                </span>
+              </template>
+            </VSplit>
+            <VInput id="ra-form-arrival" label="Hora de chegada" modifier="has-icons-left"
+                    type="time" @input-changed="updateInputTimeArrival">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user-clock"></i>
+              </span>
+            </VInput>
+            <VInput id="ra-form-people" label="Nº de pessoas" modifier="has-icons-left"
+                    type="number" min="1" @input-changed="updateNumOfPeople">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </VInput>
+            <VSelect id="ra-form-dish" v-for="(dish, idx) in dishes" :key="idx + '-dishes'" modifier="has-icons-left"
+                    size="is-fullwidth" :label="`Prato ${dishes.indexOf(dish)+1} :`">
+              <select id="ra-form-dish">
+                <option value="">Selecione o prato</option>
+                <option v-for="dish in allDishes" :key="dish.dID + '-allDishes'"
+                      :value="dish.dID">{{ dish.name }}</option>
+              </select>
+              <div class="icon is-small is-left">
+                <i class="fas fa-utensils"></i>
               </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control has-icons-left">
-                    <input id="ra-form-day" class="input" type="date" v-model="inputDateOpening" />
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-calendar-alt"></i>
-                    </span>
-                  </div>
-                </div>
-                <div class="field">
-                  <div class="control has-icons-left">
-                    <input id="ra-form-hour" class="input" type="time" v-model="inputTimeOpening" />
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-clock"></i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="field is-horizontal">
-              <div class="field-label">
-                <label class="label has-text-grey-lighter" for="ra-form-arrival">Hora de chegada</label>
-              </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control has-icons-left">
-                    <input
-                      id="ra-form-arrival"
-                      class="input"
-                      type="time"
-                      v-model="inputTimeArrival"
-                    />
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-user-clock"></i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="field is-horizontal">
-              <div class="field-label">
-                <label class="label has-text-grey-lighter" for="ra-form-people">Nº de pessoas</label>
-              </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control has-icons-left">
-                    <input
-                      id="ra-form-people"
-                      class="input"
-                      type="number"
-                      value="1"
-                      min="1"
-                      v-model.lazy="inputNumOfPeople"
-                    />
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-user"></i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div v-for="dish in dishes" class="field is-horizontal" v-bind:key="dish">
-              <div class="field-label">
-                <label
-                  class="label has-text-grey-lighter"
-                  for="ra-form-dish"
-                >Prato {{dishes.indexOf(dish)+1}}</label>
-              </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control has-icons-left">
-                    <div class="select">
-                      <select id="ra-form-dish">
-                        <option value>Selecione o prato</option>
-                      </select>
-                    </div>
-                    <div class="icon is-small is-left">
-                      <i class="fas fa-utensils"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="field is-horizontal">
-              <div class="field-label">
-                <label class="label has-text-grey-lighter" for="ra-form-health">Obs. de saúde</label>
-              </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control">
-                    <textarea
-                      v-model="inputHealthInfo"
-                      id="ra-form-health"
-                      class="textarea"
-                      rows="1"
-                      placeholder="Dieta, alergénios, ..."
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="field is-horizontal">
-              <div class="field-label">
-                <label class="label has-text-grey-lighter" for="ra-form-message">Outras observações</label>
-              </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control">
-                    <textarea
-                      v-model="inputOtherInfo"
-                      id="ra-form-message"
-                      class="textarea"
-                      rows="2"
-                      placeholder="Espaço sossegado, junto à janela,  ..."
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="field is-horizontal">
-              <div class="field-label"></div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control">
-                    <input
-                      class="button has-background-grey-lighter has-text-grey-dark is-family-secondary is-size-5"
-                      type="submit"
-                      value="Enviar"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+            </VSelect>
+            <VTextarea id="ra-form-message" placeholder="Espaço sossegado, junto à janela,  ..."
+                      @input-changed="updateInputOtherInfo" />
+            <VSubmit value="Enviar" size="is-size-6 is-fullwidth"/>
           </form>
         </div>
       </div>
@@ -220,9 +123,16 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 import TheNav from "@/components/layout/TheNav.vue";
 import Divider from "@/components/ui/Divider.vue";
 import Weekday from "@/components/Weekday.vue";
+import VInput from "@/components/ui/VInput.vue";
+import VSelect from "@/components/ui/VSelect.vue";
+import VSplit from "@/components/ui/VSplit.vue";
+import VTextarea from "@/components/ui/VTextarea.vue";
+import VSubmit from "@/components/ui/VSubmit.vue";
 import Carousel from "@/components/Carousel.vue";
 import Faq from "@/components/Faq.vue";
 import TheFooter from "@/components/layout/TheFooter.vue";
@@ -233,6 +143,11 @@ export default {
     TheNav,
     Divider,
     Weekday,
+    VInput,
+    VSelect,
+    VSplit,
+    VTextarea,
+    VSubmit,
     Carousel,
     Faq,
     TheFooter
@@ -244,7 +159,6 @@ export default {
       inputTimeArrival: "",
       inputNumOfPeople: 1,
       inputDishes: [],
-      inputHealthInfo: "",
       inputOtherInfo: ""
     };
   },
@@ -253,9 +167,20 @@ export default {
       //INCOMPLETO FALTA VERIFICAR SE A HORA DE CHEGADA SE ENQUADARA NO HORARIO SELECIONADO
       // let newReservation = [
       // ]
+    },
+    updateInputTimeArrival(time) {
+      this.inputTimeArrival = time;
+    },
+    updateNumOfPeople(num) {
+      this.inputNumOfPeople = num;
+    },
+    updateInputOtherInfo(str) {
+      this.inputOtherInfo = str;
     }
   },
   computed: {
+    ...mapGetters("dishes", ["allDishes"]),
+
     dishes: function() {
       let arrayDishes = [];
       for (let i = 0; i < this.inputNumOfPeople; i++) {

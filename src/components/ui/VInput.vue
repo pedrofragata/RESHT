@@ -6,7 +6,8 @@
         <div class="field-body">
             <div class="field">
                 <div class="control" :class="modifier">
-                    <input :id="id" :type="type" class="input" :min="min" :max="max" :class="size" v-model.lazy="watcher" />
+                    <input :id="id" :type="type" class="input" :min="min" :max="max"
+                            :class="size" v-model.lazy="watcher" />
                     <slot></slot>
                 </div>
             </div>
@@ -44,7 +45,10 @@ export default {
     },
     data() {
         return {
-            watcher: ""
+            watcher: (() => {
+                if (this.type === "string") return "";
+                else if (this.type === "number") return this.min;
+            })()
         }
     },
     watch: {

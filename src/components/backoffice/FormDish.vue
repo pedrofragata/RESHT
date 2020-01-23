@@ -23,7 +23,7 @@
             <input slot="first-field" id="ra-dish-availUpTo" class="input" type="date">
             <input slot="second-field" class="input" type="time">
         </VSplit>
-        <VSubmit value="Submeter" size="is-size-6 is-fullwidth" style="margin-top: 1.5em;"/>
+        <VSubmit value="Submeter" size="is-size-6 is-fullwidth" />
     </form>
 </template>
 
