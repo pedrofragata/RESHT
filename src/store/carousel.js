@@ -20,12 +20,12 @@ export default {
             state.images = state.images.filter(image => image !== payload);
         },
         SAVE_TO_LOCALSTORAGE(state) {
-            localStorage.setItem("carousel-state", JSON.stringify(state.images));
+            localStorage.setItem("carousel-state", JSON.stringify(state.allImages));
         },
         GET_FROM_LOCALSTORAGE(state) {
             localStorage.getItem("carousel-state")
-            ? state.images = JSON.parse(localStorage.getItem("carousel-state"))
-            : localStorage.setItem("carousel-state", JSON.stringify(state.images));
+            ? state.allImages = JSON.parse(localStorage.getItem("carousel-state"))
+            : localStorage.setItem("carousel-state", JSON.stringify(state.allImages));
         }
     },
     getters: {

@@ -1,15 +1,18 @@
 <template>
     <form @submit.prevent="">
-        <VInput id="ra-dish-new-name" type="text" label="Nome:" />
-        <div class="field is-horizontal" style="margin: 1em 0;">
-            <div class="field-label has-text-grey-lighter has-text-weight-semibold"><label>OU</label></div>
-            <div class="field-body"></div>
-        </div>
         <VSelect id="ra-dish-from-existing" size="is-fullwidth" label="Prato existente:">
             <select id="ra-dish-from-existing">
                 <option value="">Selecione um prato</option>
             </select>
         </VSelect>
+        <div class="field is-horizontal" style="margin: 0.5em 0 1.5em 0;">
+            <div class="field-label"></div>
+            <div class="field-body has-text-grey-lighter">
+                <p class="is-size-7">Selecione um prato existente acima para carregar os detalhes
+                    ou preencha de raíz os campos abaixo para criar um novo.</p>
+            </div>
+        </div>
+        <VInput id="ra-dish-new-name" type="text" label="Nome:" />
         <VFile id="ra-dish-image"
             label="Imagem:"
             buttonLabel="Carregar"
