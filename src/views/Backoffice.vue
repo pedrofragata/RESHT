@@ -57,6 +57,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="box">
+                    <h4 class="title is-4 is-spaced has-text-centered">Galeria</h4>
+                    <CarouselImages />
+                </div>
             </div>
         </div>
     </div>
@@ -73,6 +77,7 @@ import RestaurantLayout from "@/components/backoffice/RestaurantLayout.vue";
 import FilterDishes from "@/components/backoffice/FilterDishes.vue";
 import TableDishes from "@/components/backoffice/TableDishes.vue";
 import FormDish from "@/components/backoffice/FormDish.vue";
+import CarouselImages from "@/components/backoffice/CarouselImages.vue";
 import TheFooter from "@/components/layout/TheFooter.vue";
 
 export default {
@@ -85,12 +90,14 @@ export default {
         FilterDishes,
         TableDishes,
         FormDish,
+        CarouselImages,
         TheFooter
     },
     data() {
         return {
             bookings: [],
-            dishes: []
+            dishes: [],
+            gallery: []
         }
     },
     methods: {
