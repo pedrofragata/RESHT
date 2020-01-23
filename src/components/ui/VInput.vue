@@ -7,7 +7,7 @@
             <div class="field">
                 <div class="control" :class="modifier">
                     <input :id="id" :type="type" class="input" :min="min" :max="max"
-                            :class="size" v-model.lazy="watcher" />
+                            :class="size" :value="value" v-model.lazy="watcher" />
                     <slot></slot>
                 </div>
             </div>
@@ -40,6 +40,9 @@ export default {
             type: String
         },
         size: {
+            type: String
+        },
+        value: {
             type: String
         }
     },

@@ -61,6 +61,14 @@
                     <h4 class="title is-4 is-spaced has-text-centered">Galeria</h4>
                     <CarouselImages />
                 </div>
+                <div class="box">
+                    <h4 class="title is-4 is-spaced has-text-centered">FAQs</h4>
+                    <div class="columns">
+                        <div class="column is-10 is-offset-1">
+                            <FormFaqs />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -78,6 +86,7 @@ import FilterDishes from "@/components/backoffice/FilterDishes.vue";
 import TableDishes from "@/components/backoffice/TableDishes.vue";
 import FormDish from "@/components/backoffice/FormDish.vue";
 import CarouselImages from "@/components/backoffice/CarouselImages.vue";
+import FormFaqs from "@/components/backoffice/FormFaqs.vue";
 import TheFooter from "@/components/layout/TheFooter.vue";
 
 export default {
@@ -91,13 +100,13 @@ export default {
         TableDishes,
         FormDish,
         CarouselImages,
+        FormFaqs,
         TheFooter
     },
     data() {
         return {
             bookings: [],
-            dishes: [],
-            gallery: []
+            dishes: []
         }
     },
     methods: {

@@ -4,6 +4,7 @@ import usersModule from "./users.js";
 import bookingsModule from "./bookings.js";
 import dishesModule from "./dishes.js";
 import carouselModule from "./carousel.js";
+import faqsModule from "./faqs.js";
 
 Vue.use(Vuex);
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     users: usersModule,
     bookings: bookingsModule,
     dishes: dishesModule,
-    carousel: carouselModule
+    carousel: carouselModule,
+    faqs: faqsModule
   }
 });
