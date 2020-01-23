@@ -1,7 +1,7 @@
 <template>
     <div class="field is-horizontal">
         <div class="field-label">
-            <label class="label has-text-grey-lighter" :for="id">Outras observações</label>
+            <label class="label has-text-grey-lighter" :for="id">{{ label }}</label>
         </div>
         <div class="field-body">
             <div class="field">
@@ -11,7 +11,7 @@
                         :id="id"
                         class="textarea"
                         :rows="rows"
-                        placeholder=""
+                        :placeholder="placeholder"
                     ></textarea>
                 </div>
             </div>
@@ -32,6 +32,9 @@ export default {
             default: "2"
         },
         placeholder: {
+            type: String
+        },
+        label: {
             type: String
         }
     },

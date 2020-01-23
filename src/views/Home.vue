@@ -84,8 +84,8 @@
                 <i class="fas fa-utensils"></i>
               </div>
             </VSelect>
-            <VTextarea id="ra-form-message" placeholder="Espaço sossegado, junto à janela,  ..."
-                      @input-changed="updateInputOtherInfo" />
+            <VTextarea id="ra-form-message" placeholder="Escreva aqui a sua mensagem"
+                      label="Observações:" @input-changed="updateInputOtherInfo" />
             <VSubmit value="Enviar" size="is-size-6 is-fullwidth"/>
           </form>
         </div>
