@@ -31,17 +31,19 @@
             }
             .cancelButton {
                 border-color: $black-ter;
-                width: 80px;
-                height: 40px;
+                width: 70px;
+                height: 30px;
                 background-color: hsl(0, 0%, 76%);
+                font-size: 13px;
             }
 
             .editButton{
                     background-color: hsl(74, 50%, 54%);
                     color: white;
                     border-color: $black-ter;
-                    width: 90px;
-                    height: 40px;
+                    width: 70px;
+                    height: 30px;
+                    font-size: 13px;
             }
             
         }

@@ -14,14 +14,24 @@
                     <label class="label"></label>
                   </div>
                   <div class="field-body">
-                    <div class="field">
+                    <div class="field" >
                       <p class="control has-icons-left">
-                        <img :src="photo" />
-                        <span class="icon is-small is-pulled-right">
-                          <i class="fas fa-pencil-alt"></i>
-                        </span>
+                        <img :src="userImage" />
                       </p>
                     </div>
+                    <div class="field">
+                      <span class="icon is-small is-pulled-left" @click="editI=false">
+                        <i class="fas fa-pencil-alt"></i>
+                      </span>
+                      <VFile v-if="editI==false" 
+                        v-model="userImage"
+                        id="ra-user-image"
+                        buttonLabel="Carregar"
+                        placeholder="Clique aqui para carregar um ficheiro."
+                      />
+                    </div>
+                      
+                    
                   </div>
                 </div>
                 <!-- ------------------------ NAME ---------------------------- -->
@@ -46,12 +56,12 @@
                     <div class="field" v-if="editN==false">
                       <button
                         type="button"
-                        class="editButton is-family-secondary is-size-6"
+                        class="editButton is-family-secondary "
                         @click="activeModal=true"
                       >Confirmar</button>
                       <button
                         type="button"
-                        class="cancelButton has-text-grey-dark is-family-secondary is-size-6"
+                        class="cancelButton has-text-grey-dark is-family-secondary"
                         @click="editN = true"
                       >Cancelar</button>
                     </div>
@@ -91,7 +101,13 @@
                   <div class="field-body">
                     <div class="field">
                       <div class="control">
-                        <textarea class="textarea" :class="{'is-static': editA}"  v-model="about" :readonly="editA" @click="editA=false" ></textarea>
+                        <textarea
+                          class="textarea"
+                          :class="{'is-static': editA}"
+                          v-model="about"
+                          :readonly="editA"
+                          @click="editA=false"
+                        ></textarea>
                       </div>
                     </div>
                   </div>
@@ -133,13 +149,13 @@
                     </div>
                     <div class="field" v-if="editPw==false">
                       <button
-                        class="editButton is-family-secondary is-size-6"
+                        class="editButton is-family-secondary"
                         type="button"
                         @click="activePwModal=true"
                       >Confirmar</button>
                       <button
                         type="button"
-                        class="cancelButton has-text-grey-dark is-family-secondary is-size-6"
+                        class="cancelButton has-text-grey-dark is-family-secondary"
                         @click="editPw = true"
                       >Cancelar</button>
                     </div>
@@ -190,12 +206,14 @@
 <script>
 import TheNav from "@/components/layout/TheNav.vue";
 import TheFooter from "@/components/layout/TheFooter.vue";
+import VFile from "@/components/ui/VFile.vue";
 
 export default {
   name: "Profile",
   components: {
     TheNav,
-    TheFooter
+    TheFooter,
+    VFile
   },
   data() {
     return {
@@ -208,37 +226,41 @@ export default {
       editN: true,
       editPw: true,
       editA: true,
+      editI: true,
       activeModal: false,
       activePwModal: false,
       fullNameBefore: "",
-      passwordBefore: ""
+      passwordBefore: "",
+      userImage: "",
+      idUtilizador: "",
     };
+  },
+  beforeDestroy(){
+    console.log("BEFOREDESTROY")
+
+    this.$store.commit("users/EDIT_AVATAR", {
+        uID: this.idUtilizador,
+        userImage: this.userImage
+      });
+      this.$store.commit("users/SAVE_TO_LOCALSTORAGE");
+
+
   },
   created() {
     (this.users = this.$store.getters["users/allUsers"]),
       (this.fullName = this.getUser(this.$route.params.userID).fullName);
-    this.photo = this.getUser(this.$route.params.userID).avatar;
+    this.userImage = this.getUser(this.$route.params.userID).avatar;
     this.email = this.getUser(this.$route.params.userID).email;
     this.password = this.getUser(this.$route.params.userID).password;
     this.about = this.getUser(this.$route.params.userID).about;
 
     this.fullNameBefore = this.getUser(this.$route.params.userID).fullName;
     this.passwordBefore = this.getUser(this.$route.params.userID).password;
+    this.idUtilizador = this.$route.params.userID
   },
   methods: {
-    /*openEditNameModal(){
-        let modal = document.getElementById("editNameModal")
-        let html = document.querySelector('html');
-        modal.classList.add("is-active")
-        html.classList.add("is-clipped")
-    },*/
-    /*editTransform() {
-      let element = document.getElementById("inputFullName");
-      element.classList.remove("is-static");
-      this.edit = false;
-    },*/
     editFullName() {
-      console.log(this.fullName)
+      console.log(this.fullName);
       this.$store.commit("users/EDIT_FULLNAME", {
         uID: this.$route.params.userID,
         fullName: this.fullName
