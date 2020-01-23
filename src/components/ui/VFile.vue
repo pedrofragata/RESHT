@@ -5,10 +5,10 @@
         </div>
         <div class="field-body">
             <div class="field">
-                <div class="file has-name is-right is-fullwidth">
+                <div class="file has-name is-small">
                 <label class="file-label">
-                    <input class="file-input" type="file" name="resume">
-                    <span class="file-cta">
+                    <input class="file-input" type="file" name="resume" @change="onFileChange">
+                    <span class="file-cta" >
                         <span class="file-icon">
                             <i class="fas fa-upload"></i>
                         </span>
@@ -16,9 +16,9 @@
                             {{ buttonLabel }}
                         </span>
                     </span>
-                    <span class="file-name">
+                    <!--<span class="file-name">
                         {{ placeholder }}
-                    </span>
+                    </span>-->
                 </label>
             </div>
         </div>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+
 export default {
 name: "VFile",
     props: {
@@ -39,7 +40,31 @@ name: "VFile",
         },
         placeholder: {
             type: String
-        }
+        }, 
+        
+    },
+
+    methods: {
+    
+    onFileChange(e) {
+        console.log("ONCHANGEEEEEEEEEEE")
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) {
+        return;
+      }
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      var reader = new FileReader();
+      reader.onload = e => {
+        this.$emit('input', e.target.result)
+      };
+      reader.readAsDataURL(file);
+      console.log(file) 
+      console.log(reader, "LALALAL")
+    },
+
     }
 }
+
 </script>

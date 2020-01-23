@@ -66,6 +66,11 @@ export default {
             let index = state.users.findIndex(user => user.uID == payload.uID)
             state.users[index].password = payload.password;
         },
+        
+        EDIT_AVATAR(state,payload){
+            let index = state.users.findIndex(user => user.uID == payload.uID)
+            state.users[index].avatar = payload.userImage;
+        }
 
     },
     getters: {
