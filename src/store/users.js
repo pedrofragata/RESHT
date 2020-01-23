@@ -56,7 +56,17 @@ export default {
             sessionStorage.getItem("login-status")
             ? state.loginStatus = JSON.parse(sessionStorage.getItem("login-status"))
             : sessionStorage.setItem("login-status", JSON.stringify(state.loginStatus));
-        }
+        },
+        EDIT_FULLNAME(state, payload){
+            let index = state.users.findIndex(user => user.uID == payload.uID)
+            state.users[index].fullName = payload.fullName;
+        },
+
+        EDIT_PASSWORD(state, payload){
+            let index = state.users.findIndex(user => user.uID == payload.uID)
+            state.users[index].password = payload.password;
+        },
+
     },
     getters: {
         isAdmin: (state) => (uID) => { return state.users.find(user => user.uID === uID).accessLevel === 2},
