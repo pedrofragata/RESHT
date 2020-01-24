@@ -385,8 +385,10 @@ export default {
                 dateArrival: payload.dateArrival,
                 numOfPeople: payload.numOfPeople,
                 tables: payload.tables,
-                dishes: payload.dishes,
-                totalPrice: 0,
+                dishes: payload.dishes, // guardar objetos completos para perseverar caso o prato seja removido
+                basePrice: payload.basePrice,
+                discIDs: [],
+                totalPrice: payload.basePrice,
                 message: payload.message
             });
         },
@@ -424,6 +426,7 @@ export default {
         allBookings: state => state.bookings,
         allTables: state => state.tables,
         statusDescByID: (state) => (sID) => { return state.status.find(status => status.sID === sID).desc },
-        statusColorByID: (state) => (sID) => { return state.status.find(status => status.sID === sID).color }
+        statusColorByID: (state) => (sID) => { return state.status.find(status => status.sID === sID).color },
+        bookingsNewId: state => state.bookings[state.bookings.length - 1].bID || 0
     }
 }
