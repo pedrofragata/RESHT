@@ -15,10 +15,16 @@
         }
     }
 
+    td p {
+        display: inline-block;
+        height:100%;
+        width:100%;
+    }
+
     th,
     .first-row {
         white-space: nowrap;
-        vertical-align: middle;
+        line-height: 32px;
 
         button {
             background-color: transparent;
@@ -64,7 +70,7 @@
             background-color: transparent;
             background-repeat: no-repeat;
             background-size: 100% 100%;
-            background-position: center;
+            background-position: center 65%;
         }
 
         .ra-table-icon {

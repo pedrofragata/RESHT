@@ -2,7 +2,7 @@
     <div>
         <Pagination :page="page" :pages="pages" @page-changed="updatePage" />
         <div class="table-container">
-            <table class="table ra-stripes is-narrow is-hoverable is-fullwidth has-text-grey-lighter">
+            <table class="table ra-stripes is-hoverable is-fullwidth has-text-grey-lighter">
                 <thead>
                     <tr>
                         <th></th>
@@ -32,6 +32,7 @@
                     </tr>
                 </tfoot>
                 <tbody>
+                    <tr><td colspan="10"><p></p></td></tr>
                     <template v-for="(booking, bIdx) in displayedBookings">
                         <tr :key="booking.bID + '-first-row'"
                             class="first-row"
@@ -58,15 +59,21 @@
                             </td>
                         </tr>
                         <tr v-for="(dish, dIdx) in booking.dishes" :key="dIdx + '-dish' + booking.bID"
-                            :class="{'ra-striped' : bIdx % 2 !== 0}">
-                            <td v-if="!dIdx" class="has-text-weight-semibold">Pratos:</td>
+                            :class="{'ra-striped' : bIdx % 2 !== 0}"
+                        >
+                            <td v-if="!dIdx" class="has-text-weight-semibold">Pratos</td>
                             <td v-else></td>
                             <td colspan="9">{{ `${dish.quantity}x ${dishNameByID(dish.dID)}` }}</td>
                         </tr>
                         <tr :key="booking.bID + '-last-row'"
                             :class="{'ra-striped' : bIdx % 2 !== 0}">
-                            <td class="has-text-weight-semibold">Obs:</td>
+                            <td class="has-text-weight-semibold">Obs</td>
                             <td colspan="9">{{ booking.message }}</td>
+                        </tr>
+                        <tr :key="booking.bID + '-bottom-dummy-row'"
+                            :class="{'ra-striped' : bIdx % 2 !== 0}"
+                        >
+                            <td colspan="10"><p></p></td>
                         </tr>
                     </template>
                 </tbody>

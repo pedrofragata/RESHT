@@ -2,11 +2,10 @@
   <div>
         <Pagination :page="page" :pages="pages" @page-changed="updatePage" />
         <div class="table-container">
-            <table class="table ra-stripes is-narrow is-hoverable is-fullwidth has-text-grey-lighter">
+            <table class="table ra-stripes is-hoverable is-fullwidth has-text-grey-lighter">
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Preço Base</th>
                         <th>Categoria</th>
                         <th>Subcategoria</th>
                         <th>Disponível desde</th>
@@ -17,7 +16,6 @@
                 <tfoot>
                     <tr>
                         <th></th>
-                        <th>Preço Base</th>
                         <th>Categoria</th>
                         <th>Subcategoria</th>
                         <th>Disponível desde</th>
@@ -26,6 +24,7 @@
                     </tr>
                 </tfoot>
                 <tbody>
+                    <tr><td colspan="10"><p></p></td></tr>
                     <template v-for="(dish, dIdx) in displayedDishes">
                         <tr :key="dish.dID + '-first-row'"
                             class="first-row"
@@ -37,7 +36,6 @@
                                     </div>
                                 </abbr>
                             </td>
-                            <td class="has-text-centered">{{ `${dish.basePrice} €` }}</td>
                             <td>{{ catDescByID(dish.catID) }}</td>
                             <td>{{ subCatDescByID(dish.subCatID) }}</td>
                             <td>{{ convertDate(dish.dateAvailableSince) }}</td>
@@ -49,12 +47,17 @@
                             </td>
                         </tr>
                         <tr :class="{'ra-striped' : dIdx % 2 !== 0}" :key="dish.dID + '-second-row'">
-                            <td class="has-text-weight-semibold">Nome:</td>
-                            <td colspan="5">{{ dish.name }}</td>
+                            <td class="has-text-weight-semibold">Nome</td>
+                            <td colspan="4">{{ dish.name }}</td>
                         </tr>
                         <tr :class="{'ra-striped' : dIdx % 2 !== 0}" :key="dish.dID + '-third-row'">
-                            <td class="has-text-weight-semibold">Descrição:</td>
-                            <td colspan="5">{{ dish.desc }}</td>
+                            <td class="has-text-weight-semibold">Descrição</td>
+                            <td colspan="4">{{ dish.desc }}</td>
+                        </tr>
+                        <tr :key="dish.bID + '-bottom-dummy-row'"
+                            :class="{'ra-striped' : dIdx % 2 !== 0}"
+                        >
+                            <td colspan="10"><p></p></td>
                         </tr>
                     </template>
                 </tbody>
