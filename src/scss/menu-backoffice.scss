@@ -1,0 +1,17 @@
+.ra-menu {
+    width: 100%;
+    text-align: center;
+    background-color: $grey-lighter !important;
+
+    .ra-title {
+        @extend .title, .is-5;
+    }
+
+    p {
+        @extend .is-size-5, .is-relative;
+        margin: 0.75em 0 0.25em;
+        white-space: nowrap;
+        overflow-x: hidden;
+        border-top: 2px dotted $grey;
+    }
+}

@@ -11,22 +11,20 @@
                         </p>
                         <ul class="menu-list">
                             <li>
-                            <a class="is-active">Reservas</a>
-                            <ul>
-                                <li><a>Lista</a></li>
-                                <li><a>Atribuir mesa</a></li>
-                            </ul>
+                                <a class="is-active">Reservas</a>
+                                <ul>
+                                    <li><a>Lista</a></li>
+                                    <li><a>Atribuir mesa</a></li>
+                                </ul>
                             </li>
                             <li>
-                            <a class="is-active">Aplicação</a>
-                            <ul>
-                                <li><a>Pratos e Ementas</a></li>
-                                <li><a>Galeria</a></li>
-                                <li><a>FAQs</a></li>
-                                <li><a>Patrocinadores</a></li>
-                                <li><a>Endereço</a></li>
-                                <li><a>Contactos</a></li>
-                            </ul>
+                                <a class="is-active">Aplicação</a>
+                                <ul>
+                                    <li><a>Pratos e Menus</a></li>
+                                    <li><a>Galeria</a></li>
+                                    <li><a>FAQs</a></li>
+                                    <li><a>Patrocinadores</a></li>
+                                </ul>
                             </li>
                         </ul>
                         <p class="menu-label">
@@ -40,29 +38,36 @@
             </div>
             <div class="column is-12 is-9-desktop">
                 <div class="box">
-                    <h4 class="title is-4 is-spaced has-text-centered">Reservas</h4>
+                    <h3 class="title is-3 is-spaced has-text-centered">Reservas</h3>
                     <FilterBookings @bookings-filter-applied="filterBookings" />
                     <TableBookings :bookings="bookings" />
                     <h5 class="subtitle is-5 has-text-centered">Atribuir mesa</h5>
                     <RestaurantLayout class="is-hidden-touch" />
                 </div>
                 <div class="box">
-                    <h4 class="title is-4 is-spaced has-text-centered">Pratos e Ementas</h4>
+                    <h3 class="title is-3 is-spaced has-text-centered">Pratos e Menus</h3>
                     <FilterDishes @dishes-filter-applied="filterDishes" />
                     <TableDishes :dishes="dishes" />
                     <div class="columns">
                         <div class="column is-10 is-offset-1">
                             <h5 class="subtitle is-5 has-text-centered">Criar ou alterar prato</h5>
                             <FormDish />
+                            <h5 class="subtitle is-5 has-text-centered">Criar ou alterar menu</h5>
+                            <FormMenu @entry-changed="updateMenu" />
+                            <div class="columns ra-menu-wrapper">
+                                <div class="column is-10 is-offset-2">
+                                    <Menu :menu="menu" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="box">
-                    <h4 class="title is-4 is-spaced has-text-centered">Galeria</h4>
+                    <h3 class="title is-3 is-spaced has-text-centered">Galeria</h3>
                     <CarouselImages />
                 </div>
                 <div class="box">
-                    <h4 class="title is-4 is-spaced has-text-centered">FAQs</h4>
+                    <h3 class="title is-3 is-spaced has-text-centered">FAQs</h3>
                     <div class="columns">
                         <div class="column is-10 is-offset-1">
                             <FormFaqs />
@@ -85,6 +90,8 @@ import RestaurantLayout from "@/components/backoffice/RestaurantLayout.vue";
 import FilterDishes from "@/components/backoffice/FilterDishes.vue";
 import TableDishes from "@/components/backoffice/TableDishes.vue";
 import FormDish from "@/components/backoffice/FormDish.vue";
+import FormMenu from "@/components/backoffice/FormMenu.vue";
+import Menu from "@/components/backoffice/Menu.vue";
 import CarouselImages from "@/components/backoffice/CarouselImages.vue";
 import FormFaqs from "@/components/backoffice/FormFaqs.vue";
 import TheFooter from "@/components/layout/TheFooter.vue";
@@ -99,6 +106,8 @@ export default {
         FilterDishes,
         TableDishes,
         FormDish,
+        FormMenu,
+        Menu,
         CarouselImages,
         FormFaqs,
         TheFooter
@@ -106,7 +115,8 @@ export default {
     data() {
         return {
             bookings: [],
-            dishes: []
+            dishes: [],
+            menu: []
         }
     },
     methods: {
@@ -115,6 +125,9 @@ export default {
         },
         filterDishes(dishes) {
             this.dishes = dishes;
+        },
+        updateMenu(menu) {
+            this.menu = menu;
         }
     }
 };

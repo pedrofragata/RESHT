@@ -170,6 +170,10 @@ export default {
                 return subcategory.subCatID === subCatID;
             }).desc;
         },
+        dishByName: (state) => (name) => { return state.dishes.find(dish => {
+                return dish.name.toLowerCase() === name.toLowerCase();
+            });
+        },
         isDishAvailableNow: (state) => (dID) => {
             const foundDish = state.dishes.find(dish => dish.dID === dID);
             if (foundDish) {
@@ -187,6 +191,6 @@ export default {
         categoriesNewId: state => state.categories[state.categories.length - 1].catID || 0,
         subcategoriesNewId: state => state.subcategories[state.subcategories.length - 1].subCatID || 0,
         menusNewId: state => state.menus[state.menus.length - 1].mID || 0,
-        discountsNewId: state => state.discounts[state.discounts.length - 1].discID || 0
+        discountsNewId: state => state.discounts[state.discounts.length - 1].discID || 0,
     }
 }

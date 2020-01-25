@@ -54,7 +54,7 @@
                             <td class="has-text-weight-semibold">Descrição</td>
                             <td colspan="4">{{ dish.desc }}</td>
                         </tr>
-                        <tr :key="dish.bID + '-bottom-dummy-row'"
+                        <tr :key="dish.dID + '-bottom-dummy-row'"
                             :class="{'ra-striped' : dIdx % 2 !== 0}"
                         >
                             <td colspan="10"><p></p></td>

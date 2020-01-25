@@ -1,6 +1,6 @@
 <template>
   <div class="columns">
-        <div class="column is-4 is-offset-2">
+        <div class="column is-6 is-offset-3">
             <VSelect id="ra-filter-dishes-cat" label="Categoria:" size="is-small is-fullwidth">
                 <select id="ra-filter-dishes-cat" v-model="filterCat">
                     <option value="">Todas as categorias</option>
@@ -20,12 +20,6 @@
                 </select>
             </VSelect>
         </div>
-        <div class="column is-4">
-            <VInput id="ra-filter-dishes-price-min" label="Desde X Preço:" size="is-small" type="number" min="0"
-                    max="Infinity" @input-changed="updatePriceMin"/>
-            <VInput id="ra-filter-dishes-price-max" label="Até X Preço:" size="is-small" type="number" min="0" max="Infinity"
-                @input-changed="updatePriceMax"/>
-        </div>
     </div>
 </template>
 
@@ -33,28 +27,16 @@
 import { mapGetters } from "vuex";
 
 import VSelect from "@/components/ui/VSelect.vue";
-import VInput from "@/components/ui/VInput.vue";
 
 export default {
     name: "FilterDishes",
     components: {
-        VSelect,
-        VInput
+        VSelect
     },
     data() {
         return {
             filterCat: "",
-            filterSubCat: "",
-            filterPriceMin: "0",
-            filterPriceMax: "Infinity"
-        }
-    },
-    methods: {
-        updatePriceMin(price) {
-            this.filterPriceMin = price;
-        },
-        updatePriceMax(price) {
-            this.filterPriceMax = price;
+            filterSubCat: ""
         }
     },
     computed: {
@@ -69,15 +51,7 @@ export default {
                                         ? filteredCategories
                                         : filteredCategories.filter(dish => dish.subCatID === parseInt(this.filterSubCat));
 
-            const filteredPriceMin = (this.filterPriceMin === "0")
-                                    ? filteredSubcategories
-                                    : filteredSubcategories.filter(dish => dish.basePrice >= parseFloat(this.filterPriceMin));
-
-            const filteredPriceMax = (this.filterPriceMax === "Infinity")
-                                    ? filteredPriceMin
-                                    : filteredPriceMin.filter(dish => dish.basePrice <= parseFloat(this.filterPriceMax));
-
-            return filteredPriceMax;
+            return filteredSubcategories;
         }
     },
     watch: {
