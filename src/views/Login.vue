@@ -30,9 +30,35 @@
               <input type="submit" class="button" value="Entrar" />
             </div>
             <div class="hr"></div>
-            <div class="foot-lnk">
+            <!--  FORGOT PASSWORD ---->
+            <form v-on:submit.prevent="sendemail">
+              <div class="form-group">
+                <p
+                  class="btnForgetPwd"
+                  v-on:click="
+                  showfp = !showfp;
+                  emailfp = null;
+                "
+                >Esqueceu-se da sua password?</p>
+                <div class="col-md-12" v-show="showfp">
+                  <p class="form-text">Insira o seu e-mail</p>
+                  <input
+                    type="email"
+                    v-model="emailfp"
+                    class="form-control"
+                    placeholder="E-mail..."
+                    required
+                  />
+                  <div class="col-md-12 text-right" style="margin-top: 1rem;">
+                    <button type="submit" class="btn btn-success">Enviar</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <!-- FIM DE FORGOT PASSWORD -->
+            <!--<div class="foot-lnk">
               <a href="#">Esqueceu-se da sua password?</a>
-            </div>
+            </div>-->
           </form>
         </div>
         <div class="sign-up-htm">
@@ -94,6 +120,8 @@ import TheFooter from "@/components/layout/TheFooter.vue";
 import Swal from "../../node_modules/sweetalert2/dist/sweetalert2.js";
 import "../../node_modules/sweetalert2/src/sweetalert2.scss";
 
+import emailjs from "emailjs-com";
+
 export default {
   name: "Login",
   components: {
@@ -108,10 +136,37 @@ export default {
       newPassword: "",
       confPassword: "",
       logEmail: "",
-      logPassword: ""
+      logPassword: "",
+      showfp: false,
+      emailfp: null,
+      users:""
     };
   },
+  created(){
+    (this.users = this.$store.getters["users/allUsers"])
+  },
+
   methods: {
+    sendemail() {
+      let user
+      //Ver se o email está na "base de dados"
+      let userForgot = this.users.find(user => user.email == this.emailfp);
+      if (userForgot != undefined) {
+          user = {
+          name: userForgot.fullName,
+          password: userForgot.password,
+          email: userForgot.email
+        };
+      }
+
+      emailjs.send("gmail", "template_A66h10EB", user, "user_UQkaCTquUTaksRQnT4ycX").then(response => {
+        console.log("SUCCESS!", response.status, response.text);
+        },
+         function(error) {
+       console.log('FAILED...', error);}
+      );
+    },
+
     addUser() {
       if (this.emailInUse(this.newEmail)) {
         Swal.fire({
@@ -119,25 +174,20 @@ export default {
           title: "Oops..",
           text: "Esse email já se encontra registado!"
         });
-      }
-      else if (this.newPassword !== this.confPassword) {
+      } else if (this.newPassword !== this.confPassword) {
         Swal.fire({
           icon: "error",
           title: "Oops..",
           text: "As palavra-passe não são iguais!"
         });
-      }
-      else {
-        this.$store.commit(
-          "users/ADD_USER",
-          {
-            uID: this.newId,
-            firstName: this.newFirstName,
-            lastName: this.newLastName,
-            email: this.newEmail,
-            password: this.newPassword
-          }
-        );
+      } else {
+        this.$store.commit("users/ADD_USER", {
+          uID: this.newId,
+          firstName: this.newFirstName,
+          lastName: this.newLastName,
+          email: this.newEmail,
+          password: this.newPassword
+        });
         this.$store.commit("users/SAVE_TO_LOCALSTORAGE");
         Swal.fire({
           icon: "success",
@@ -149,11 +199,13 @@ export default {
     },
     login() {
       if (this.foundUser(this.logEmail, this.logPassword)) {
-        this.$store.commit("users/LOGIN", this.foundUser(this.logEmail, this.logPassword));
+        this.$store.commit(
+          "users/LOGIN",
+          this.foundUser(this.logEmail, this.logPassword)
+        );
         this.$store.commit("users/SAVE_TO_LOCALSTORAGE");
         this.$router.push("/");
-      }
-      else {
+      } else {
         Swal.fire({
           icon: "error",
           title: "Oops..",

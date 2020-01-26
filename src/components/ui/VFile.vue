@@ -16,9 +16,9 @@
                             {{ buttonLabel }}
                         </span>
                     </span>
-                    <!--<span class="file-name">
+                    <span class="file-name">
                         {{ placeholder }}
-                    </span>-->
+                    </span>
                 </label>
             </div>
         </div>

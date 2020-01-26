@@ -74,6 +74,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="box">
+                    <h3 class="title is-3 is-spaced has-text-centered">Utilizadores</h3>
+                    <TableUsers :users="users" />
+                </div>
             </div>
         </div>
     </div>
@@ -95,6 +99,7 @@ import Menu from "@/components/backoffice/Menu.vue";
 import CarouselImages from "@/components/backoffice/CarouselImages.vue";
 import FormFaqs from "@/components/backoffice/FormFaqs.vue";
 import TheFooter from "@/components/layout/TheFooter.vue";
+import TableUsers from "@/components/backoffice/TableUsers.vue"
 
 export default {
     name: "Backoffice",
@@ -110,14 +115,19 @@ export default {
         Menu,
         CarouselImages,
         FormFaqs,
-        TheFooter
+        TheFooter,
+        TableUsers
     },
     data() {
         return {
             bookings: [],
             dishes: [],
-            menu: []
+            menu: [],
+            users: []
         }
+    },
+    created(){
+        (this.users = this.$store.getters["users/allUsers"])
     },
     methods: {
         filterBookings(bookings) {

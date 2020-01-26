@@ -10,6 +10,9 @@
   "dependencies": {
     "bulma": "^0.8.0",
     "core-js": "^3.6.0",
+    "dns": "^0.2.2",
+    "emailjs": "^2.2.0",
+    "emailjs-com": "^2.4.1",
     "interactjs": "^1.7.3",
     "owl.carousel": "^2.3.4",
     "vue": "^2.6.11",
