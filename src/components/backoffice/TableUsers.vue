@@ -56,6 +56,9 @@
 <script>
 import { mapGetters } from "vuex";
 
+import Swal from "../../../node_modules/sweetalert2/dist/sweetalert2.js";
+import "../../../node_modules/sweetalert2/src/sweetalert2.scss";
+
 import Pagination from "@/components/ui/Pagination.vue";
 
 export default {
@@ -84,18 +87,29 @@ export default {
       return usersList.slice(from, to);
     },
 
-    removeUser(id){
-        this.$store.commit("users/DELETE_USER", id);
-        this.$store.commit("users/SAVE_TO_LOCALSTORAGE");
-    } ,   
+    removeUser(id) {
+      Swal.fire({
+        title: "Tem a certeza?",
+        text: "Não será possivel reverter esta ação!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, remover!"
+      }).then(result => {
+        if (result.value) {
+          this.$store.commit("users/DELETE_USER", id);
+          this.$store.commit("users/SAVE_TO_LOCALSTORAGE");
+          Swal.fire("Removido!", "Utilizador removido.", "success");
+        }
+      });
+    },
     updatePage(page) {
       this.page = page;
-    },
-
+    }
   },
   computed: {
     ...mapGetters("users", ["fullNameByID"]),
- 
 
     pages() {
       const numberOfPages = Math.ceil(this.users.length / this.perPage);
