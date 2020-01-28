@@ -12,9 +12,7 @@ export default {
     },
     mutations: {
         ADD_IMAGE(state, payload) {
-            state.images.push({
-                payload
-            });
+            state.allImages.push(payload);
         },
         REMOVE_IMAGE(state, payload) {
             state.images = state.images.filter(image => image !== payload);

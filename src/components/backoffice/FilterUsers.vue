@@ -1,7 +1,7 @@
 <template>
     <div class="columns">
-        <div class="column is-4">
-        <VInput id="ra-user-name" type="text" label="Nome:" @input-changed="changeFilter" />
+        <div class="column is-12">
+        <VInput id="ra-dish-username" type="text" size="is-fullwidth" label="Nome:" @input-changed="changeFilter" />
         </div>
     </div>
 </template>
