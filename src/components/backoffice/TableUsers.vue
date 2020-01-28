@@ -45,23 +45,6 @@
                 <button class="button is-small ra-reject-icon"></button>
               </td>
             </tr>
-            <!--<tr v-for="(dish, dIdx) in booking.dishes" :key="dIdx + '-dish' + booking.bID"
-                            :class="{'ra-striped' : bIdx % 2 !== 0}"
-                        >
-                            <td v-if="!dIdx" class="has-text-weight-semibold">Pratos</td>
-                            <td v-else></td>
-                            <td colspan="9">{{ `${dish.quantity}x ${dishNameByID(dish.dID)}` }}</td>
-                        </tr>
-                        <tr :key="booking.bID + '-last-row'"
-                            :class="{'ra-striped' : bIdx % 2 !== 0}">
-                            <td class="has-text-weight-semibold">Obs</td>
-                            <td colspan="9">{{ booking.message }}</td>
-                        </tr>
-                        <tr :key="booking.bID + '-bottom-dummy-row'"
-                            :class="{'ra-striped' : bIdx % 2 !== 0}"
-                        >
-                            <td colspan="10"><p></p></td>
-            </tr>-->
           </template>
         </tbody>
       </table>

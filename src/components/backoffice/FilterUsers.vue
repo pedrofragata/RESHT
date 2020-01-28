@@ -56,7 +56,6 @@ export default {
     },
     watch: {
         filteredUsers() {
-            console.log("wWATCHEEEEEER")
             this.$emit("users-filter-applied", this.filteredUsers);
         }
     }
