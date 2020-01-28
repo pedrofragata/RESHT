@@ -14,25 +14,24 @@
                     <label class="label"></label>
                   </div>
                   <div class="field-body">
-                    <div class="field" >
+                    <div class="field">
                       <p class="control has-icons-left">
                         <img :src="userImage" />
                       </p>
                     </div>
+
                     <div class="field">
                       <span class="icon is-small is-pulled-left" @click="editI=false">
                         <i class="fas fa-pencil-alt"></i>
                       </span>
-                      <VFile v-if="editI==false" 
-                        v-model="userImage"
-                        id="ra-user-image"
-                        buttonLabel="Carregar"
-                        placeholder="Clique aqui para carregar um ficheiro."
-                      />
                     </div>
-                      
-                    
                   </div>
+                  <VFile
+                    v-if="editI==false"
+                    buttonLabel="Carregar"
+                    placeholder="Clique aqui para carregar um ficheiro."
+                    v-model="userImage"
+                  />
                 </div>
                 <!-- ------------------------ NAME ---------------------------- -->
                 <div class="field is-horizontal">
@@ -56,7 +55,7 @@
                     <div class="field" v-if="editN==false">
                       <button
                         type="button"
-                        class="editButton is-family-secondary "
+                        class="editButton is-family-secondary"
                         @click="activeModal=true"
                       >Confirmar</button>
                       <button
@@ -232,19 +231,24 @@ export default {
       fullNameBefore: "",
       passwordBefore: "",
       userImage: "",
-      idUtilizador: "",
+      idUtilizador: ""
     };
   },
-  beforeDestroy(){
-    console.log("BEFOREDESTROY")
+  beforeDestroy() {
+    console.log("BEFOREDESTROY");
 
     this.$store.commit("users/EDIT_AVATAR", {
-        uID: this.idUtilizador,
-        userImage: this.userImage
-      });
-      this.$store.commit("users/SAVE_TO_LOCALSTORAGE");
+      uID: this.idUtilizador,
+      userImage: this.userImage
+    });
 
+    this.$store.commit("users/EDIT_ABOUT", {
+      uID: this.idUtilizador,
+      about: this.about
+    });
 
+    
+    this.$store.commit("users/SAVE_TO_LOCALSTORAGE");
   },
   created() {
     (this.users = this.$store.getters["users/allUsers"]),
@@ -256,7 +260,7 @@ export default {
 
     this.fullNameBefore = this.getUser(this.$route.params.userID).fullName;
     this.passwordBefore = this.getUser(this.$route.params.userID).password;
-    this.idUtilizador = this.$route.params.userID
+    this.idUtilizador = this.$route.params.userID;
   },
   methods: {
     editFullName() {
