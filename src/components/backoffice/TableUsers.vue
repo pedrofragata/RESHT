@@ -42,7 +42,7 @@
               <td>{{ user.email }}</td>
               <td class="has-text-centered">{{ user.accessLevel }}</td>
               <td class="has-text-centered">
-                <button class="button is-small ra-reject-icon"></button>
+                <button class="button is-small ra-reject-icon" @click="removeUser(user.uID)"></button>
               </td>
             </tr>
           </template>
@@ -83,6 +83,11 @@ export default {
       const to = page * perPage;
       return usersList.slice(from, to);
     },
+
+    removeUser(id){
+        this.$store.commit("users/DELETE_USER", id);
+        this.$store.commit("users/SAVE_TO_LOCALSTORAGE");
+    } ,   
     updatePage(page) {
       this.page = page;
     },

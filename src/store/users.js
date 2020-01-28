@@ -34,6 +34,10 @@ export default {
                 about: ""
             });
         },
+        DELETE_USER(state, id){
+            let index = state.users.findIndex(user => user.uID == id);
+            state.users.splice(index, 1);
+        },
         LOGIN(state, payload){;
             state.loginStatus.isLogged = true;
             state.loginStatus.loggedUser = payload;
