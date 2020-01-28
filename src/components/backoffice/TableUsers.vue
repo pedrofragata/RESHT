@@ -103,24 +103,11 @@ export default {
     updatePage(page) {
       this.page = page;
     },
-    convertDate(date) {
-      let day = date.split(" ")[0];
-      day = day
-        .split("-")
-        .reverse()
-        .join("-")
-        .replace(/-/g, "/");
 
-      let time = date.split(" ")[1];
-      time = time.slice(0, 5);
-
-      return `${day} ${time}`;
-    }
   },
   computed: {
     ...mapGetters("users", ["fullNameByID"]),
-    ...mapGetters("bookings", ["statusDescByID", "statusColorByID"]),
-    ...mapGetters("dishes", ["dishNameByID"]),
+ 
 
     pages() {
       const numberOfPages = Math.ceil(this.users.length / this.perPage);

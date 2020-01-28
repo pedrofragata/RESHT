@@ -76,6 +76,7 @@
                 </div>
                 <div class="box">
                     <h3 class="title is-3 is-spaced has-text-centered">Utilizadores</h3>
+                     <FilterUsers @users-filter-applied="filterUsers" />
                     <TableUsers :users="users" />
                 </div>
             </div>
@@ -99,6 +100,7 @@ import Menu from "@/components/backoffice/Menu.vue";
 import CarouselImages from "@/components/backoffice/CarouselImages.vue";
 import FormFaqs from "@/components/backoffice/FormFaqs.vue";
 import TheFooter from "@/components/layout/TheFooter.vue";
+import FilterUsers from "@/components/backoffice/FilterUsers.vue";
 import TableUsers from "@/components/backoffice/TableUsers.vue"
 
 export default {
@@ -106,6 +108,7 @@ export default {
     components: {
         TheNav,
         FilterBookings,
+        FilterUsers,
         TableBookings,
         RestaurantLayout,
         FilterDishes,
@@ -138,6 +141,9 @@ export default {
         },
         updateMenu(menu) {
             this.menu = menu;
+        },
+        filterUsers(users) {
+            this.users = users
         }
     }
 };
