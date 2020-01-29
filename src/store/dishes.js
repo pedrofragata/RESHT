@@ -51,8 +51,8 @@ export default {
                 subCatID: 0,
                 desc: "Festa do Maracujá",
                 image: "https://abrilmdemulher.files.wordpress.com/2016/10/receita-lombo-de-porco-ao-maracuja.jpg?quality=90&strip=info&w=620&h=372&crop=1",
-                dateAvailableSince: "2019-01-19 00:00:00",
-                dateAvailableUpTo: "2019-01-30 23:59:00"
+                dateAvailableSince: "2020-01-19 00:00:00",
+                dateAvailableUpTo: "2020-01-30 23:59:00"
             }
         ],
         categories: [
@@ -188,13 +188,17 @@ export default {
             return false;
         },
         availableDishes: (state) => {
+            console.log(state.dishes)
             return state.dishes.filter(dish => {
                 const startDate = dish.dateAvailableSince;
                 const endDate = dish.dateAvailableUpTo;
 
                 const curDate = new Date();
 
-                if (curDate >= new Date(startDate) && curDate <= new Date(endDate)) return dish;
+                if (curDate >= new Date(startDate) && curDate <= new Date(endDate)){
+                    console.log(dish)
+                    return dish;
+                } 
             });
         },
         lastAvailableDish: (state) => {
