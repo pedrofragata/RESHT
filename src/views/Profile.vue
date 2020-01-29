@@ -222,9 +222,9 @@
                                     </div>
                                 </abbr>
                             </td>
-                            <td>{{ convertDate(booking.dateRequest) }}</td>
-                            <td>{{ convertDate(booking.dateOpening) }}</td>
-                            <td>{{ convertDate(booking.dateArrival) }}</td>
+                            <td>{{ booking.dateRequest }}</td>
+                            <td>{{ booking.dateOpening}}</td>
+                            <td>{{ booking.dateArrival }}</td>
                             <td class="has-text-centered">{{ booking.numOfPeople }}</td>
                             <td class="has-text-centered">{{ `${booking.totalPrice} €` }}</td>
                             <td class="has-text-centered">
@@ -366,7 +366,7 @@ export default {
         updatePage(page) {
             this.page = page;
         },
-        convertDate(date) {
+       /* convertDate(date) {
             let day = date.split(" ")[0];
             day = day.split("-").reverse().join("-").replace(/-/g, "/");
 
@@ -374,7 +374,7 @@ export default {
             time = time.slice(0, 5);
 
             return `${day} ${time}`;
-        }
+        }*/
   },
   computed:{
     ...mapGetters("bookings", ["statusDescByID", "statusColorByID"]),
