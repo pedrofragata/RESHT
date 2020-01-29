@@ -41,8 +41,8 @@
                     <h3 class="title is-3 is-spaced has-text-centered">Reservas</h3>
                     <FilterBookings @bookings-filter-applied="filterBookings" />
                     <TableBookings :bookings="bookings" />
-                    <h5 class="subtitle is-5 has-text-centered">Atribuir mesa</h5>
-                    <RestaurantLayout class="is-hidden-touch" />
+                    <h5 v-if="activeBooking != null" class="subtitle is-5 has-text-centered">Atribuir mesa</h5>
+                    <RestaurantLayout v-if="activeBooking != null" class="is-hidden-touch" />
                 </div>
                 <div class="box">
                     <h3 class="title is-3 is-spaced has-text-centered">Pratos e Menus</h3>
@@ -101,7 +101,8 @@ import CarouselImages from "@/components/backoffice/CarouselImages.vue";
 import FormFaqs from "@/components/backoffice/FormFaqs.vue";
 import TheFooter from "@/components/layout/TheFooter.vue";
 import FilterUsers from "@/components/backoffice/FilterUsers.vue";
-import TableUsers from "@/components/backoffice/TableUsers.vue"
+import TableUsers from "@/components/backoffice/TableUsers.vue";
+import { mapGetters } from "vuex";
 
 export default {
     name: "Backoffice",
@@ -145,6 +146,9 @@ export default {
         filterUsers(users) {
             this.users = users
         }
+    },
+    computed:{
+        ...mapGetters("bookings", ["activeBooking"])
     }
 };
 </script>

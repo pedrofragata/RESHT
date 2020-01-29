@@ -2,24 +2,29 @@
   <div class="restaurant-layout">
     <div class="ra-interactables-toolbar">
       <p>Barra de ferramentas:</p>
-      <button @click.prevent="selectTool('add')" class="button ra-tool-plus"
-              :class="{'ra-tool-plus-active': selectedTool === 'add'}">
-      </button>
-      <button @click.prevent="selectTool('remove')" class="button ra-tool-minus"
-              :class="{'ra-tool-minus-active': selectedTool === 'remove'}">
-      </button>
-      <button @click.prevent="selectTool('move')" class="button ra-tool-move"
+      <button
+        @click.prevent="selectTool('add')"
+        class="button ra-tool-plus"
+        :class="{'ra-tool-plus-active': selectedTool === 'add'}"
+      ></button>
+      <button
+        @click.prevent="selectTool('remove')"
+        class="button ra-tool-minus"
+        :class="{'ra-tool-minus-active': selectedTool === 'remove'}"
+      ></button>
+      <!-- <button @click.prevent="selectTool('move')" class="button ra-tool-move"
               :class="{'ra-tool-move-active': selectedTool === 'move'}">
-      </button>
+      </button>-->
     </div>
     <div class="ra-interactables-screen">
       <div v-for="table in allTables" :key="table.tID + '-interactable'">
-        <div :id="table.tID" class="ra-interactable"
-        :class="{'ra-table-filled': isTableFilled(table),
+        <div
+          :id="table.tID"
+          class="ra-interactable"
+          :class="{'ra-table-filled': isTableFilled(table),
                 'ra-table-full': isTableFull(table),
-                'ra-can-move': selectedTool === 'move'}">
-          {{table.people}} / {{table.capacity}}
-        </div>
+                'ra-can-move': selectedTool === 'move'}"
+        >{{table.people}} / {{table.capacity}}</div>
       </div>
     </div>
   </div>
@@ -34,16 +39,17 @@ export default {
   name: "RestaurantLayout",
   data() {
     return {
-      numOfClients: 10,
       clientCounter: 0,
       tools: [
         {
           action: "add",
           isActive: true
-        } , {
+        },
+        {
           action: "remove",
           isActive: false
-        } , {
+        },
+        {
           action: "move",
           isActive: false
         }
@@ -53,16 +59,16 @@ export default {
   methods: {
     initInteract(selector) {
       // const data = this.$data; // palavra reservada "this" retorna undefined quando invocada dentro das props do interact
-                               // à exceção de onmove e onend da prop draggable
+      // à exceção de onmove e onend da prop draggable
       interact(selector)
         .draggable({
           inertia: true, // animação de aceleração e desaceleração da forma se a ação de arrasto for interrompida em movimento
           restrict: {
-            restriction: ".ra-interactables-screen",  // contentor limite das formas
+            restriction: ".ra-interactables-screen", // contentor limite das formas
             elementRect: { top: 0, left: 0, bottom: 1, right: 1 } // manter formas totalmente dentro do contentor
           },
-          autoScroll: false,  // não permite scroll enquanto arrasta a forma para um dos extremos direito ou inferior da página 
-                              // (permitia navegar para fora da página)
+          autoScroll: false, // não permite scroll enquanto arrasta a forma para um dos extremos direito ou inferior da página
+          // (permitia navegar para fora da página)
           // possivelmente desnecessário em conjunto com o restrict.elementRect
 
           onmove: this.dragMoveListener,
@@ -70,7 +76,7 @@ export default {
         })
         .styleCursor(false);
 
-        /*
+      /*
           Funcionalidade de redimensionar em pausa
           
 
@@ -123,15 +129,14 @@ export default {
       // nesse caso, como fallback, associar o x e o y aos do objeto
       // somar o delta entre a posição inicial e a posição atual, à posição inicial do rato
       const x =
-              (parseFloat(target.getAttribute("data-x")) || (this.allTables[tableIndex].screenX)) +
-              event.dx,
-            y =
-              (parseFloat(target.getAttribute("data-y")) || (this.allTables[tableIndex].screenY)) +
-              event.dy;
+          (parseFloat(target.getAttribute("data-x")) ||
+            this.allTables[tableIndex].screenX) + event.dx,
+        y =
+          (parseFloat(target.getAttribute("data-y")) ||
+            this.allTables[tableIndex].screenY) + event.dy;
 
       // colocar a forma na nova posição por CSS
-      target.style.webkitTransform = target.style.transform =
-        `translate(${x}px, ${y}px)`;
+      target.style.webkitTransform = target.style.transform = `translate(${x}px, ${y}px)`;
 
       // atualizar atributos do x e do y para a nova posição
       target.setAttribute("data-x", x);
@@ -148,33 +153,37 @@ export default {
       const target = event.target;
       const clickedTable = this.allTables[parseInt(target.id)];
 
-      if (this.selectedTool === "add"
-      && this.clientCounter < this.numOfClients
-      && clickedTable.people < clickedTable.capacity)
-      {
+      if (
+        this.selectedTool === "add" &&
+        this.clientCounter < this.numOfClients &&
+        clickedTable.people < clickedTable.capacity
+      ) {
         clickedTable.people++;
         this.clientCounter++;
-      }
-      else if (this.selectedTool === "remove" && clickedTable.people) {
+      } else if (this.selectedTool === "remove" && clickedTable.people) {
         clickedTable.people--;
         this.clientCounter--;
       }
 
       // a alterar alertas
-      else if (this.clientCounter === this.numOfClients && this.selectedTool === "add") {
+      else if (
+        this.clientCounter === this.numOfClients &&
+        this.selectedTool === "add"
+      ) {
         alert(" As pessoas foram todas colocadas nas mesas ");
-      }
-      else if (clickedTable.people === clickedTable.capacity && this.selectedTool === "add") {
+      } else if (
+        clickedTable.people === clickedTable.capacity &&
+        this.selectedTool === "add"
+      ) {
         alert(" Não cabe mais ninguém na mesa ");
-      }
-      else if (!clickedTable.people && this.selectedTool === "remove") {
+      } else if (!clickedTable.people && this.selectedTool === "remove") {
         alert(" A mesa já se encontra vazia ");
       }
 
       event.preventDefault();
     },
     selectTool(action) {
-      this.tools.forEach(tool => tool.isActive = (tool.action === action));
+      this.tools.forEach(tool => (tool.isActive = tool.action === action));
     },
     isTableFilled(table) {
       return table.people && table.people < table.capacity;
@@ -192,19 +201,53 @@ export default {
 
       style.width = `${table.width}px`;
       style.height = `${table.height}px`;
-      style.lineHeight = style.height;   // centrar texto na vertical
+      style.lineHeight = style.height; // centrar texto na vertical
       interactable.classList.add("ra-table-empty");
     }
   },
   computed: {
+    ...mapGetters("bookings", ["allBookings"]),
     ...mapGetters("bookings", ["allTables"]),
+    ...mapGetters("bookings", ["activeBooking"]),
     selectedTool() {
       return this.tools.filter(tool => tool.isActive)[0].action;
+    },
+    concurrentBookings() {
+      return this.allBookings
+        .filter(
+          booking => booking.dateOpening == this.activeBooking.dateOpening
+        )
+        .filter(
+          booking => booking.timeOpening == this.activeBooking.timeOpening
+        );
+    },
+    numOfClients(){
+      return this.activeBooking.numOfPeople
     }
+  },
+
+  created() {
+    console.log(this.activeBooking);
+    for (let i = 0; i < this.concurrentBookings.length; i++) {
+      for (let j = 0; j < this.concurrentBookings[i].tables.length; j++) {
+        this.allTables.filter(table => {
+          if (table.tID == this.concurrentBookings[i].tables[j].tID) {
+            return true;
+          } else return false;
+        })[0].people = this.concurrentBookings[i].tables[j].people;
+      }
+    }
+    console.log("Tables onCreated: ",this.allTables)
+  },
+  updated() {
+    //console.log(this.allTables);
+    console.log(this.activeBooking);
+    console.log(this.concurrentBookings);
+    
   },
   mounted() {
     const interactables = document.querySelectorAll(".ra-interactable");
-    for(let i = 0; i < interactables.length; i++) {
+    for (let i = 0; i < interactables.length; i++) {
       // inicializar interactjs no elemento
       this.initInteract(interactables[i]);
       // aplicar estilos
@@ -215,7 +258,7 @@ export default {
   },
   beforeDestroy() {
     document.querySelectorAll(".ra-interactable").forEach(element => {
-      element.removeEventListener("click", this.onInteractableClick)
+      element.removeEventListener("click", this.onInteractableClick);
     });
   }
 };

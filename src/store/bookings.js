@@ -252,6 +252,7 @@ export default {
                 message: "Testar datas 2"
             },
         ],
+        activeBooking: null,
         tables: [
             // objetos para efeitos de teste
             {
@@ -378,7 +379,7 @@ export default {
             },
             {
                 sID: 4,
-                desc: "A reembolsar",
+                desc: "Rejeitada",
                 color: "red"
             },
             {
@@ -407,6 +408,13 @@ export default {
                 message: payload.message
             });
         },
+        DEFINE_ACTIVE_BOOKING(state,booking){
+            state.activeBooking = booking
+        },
+        DECLINE_BOOKING(state, id) {
+            let index = state.bookings.findIndex(booking => booking.bID == id)
+            state.bookings[index].sID = 4;
+        },
         ADD_TABLE(state, payload) {
             state.tables.push({
                 tID: payload.tID,
@@ -425,7 +433,7 @@ export default {
         },
         SAVE_TO_LOCALSTORAGE(state) {
             localStorage.setItem("bookings-state", JSON.stringify(state.bookings));
-            // localStorage.setItem("tables-state", JSON.stringify(state.table));
+            localStorage.setItem("tables-state", JSON.stringify(state.tables));
         },
         GET_FROM_LOCALSTORAGE(state) {
             
@@ -444,6 +452,7 @@ export default {
         }
     },
     getters: {
+        activeBooking: state => state.activeBooking,
         allTimeIntervals: state => state.timeIntervals,
         allBookings: state => state.bookings,
         allTables: state => state.tables,
