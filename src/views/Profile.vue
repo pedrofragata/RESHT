@@ -209,17 +209,6 @@
                         <th>Rejeitar</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th></th>
-                        <th>Data do Pedido</th>
-                        <th>Data da Reserva</th>
-                        <th>Hora de Chegada</th>
-                        <th>Pessoas</th>
-                        <th>Preço</th>
-                        <th>Rejeitar</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     <tr><td colspan="10"><p></p></td></tr>
                     <template v-for="(booking, bIdx) in displayedUserBookings">

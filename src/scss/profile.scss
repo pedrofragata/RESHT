@@ -6,9 +6,10 @@
     overflow-x: scroll;
     margin-left: -20px;
     min-width: calc(100% + 40px);
+    
 
     .ra-striped {
-        background-color: darken($grey-darker, 5%);
+        background-color: darken($grey-darker, 15%);
 
         &:hover {
             background-color: $table-row-hover-background-color;
@@ -21,7 +22,7 @@
         width:100%;
     }
 
-    th,
+    th ,
     .first-row {
         white-space: nowrap;
         line-height: 32px;
