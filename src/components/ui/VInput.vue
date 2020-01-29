@@ -6,7 +6,7 @@
         <div class="field-body">
             <div class="field">
                 <div class="control" :class="modifier">
-                    <input :id="id" :type="type" class="input" :min="min" :max="max"
+                    <input :id="id" :required="required" :type="type" class="input" :min="min" :max="max"
                             :class="size" :value="value" v-model.lazy="watcher" />
                     <slot></slot>
                 </div>
@@ -22,6 +22,10 @@ export default {
         id: {
             type: String,
             required: true
+        },
+        required:{
+            type: Boolean,
+            default: false
         },
         type: {
             type: String,

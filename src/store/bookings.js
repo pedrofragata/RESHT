@@ -1,10 +1,25 @@
 export default {
     namespaced: true,
-    
+
     state: {
+        timeIntervals:[
+            {
+                ID: 0,
+                string: "12:00-14:00"
+            },
+            {
+                ID: 1,
+                string: "19:00-21:00"
+            }
+        ],
         bookings: [
             // objetos para efeitos de teste
             {
+            /*sID = 0 -> por confirmar/atribuir mesa
+              sID = 1 -> confirmada, por pagar
+              sID = 2 -> paga
+              sID = 3 -> cancelada/rejeitada
+            */
                 bID: 0,
                 uID: 0,
                 sID: 0,
@@ -45,7 +60,7 @@ export default {
                     {
                         tID: 1,
                         people: 4
-                    }                    
+                    }
                 ],
                 dishes: [
                     {
@@ -69,7 +84,7 @@ export default {
                     {
                         tID: 9,
                         people: 0
-                    }                    
+                    }
                 ],
                 dishes: [
                     {
@@ -137,7 +152,7 @@ export default {
                     {
                         tID: 1,
                         people: 4
-                    }                    
+                    }
                 ],
                 dishes: [
                     {
@@ -161,7 +176,7 @@ export default {
                     {
                         tID: 9,
                         people: 0
-                    }                    
+                    }
                 ],
                 dishes: [
                     {
@@ -338,7 +353,7 @@ export default {
                 capacity: 8,
                 people: 0
             }
-            
+
         ],
         status: [
             {
@@ -381,8 +396,8 @@ export default {
                 sID: 0,
                 dateRequest: `${new Date().toLocaleDateString()} ${new Date().toLocalTimeString()}`,
                 dateOpening: payload.dateOpening,
-                dateClosing: payload.dateClosing,
-                dateArrival: payload.dateArrival,
+                timeOpening: payload.timeOpening,
+                timeArrival: payload.timeArrival,
                 numOfPeople: payload.numOfPeople,
                 tables: payload.tables,
                 dishes: payload.dishes, // guardar objetos completos para perseverar caso o prato seja removido
@@ -414,15 +429,16 @@ export default {
         },
         GET_FROM_LOCALSTORAGE(state) {
             localStorage.getItem("bookings-state")
-            ? state.bookings = JSON.parse(localStorage.getItem("bookings-state"))
-            : localStorage.setItem("bookings-state", JSON.stringify(state.bookings));
+                ? state.bookings = JSON.parse(localStorage.getItem("bookings-state"))
+                : localStorage.setItem("bookings-state", JSON.stringify(state.bookings));
 
             localStorage.getItem("tables-state")
-            ? state.tables = JSON.parse(localStorage.getItem("tables-state"))
-            : localStorage.setItem("tables-state", JSON.stringify(state.tables));
+                ? state.tables = JSON.parse(localStorage.getItem("tables-state"))
+                : localStorage.setItem("tables-state", JSON.stringify(state.tables));
         }
     },
     getters: {
+        allTimeIntervals: state => state.timeIntervals,
         allBookings: state => state.bookings,
         allTables: state => state.tables,
         statusDescByID: (state) => (sID) => { return state.status.find(status => status.sID === sID).desc },

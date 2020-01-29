@@ -46,47 +46,92 @@
       <div class="columns">
         <div class="column is-9 is-offset-1">
           <!--FORM RESERVAS-->
-          <form>
+          <form v-on:submit.prevent="onSubmit">
             <VSplit id="ra-form-day" label="Horário" modifier="has-icons-left">
               <template slot="first-field">
-                <input id="ra-form-day" class="input" type="date" v-model="inputDateOpening" />
+                <input
+                  id="ra-form-day"
+                  class="input"
+                  type="date"
+                  required="required"
+                  v-model="inputDateOpening"
+                />
                 <span class="icon is-small is-left">
                   <i class="fas fa-calendar-alt"></i>
                 </span>
               </template>
               <template slot="second-field">
-                <input id="ra-form-hour" class="input" type="time" v-model="inputTimeOpening" />
+                <!--<input id="ra-form-hour" class="input" type="time" required="required" v-model="inputTimeOpening" />
                 <span class="icon is-small is-left">
                   <i class="fas fa-clock"></i>
-                </span>
+                </span>-->
+                <VSelect id="ra-form-timeInterval" modifier="has-icons-left" size="is-fullwidth">
+                  <select required="required" id="ra-form-timeInterval" v-model="inputTimeOpening">
+                    <option value>Selecione o horário</option>
+                    <option
+                      v-for="timeInterval in allTimeIntervals"
+                      :key="timeInterval.ID + '-allTimeIntervals'"
+                      :value="timeInterval.string"
+                    >{{ timeInterval.string }}</option>
+                  </select>
+                  <div class="icon is-small is-left">
+                    <i class="fas fa-clock"></i>
+                  </div>
+                </VSelect>
               </template>
             </VSplit>
-            <VInput id="ra-form-arrival" label="Hora de chegada" modifier="has-icons-left"
-                    type="time" @input-changed="updateInputTimeArrival">
+            <VInput
+              id="ra-form-arrival"
+              label="Hora de chegada"
+              required
+              modifier="has-icons-left"
+              type="time"
+              @input-changed="updateInputTimeArrival"
+            >
               <span class="icon is-small is-left">
                 <i class="fas fa-user-clock"></i>
               </span>
             </VInput>
-            <VInput id="ra-form-people" label="Nº de pessoas" modifier="has-icons-left"
-                    type="number" min="1" @input-changed="updateNumOfPeople">
+            <VInput
+              id="ra-form-people"
+              label="Nº de pessoas"
+              required
+              modifier="has-icons-left"
+              type="number"
+              min="1"
+              @input-changed="updateNumOfPeople"
+            >
               <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
               </span>
             </VInput>
-            <VSelect id="ra-form-dish" v-for="(dish, idx) in dishes" :key="idx + '-dishes'" modifier="has-icons-left"
-                    size="is-fullwidth" :label="`Prato ${dishes.indexOf(dish)+1} :`">
-              <select id="ra-form-dish">
-                <option value="">Selecione o prato</option>
-                <option v-for="dish in allDishes" :key="dish.dID + '-allDishes'"
-                      :value="dish.dID">{{ dish.name }}</option>
+            <VSelect
+              id="ra-form-dish"
+              v-for="(dish, idx) in dishes"
+              :key="idx + '-dishes'"
+              modifier="has-icons-left"
+              size="is-fullwidth"
+              :label="`Prato ${dishes.indexOf(dish)+1} :`"
+            >
+              <select required="required" :id="`ra-form-dish${dishes.indexOf(dish)+1}`">
+                <option value>Selecione o prato</option>
+                <option
+                  v-for="dish in allDishes"
+                  :key="dish.dID + '-allDishes'"
+                  :value="dish.dID"
+                >{{ dish.name }}</option>
               </select>
               <div class="icon is-small is-left">
                 <i class="fas fa-utensils"></i>
               </div>
             </VSelect>
-            <VTextarea id="ra-form-message" placeholder="Escreva aqui a sua mensagem"
-                      label="Observações:" @input-changed="updateInputOtherInfo" />
-            <VSubmit value="Enviar" size="is-size-6 is-fullwidth"/>
+            <VTextarea
+              id="ra-form-message"
+              placeholder="Escreva aqui a sua mensagem"
+              label="Observações:"
+              @input-changed="updateInputOtherInfo"
+            />
+            <VSubmit value="Enviar" size="is-size-6 is-fullwidth" />
           </form>
         </div>
       </div>
@@ -136,6 +181,8 @@ import VSubmit from "@/components/ui/VSubmit.vue";
 import Carousel from "@/components/Carousel.vue";
 import Faq from "@/components/Faq.vue";
 import TheFooter from "@/components/layout/TheFooter.vue";
+import Swal from "../../node_modules/sweetalert2/dist/sweetalert2.js";
+import "../../node_modules/sweetalert2/src/sweetalert2.scss";
 
 export default {
   name: "Home",
@@ -163,10 +210,63 @@ export default {
     };
   },
   methods: {
-    addReservation: function() {
+    onSubmit: function() {
       //INCOMPLETO FALTA VERIFICAR SE A HORA DE CHEGADA SE ENQUADARA NO HORARIO SELECIONADO
       // let newReservation = [
       // ]
+
+      let lowerTime = this.inputTimeOpening.split("-")[0];
+
+      let upperTime = this.inputTimeOpening.split("-")[1];
+
+      // let inputTimeArrivalToDate = new Date(
+      //   0,
+      //   0,
+      //   0,
+      //   this.inputTimeArrival.split(":")[0],
+      //   this.inputTimeArrival.split(":")[1]
+      // );
+
+      if (
+        this.inputTimeArrival >= lowerTime &&
+        this.inputTimeArrival <= upperTime
+      ) {
+        console.log("yay");
+        //console.log(this.inputDateOpening)
+        let newArrayDishes= []
+        for(let i = 0; i< this.dishes.length; i++){
+          let newId = document.getElementById("ra-form-dish"+(i+1)).options[document.getElementById("ra-form-dish"+(i+1)).selectedIndex].value
+          newArrayDishes.push(this.allDishes.filter(dish => dish.dID == newId)[0])
+        }
+        
+        console.log(newArrayDishes)
+
+        // this.$store.commit("bookings/NEW_BOOKING", {
+        //   bID: bookingsNewId + 1,
+        //   uID: loginStatus.loggedUser.uID,
+        //   sID: 0,
+        //   dateRequest: `${new Date().toLocaleDateString()} ${new Date().toLocalTimeString()}`,
+        //   dateOpening: this.inputDateOpening,
+        //   timeOpening: this.inputTimeOpening,
+        //   timeArrival: this.inputTimeArrival,
+        //   numOfPeople: this.inputNumOfPeople,
+        //   tables: [],
+        //   dishes: newArrayDishes, // guardar objetos completos para perseverar caso o prato seja removido
+        //   basePrice: payload.basePrice,
+        //   discIDs: [],
+        //   totalPrice: payload.basePrice,
+        //   message: payload.message
+        // });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops..",
+          text:
+            "Hora de chegada não se encontra dentro do horário especificado."
+        });
+      }
+
+      console.log(lowerTime + " " + upperTime + " " + this.inputTimeArrival);
     },
     updateInputTimeArrival(time) {
       this.inputTimeArrival = time;
@@ -180,6 +280,9 @@ export default {
   },
   computed: {
     ...mapGetters("dishes", ["allDishes"]),
+    ...mapGetters("bookings", ["allTimeIntervals"]),
+    ...mapGetters("bookings", ["bookingsNewId"]),
+    ...mapGetters("users", ["loginStatus"]),
 
     dishes: function() {
       let arrayDishes = [];
