@@ -192,7 +192,80 @@
           <div class="column is-4">
             <div class="box">
               <h4 class="title is-4 has-text-grey-light">Reservas</h4>
-              <span>Ainda não efetuou reservas.</span>
+              <span v-if="displayedUserBookings.length==0">Ainda não efetuou reservas.</span>
+              <!-- reservas -->
+              <div v-else>
+              <Pagination :page="page" :pages="pages" @page-changed="updatePage" />
+        <div class="table-container">
+            <table class="table ra-stripes is-hoverable is-fullwidth has-text-grey-lighter">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Data do Pedido</th>
+                        <th>Data da Reserva</th>
+                        <th>Hora de Chegada</th>
+                        <th>Pessoas</th>
+                        <th>Preço</th>
+                        <th>Rejeitar</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Data do Pedido</th>
+                        <th>Data da Reserva</th>
+                        <th>Hora de Chegada</th>
+                        <th>Pessoas</th>
+                        <th>Preço</th>
+                        <th>Rejeitar</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr><td colspan="10"><p></p></td></tr>
+                    <template v-for="(booking, bIdx) in displayedUserBookings">
+                        <tr :key="booking.bID + '-first-row'"
+                            class="first-row"
+                            :class="{'ra-striped' : bIdx % 2 !== 0}">
+                            <td class="is-relative">
+                                <abbr :title="statusDescByID(booking.sID)">
+                                    <div class="ra-status-indicator"
+                                        :class="statusColorByID(booking.sID)">
+                                    </div>
+                                </abbr>
+                            </td>
+                            <td>{{ convertDate(booking.dateRequest) }}</td>
+                            <td>{{ convertDate(booking.dateOpening) }}</td>
+                            <td>{{ convertDate(booking.dateArrival) }}</td>
+                            <td class="has-text-centered">{{ booking.numOfPeople }}</td>
+                            <td class="has-text-centered">{{ `${booking.totalPrice} €` }}</td>
+                            <td class="has-text-centered">
+                                <button class="button is-small ra-reject-icon"></button>
+                            </td>
+                        </tr>
+                        <!--<tr v-for="(dish, dIdx) in booking.dishes" :key="dIdx + '-dish' + booking.bID"
+                            :class="{'ra-striped' : bIdx % 2 !== 0}"
+                        >
+                            <td v-if="!dIdx" class="has-text-weight-semibold">Pratos</td>
+                            <td v-else></td>
+                            <td colspan="9">{{ `${dish.quantity}x ${dishNameByID(dish.dID)}` }}</td>
+                        </tr>-->
+                        <tr :key="booking.bID + '-last-row'"
+                            :class="{'ra-striped' : bIdx % 2 !== 0}">
+                            <td class="has-text-weight-semibold">Obs</td>
+                            <td colspan="9">{{ booking.message }}</td>
+                        </tr>
+                        <tr :key="booking.bID + '-bottom-dummy-row'"
+                            :class="{'ra-striped' : bIdx % 2 !== 0}"
+                        >
+                            <td colspan="10"><p></p></td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <Pagination :page="page" :pages="pages" @page-changed="updatePage" />
+              </div>
+              <!-- FIM DE RESERVAS -->
             </div>
           </div>
         </div>
@@ -206,13 +279,16 @@
 import TheNav from "@/components/layout/TheNav.vue";
 import TheFooter from "@/components/layout/TheFooter.vue";
 import VFile from "@/components/ui/VFile.vue";
+import Pagination from "@/components/ui/Pagination.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Profile",
   components: {
     TheNav,
     TheFooter,
-    VFile
+    VFile,
+    Pagination
   },
   data() {
     return {
@@ -231,7 +307,11 @@ export default {
       fullNameBefore: "",
       passwordBefore: "",
       userImage: "",
-      idUtilizador: ""
+      idUtilizador: "",
+      bookings:"",
+      userBookings:[],
+      page: 1,
+      perPage: 2
     };
   },
   beforeDestroy() {
@@ -261,6 +341,10 @@ export default {
     this.fullNameBefore = this.getUser(this.$route.params.userID).fullName;
     this.passwordBefore = this.getUser(this.$route.params.userID).password;
     this.idUtilizador = this.$route.params.userID;
+    this.bookings = this.$store.getters["bookings/allBookings"],
+    this.userBookings = this.bookings.filter(booking => booking.uID == this.idUtilizador)
+
+    
   },
   methods: {
     editFullName() {
@@ -282,7 +366,41 @@ export default {
 
     getUser(id) {
       return this.users.filter(user => user.uID == id)[0];
-    }
+    },
+    paginate (bookingsList) {
+            const page = this.page;
+            const perPage = this.perPage;
+            const from = (page * perPage) - perPage;
+            const to = (page * perPage);
+            return bookingsList.slice(from, to);
+        },
+        updatePage(page) {
+            this.page = page;
+        },
+        convertDate(date) {
+            let day = date.split(" ")[0];
+            day = day.split("-").reverse().join("-").replace(/-/g, "/");
+
+            let time = date.split(" ")[1];
+            time = time.slice(0, 5);
+
+            return `${day} ${time}`;
+        }
+  },
+  computed:{
+    ...mapGetters("bookings", ["statusDescByID", "statusColorByID"]),
+
+    pages() {
+            const numberOfPages = Math.ceil(this.userBookings.length / this.perPage);
+            const pages = [];
+            for (let i = 1; i <= numberOfPages; i++) {
+                pages.push(i);
+            }
+            return pages;
+        },
+        displayedUserBookings() {
+            return this.paginate(this.userBookings);
+        }
   }
 };
 </script>
