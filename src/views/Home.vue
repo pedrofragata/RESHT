@@ -350,10 +350,10 @@ export default {
       let currDate = new Date().toISOString().split("T")[0];
       return currDate;
     }
-  },
-  created() {
-    this.$store.commit("dishes/GET_FROM_LOCALSTORAGE");
   }
+  // beforeMount() {
+  //   this.$store.commit("dishes/GET_FROM_LOCALSTORAGE");
+  // }
 };
 </script>
 

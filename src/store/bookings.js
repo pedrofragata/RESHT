@@ -428,9 +428,15 @@ export default {
             localStorage.setItem("tables-state", JSON.stringify(state.table));
         },
         GET_FROM_LOCALSTORAGE(state) {
-            localStorage.getItem("bookings-state")
-                ? state.bookings = JSON.parse(localStorage.getItem("bookings-state"))
-                : localStorage.setItem("bookings-state", JSON.stringify(state.bookings));
+            
+            if(localStorage.getItem("bookings-state")){
+                state.bookings = JSON.parse(localStorage.getItem("bookings-state"))
+            }
+            // else{
+            //     localStorage.setItem("bookings-state", JSON.stringify(state.bookings));
+            // }
+               
+                
 
             localStorage.getItem("tables-state")
                 ? state.tables = JSON.parse(localStorage.getItem("tables-state"))
