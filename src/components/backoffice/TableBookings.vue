@@ -8,8 +8,7 @@
                         <th></th>
                         <th>Data do Pedido</th>
                         <th>Utilizador</th>
-                        <th>Data Abertura</th>
-                        <th>Data Fecho</th>
+                        <th>Horário</th>
                         <th>Hora Chegada</th>
                         <th>Pessoas</th>
                         <th>Preço</th>
@@ -22,8 +21,7 @@
                         <th></th>
                         <th>Data do Pedido</th>
                         <th>Utilizador</th>
-                        <th>Data Abertura</th>
-                        <th>Data Fecho</th>
+                        <th>Horário</th>
                         <th>Hora Chegada</th>
                         <th>Pessoas</th>
                         <th>Preço</th>
@@ -44,11 +42,10 @@
                                     </div>
                                 </abbr>
                             </td>
-                            <td>{{ convertDate(booking.dateRequest) }}</td>
+                            <td>{{ booking.dateRequest }}</td>
                             <td>{{ fullNameByID(booking.uID) }}</td>
-                            <td>{{ convertDate(booking.dateOpening) }}</td>
-                            <td>{{ convertDate(booking.dateClosing) }}</td>
-                            <td>{{ convertDate(booking.dateArrival) }}</td>
+                            <td>{{booking.timeOpening}}</td>
+                            <td>{{ booking.dateArrival }}</td>
                             <td class="has-text-centered">{{ booking.numOfPeople }}</td>
                             <td class="has-text-centered">{{ `${booking.totalPrice} €` }}</td>
                             <td class="has-text-centered">
@@ -116,7 +113,7 @@ export default {
         updatePage(page) {
             this.page = page;
         },
-        convertDate(date) {
+        /*convertDate(date) {
             let day = date.split(" ")[0];
             day = day.split("-").reverse().join("-").replace(/-/g, "/");
 
@@ -124,7 +121,7 @@ export default {
             time = time.slice(0, 5);
 
             return `${day} ${time}`;
-        }
+        }*/
     },
     computed: {
         ...mapGetters("users", ["fullNameByID"]),
