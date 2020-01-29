@@ -23,7 +23,7 @@
             >{{ todaysSpecial.name }}</h4>
             <p
               class="is-family-sans-serif has-text-weight-light is-size-6 has-text-grey-light ra-dish-desc"
-            > {{ todaysSpecial.desc }}</p>
+            >{{ todaysSpecial.desc }}</p>
           </div>
           <figure class="is-hidden-tablet image is-1by1">
             <img class="ra-dish-image-mobile" :src="todaysSpecial.image" />
@@ -51,6 +51,7 @@
               <template slot="first-field">
                 <input
                   id="ra-form-day"
+                  :min="date"
                   class="input"
                   type="date"
                   required="required"
@@ -119,13 +120,22 @@
                   v-for="dish in allDishes"
                   :key="dish.dID + '-allDishes'"
                   :value="dish.dID"
-                >{{ dish.name }}</option>-->
-            <VSelect id="ra-form-dish" v-for="(dish, idx) in dishes" :key="idx + '-dishes'" modifier="has-icons-left"
-                    size="is-fullwidth" :label="`Prato ${dishes.indexOf(dish)+1} :`">
-              <select id="ra-form-dish">
-                <option value="">Selecione o prato</option>
-                <option v-for="dish in availableDishes" :key="dish.dID + '-allDishes'"
-                      :value="dish.dID">{{ dish.name }}</option>
+            >{{ dish.name }}</option>-->
+            <VSelect
+              id="ra-form-dish"
+              v-for="(dish, idx) in dishes"
+              :key="idx + '-dishes'"
+              modifier="has-icons-left"
+              size="is-fullwidth"
+              :label="`Prato ${dishes.indexOf(dish)+1} :`"
+            >
+              <select v-model="dishIds[dishes.indexOf(dish)]" id="ra-form-dish" required="required">
+                <option value>Selecione o prato</option>
+                <option
+                  v-for="dish in availableDishes"
+                  :key="dish.dID + '-allDishes'"
+                  :value="dish.dID"
+                >{{ dish.name }}</option>
               </select>
               <div class="icon is-small is-left">
                 <i class="fas fa-utensils"></i>
@@ -137,7 +147,15 @@
               label="Observações:"
               @input-changed="updateInputOtherInfo"
             />
-            <VSubmit value="Enviar" size="is-size-6 is-fullwidth" />
+            <VSubmit v-if="loginStatus.isLogged" value="Enviar" size="is-size-6 is-fullwidth" />
+            <div v-else class="columns is-centered">
+              <div class="column is-4"></div>
+              <div class="column is-offset-1 is-half">
+                <br>
+                <span style="text-align: center;color: white;">NECESSITA DE TER SESSÃO INICIADA PARA SOLICITAR RESERVA</span>
+              </div>
+              <div class="column is-2"></div>
+            </div>
           </form>
         </div>
       </div>
@@ -212,7 +230,9 @@ export default {
       inputTimeArrival: "",
       inputNumOfPeople: 1,
       inputDishes: [],
-      inputOtherInfo: ""
+      inputOtherInfo: "",
+      dishIds: [],
+      finalDishes: []
     };
   },
   methods: {
@@ -239,30 +259,53 @@ export default {
       ) {
         console.log("yay");
         //console.log(this.inputDateOpening)
-        let newArrayDishes= []
-        for(let i = 0; i< this.dishes.length; i++){
-          let newId = document.getElementById("ra-form-dish"+(i+1)).options[document.getElementById("ra-form-dish"+(i+1)).selectedIndex].value
-          newArrayDishes.push(this.allDishes.filter(dish => dish.dID == newId)[0])
-        }
-        
-        console.log(newArrayDishes)
 
-        // this.$store.commit("bookings/NEW_BOOKING", {
-        //   bID: bookingsNewId + 1,
-        //   uID: loginStatus.loggedUser.uID,
-        //   sID: 0,
-        //   dateRequest: `${new Date().toLocaleDateString()} ${new Date().toLocalTimeString()}`,
-        //   dateOpening: this.inputDateOpening,
-        //   timeOpening: this.inputTimeOpening,
-        //   timeArrival: this.inputTimeArrival,
-        //   numOfPeople: this.inputNumOfPeople,
-        //   tables: [],
-        //   dishes: newArrayDishes, // guardar objetos completos para perseverar caso o prato seja removido
-        //   basePrice: payload.basePrice,
-        //   discIDs: [],
-        //   totalPrice: payload.basePrice,
-        //   message: payload.message
-        // });
+        for (let i = 0; i < this.dishIds.length; i++) {
+          this.finalDishes.push(
+            this.allDishes.filter(dish => dish.dID == this.dishIds[i])[0]
+          );
+        }
+
+        //calcular preço total
+        let totalPrice = 0;
+        for (let i = 0; i < this.finalDishes.length; i++) {
+          totalPrice += this.finalDishes[i].price;
+        }
+
+        console.log(this.finalDishes);
+
+        Swal.fire({
+          title: "Solicitar Reserva",
+          text: `Pretende solicitar reserva para o dia ${this.inputDateOpening} ás ${this.inputTimeArrival}?`,
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Confirmar"
+        }).then(result => {
+          if (result.value) {
+            this.$store.commit("bookings/NEW_BOOKING", {
+              bID: this.bookingsNewId + 1,
+              uID: this.loginStatus.loggedUser.uID,
+              dateOpening: this.inputDateOpening,
+              timeOpening: this.inputTimeOpening,
+              timeArrival: this.inputTimeArrival,
+              numOfPeople: this.inputNumOfPeople,
+              tables: [],
+              dishes: this.finalDishes, // guardar objetos completos para perseverar caso o prato seja removido
+              discIDs: this.dishIds,
+              totalPrice: totalPrice,
+              message: this.inputOtherInfo
+            });
+            this.$store.commit("bookings/SAVE_TO_LOCALSTORAGE");
+            this.finalDishes = [];
+            Swal.fire({
+              title: "Reserva Solicitada",
+              text: `Reserva solicitada para o dia ${this.inputDateOpening} ás ${this.inputTimeArrival}. A aguardar confirmação`,
+              icon: "success"
+            });
+          }
+        });
       } else {
         Swal.fire({
           icon: "error",
@@ -302,6 +345,10 @@ export default {
     todaysSpecial() {
       if (this.availableDishes.length) return this.availableDishes[0];
       return this.lastAvailableDish;
+    },
+    date() {
+      let currDate = new Date().toISOString().split("T")[0];
+      return currDate;
     }
   },
   created() {

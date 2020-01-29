@@ -394,7 +394,7 @@ export default {
                 bID: payload.bID,
                 uID: payload.uID,
                 sID: 0,
-                dateRequest: `${new Date().toLocaleDateString()} ${new Date().toLocalTimeString()}`,
+                dateRequest: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
                 dateOpening: payload.dateOpening,
                 timeOpening: payload.timeOpening,
                 timeArrival: payload.timeArrival,
@@ -402,8 +402,8 @@ export default {
                 tables: payload.tables,
                 dishes: payload.dishes, // guardar objetos completos para perseverar caso o prato seja removido
                 basePrice: payload.basePrice,
-                discIDs: [],
-                totalPrice: payload.basePrice,
+                discIDs: payload.discIDs,
+                totalPrice: payload.totalPrice,
                 message: payload.message
             });
         },
