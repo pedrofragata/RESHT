@@ -20,13 +20,13 @@
           <div>
             <h4
               class="title is-size-5-mobile is-size-4-desktop has-text-weight-medium has-text-white"
-            >Amêijoas à Bulhão Pato</h4>
+            >{{ todaysSpecial.name }}</h4>
             <p
               class="is-family-sans-serif has-text-weight-light is-size-6 has-text-grey-light ra-dish-desc"
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices tincidunt arcu non sodales neque sodales. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.</p>
+            > {{ todaysSpecial.desc }}</p>
           </div>
           <figure class="is-hidden-tablet image is-1by1">
-            <img class="ra-dish-image-mobile" src="@/assets/ameijoas-a-bulhao-pato.jpg" />
+            <img class="ra-dish-image-mobile" :src="todaysSpecial.image" />
           </figure>
           <div class="has-text-centered ra-weekday-wrapper">
             <Weekday letter="S" day="9" />
@@ -38,7 +38,7 @@
         </div>
         <div class="column is-4 is-hidden-mobile">
           <figure class="image is-1by1">
-            <img class="ra-dish-image" src="@/assets/ameijoas-a-bulhao-pato.jpg" />
+            <img class="ra-dish-image" :src="todaysSpecial.image" />
           </figure>
         </div>
       </div>
@@ -105,7 +105,7 @@
                 <i class="fas fa-user"></i>
               </span>
             </VInput>
-            <VSelect
+            <!--<VSelect
               id="ra-form-dish"
               v-for="(dish, idx) in dishes"
               :key="idx + '-dishes'"
@@ -119,7 +119,13 @@
                   v-for="dish in allDishes"
                   :key="dish.dID + '-allDishes'"
                   :value="dish.dID"
-                >{{ dish.name }}</option>
+                >{{ dish.name }}</option>-->
+            <VSelect id="ra-form-dish" v-for="(dish, idx) in dishes" :key="idx + '-dishes'" modifier="has-icons-left"
+                    size="is-fullwidth" :label="`Prato ${dishes.indexOf(dish)+1} :`">
+              <select id="ra-form-dish">
+                <option value="">Selecione o prato</option>
+                <option v-for="dish in availableDishes" :key="dish.dID + '-allDishes'"
+                      :value="dish.dID">{{ dish.name }}</option>
               </select>
               <div class="icon is-small is-left">
                 <i class="fas fa-utensils"></i>
@@ -283,6 +289,7 @@ export default {
     ...mapGetters("bookings", ["allTimeIntervals"]),
     ...mapGetters("bookings", ["bookingsNewId"]),
     ...mapGetters("users", ["loginStatus"]),
+    ...mapGetters("dishes", ["availableDishes", "lastAvailableDish"]),
 
     dishes: function() {
       let arrayDishes = [];
@@ -291,7 +298,14 @@ export default {
         arrayDishes.push(newDish);
       }
       return arrayDishes;
+    },
+    todaysSpecial() {
+      if (this.availableDishes.length) return this.availableDishes[0];
+      return this.lastAvailableDish;
     }
+  },
+  created() {
+    this.$store.commit("dishes/GET_FROM_LOCALSTORAGE");
   }
 };
 </script>
