@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     saveAllTables() {
-      if (this.currentBookingPpl == 0 ) {
+      if (this.currentBookingPpl == 0) {
         let newArray = [];
         for (let i = 0; i < this.clickedTablesArr.length; i++) {
           let count = 0;
@@ -72,11 +72,20 @@ export default {
               count++;
             }
           }
+
           let newTable = {
             tID: this.clickedTablesArr[i],
             people: count
           };
-          newArray.push(newTable);
+          if (newArray.length > 0) {
+            for (let j = 0; j < newArray.length; j++) {
+              if (newTable.tID != newArray[j].tID) {
+                newArray.push(newTable);
+              }
+            }
+          } else {
+            newArray.push(newTable);
+          }
         }
 
         this.$store.commit("bookings/ADD_TABLE_TO_BOOKING", {
@@ -285,21 +294,20 @@ export default {
 
   created() {
     this.currentBooking = this.activeBooking;
-    this.currentBookingPpl = this.activeBooking.numOfPeople
+    this.currentBookingPpl = this.activeBooking.numOfPeople;
     this.numOfClients = this.currentBooking.numOfPeople;
     console.log(this.currentBooking);
 
     for (let i = 0; i < this.concurrentBookings.length; i++) {
-      console.log(this.concurrentBookings[i].tables.length, "CAOOOOOOO")
-        for (let j = 0; j < this.concurrentBookings[i].tables.length; j++) {
-          console.log(j,"JOTAAAAAAA")
-         console.log(this.allTables.filter(table => {
-            if (table.tID == this.concurrentBookings[i].tables[j].tID) {
-              return true;
-            } else return false;
-          })[0].people = this.concurrentBookings[i].tables[j].people, "ESTOURO") 
-        }
-      
+      console.log(this.concurrentBookings[i].tables.length, "CAOOOOOOO");
+      for (let j = 0; j < this.concurrentBookings[i].tables.length; j++) {
+        console.log(j, "JOTAAAAAAA");
+        this.allTables.filter(table => {
+          if (table.tID == this.concurrentBookings[i].tables[j].tID) {
+            return true;
+          } else return false;
+        })[0].people = this.concurrentBookings[i].tables[j].people;
+      }
     }
     console.log("Tables onCreated: ", this.allTables);
   },

@@ -443,7 +443,7 @@ export default {
         },
         SAVE_TO_LOCALSTORAGE(state) {
             localStorage.setItem("bookings-state", JSON.stringify(state.bookings));
-            localStorage.setItem("tables-state", JSON.stringify(state.tables));
+            //localStorage.setItem("tables-state", JSON.stringify(state.tables));
         },
         GET_FROM_LOCALSTORAGE(state) {
             
