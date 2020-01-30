@@ -411,6 +411,10 @@ export default {
         DEFINE_ACTIVE_BOOKING(state,booking){
             state.activeBooking = booking
         },
+        ASSIGN_BOOKING(state,id) {
+            let index = state.bookings.findIndex(booking => booking.bID == id)
+            state.bookings[index].sID = 1;
+        } ,
         DECLINE_BOOKING(state, id) {
             let index = state.bookings.findIndex(booking => booking.bID == id)
             state.bookings[index].sID = 4;
@@ -418,9 +422,7 @@ export default {
 
         ADD_TABLE_TO_BOOKING(state, payload){
             let index = state.bookings.findIndex(booking => booking.bID == payload.bID)
-            console.log(index, "BOOKING QUE VAI RECEBER A TABLE")
-            state.bookings[index].tables.push(payload.bTable)
-            
+            state.bookings[index].tables = payload.tables
         },
 
         ADD_TABLE(state, payload) {

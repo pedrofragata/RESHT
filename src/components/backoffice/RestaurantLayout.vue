@@ -44,6 +44,7 @@ export default {
       clientCounter: 0,
       clickedTable: "",
       clickedTablesArr: [],
+      currentBooking: "",
       tools: [
         {
           action: "add",
@@ -62,19 +63,28 @@ export default {
   },
   methods: {
     saveAllTables() {
-      let btt = [
-        { tID: this.clickedTable.tID, people: this.clickedTable.people }
-      ];
-      if (this.activeBooking.numOfPeople == 0) {
-        this.$store.commit("bookings/ADD_TABLE_TO_BOOKING", {
-          bID: this.activeBooking.bID,
-          bTable: this.clickedTablesArr
-        });
-        console.log(this.allBookings, "ALL BOOKINGSSSSSSSSSSSSSS");
-        console.log(btt, "ARRAY QUE VAI PARA A MUTAÇÃO");
+      if (this.currentBookingPpl == 0 ) {
+        let newArray = [];
+        for (let i = 0; i < this.clickedTablesArr.length; i++) {
+          let count = 0;
+          for (let j = 0; j < this.clickedTablesArr.length; j++) {
+            if (this.clickedTablesArr[j] == this.clickedTablesArr[i]) {
+              count++;
+            }
+          }
+          let newTable = {
+            tID: this.clickedTablesArr[i],
+            people: count
+          };
+          newArray.push(newTable);
+        }
 
+        this.$store.commit("bookings/ADD_TABLE_TO_BOOKING", {
+          bID: this.currentBooking.bID,
+          tables: newArray
+        });
+        this.$store.commit("bookings/ASSIGN_BOOKING", this.activeBooking.bID);
         this.$store.commit("bookings/SAVE_TO_LOCALSTORAGE");
-        console.log(this.clientCounter, "CLIENT COUNTER FINAL SUBMIT");
       } else {
         console.log(this.clientCounter, "CLIENT COUNTER FINAL ELSE");
         alert("NÃ NÃ");
@@ -186,7 +196,7 @@ export default {
         this.clickedTable.people += 1;
         this.clientCounter++;
 
-        //this.activeBooking.numOfPeople--;
+        this.currentBookingPpl--;
 
         this.clickedTablesArr.push(this.clickedTable.tID);
 
@@ -194,14 +204,16 @@ export default {
       } else if (this.selectedTool === "remove" && this.clickedTable.people) {
         if (this.clickedTablesArr.length) {
           console.log(this.clickedTablesArr.tID, "id tableeeeeee");
-          console.log(this.clickedTablesArr.includes(this.clickedTablesArr.tID), "TRYYYYYYY")
-          if (
-            this.clickedTablesArr.includes(this.clickedTable.tID)
-          ) {
+          console.log(
+            this.clickedTablesArr.includes(this.clickedTablesArr.tID),
+            "TRYYYYYYY"
+          );
+          if (this.clickedTablesArr.includes(this.clickedTable.tID)) {
             console.log("ENTROU 2222222");
             this.clickedTable.people--;
             this.clientCounter--;
-            
+            this.currentBookingPpl++;
+
             let index = this.clickedTablesArr.findIndex(
               tbl => tbl == this.clickedTable.tID
             );
@@ -272,27 +284,29 @@ export default {
   },
 
   created() {
-    this.numOfClients = this.activeBooking.numOfPeople;
-    console.log(this.activeBooking);
+    this.currentBooking = this.activeBooking;
+    this.currentBookingPpl = this.activeBooking.numOfPeople
+    this.numOfClients = this.currentBooking.numOfPeople;
+    console.log(this.currentBooking);
     for (let i = 0; i < this.concurrentBookings.length; i++) {
-      for (let j = 0; j < this.concurrentBookings[i].tables.length; j++) {
-        this.allTables.filter(table => {
-          if (table.tID == this.concurrentBookings[i].tables[j].tID) {
-            return true;
-          } else return false;
-        })[0].people = this.concurrentBookings[i].tables[j].people;
-      }
+      console.log(this.concurrentBookings[i].tables.length, "CARALHOOOOOOOO")
+    
+        for (let j = 0; j < this.concurrentBookings[i].tables.length; j++) {
+          console.log(j,"JOTAAAAAAA")
+          this.allTables.filter(table => {
+            if (table.tID == this.concurrentBookings[i].tables[j].tID) {
+              return true;
+            } else return false;
+          })[0].people = this.concurrentBookings[i].tables[j].people;
+        }
+      
     }
     console.log("Tables onCreated: ", this.allTables);
   },
   updated() {
     //console.log(this.allTables);
-    console.log(this.activeBooking, "ACTIVEBOOKING!!!!!!!!!");
-    console.log(this.concurrentBookings);
-    console.log(this.clientCounter, "CLIENT COUNTER LIVE");
-    console.log(this.clickedTable.people, "table PEOPLE COUNTER LIVE");
-    console.log(this.numOfClients, "NUMOFLCIENTS LIVE ");
-    console.log(this.activeBooking.numOfPeople, "NUM OF PEOPLE ");
+    console.log(this.currentBooking, "currentBooking!!!!!!!!!");
+    console.log(this.concurrentBookings, "TODAS AS BOOKINGS DE");
   },
   mounted() {
     const interactables = document.querySelectorAll(".ra-interactable");
