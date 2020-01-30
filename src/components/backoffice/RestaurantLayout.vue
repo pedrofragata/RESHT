@@ -288,16 +288,16 @@ export default {
     this.currentBookingPpl = this.activeBooking.numOfPeople
     this.numOfClients = this.currentBooking.numOfPeople;
     console.log(this.currentBooking);
+
     for (let i = 0; i < this.concurrentBookings.length; i++) {
-      console.log(this.concurrentBookings[i].tables.length, "CARALHOOOOOOOO")
-    
+      console.log(this.concurrentBookings[i].tables.length, "CAOOOOOOO")
         for (let j = 0; j < this.concurrentBookings[i].tables.length; j++) {
           console.log(j,"JOTAAAAAAA")
-          this.allTables.filter(table => {
+         console.log(this.allTables.filter(table => {
             if (table.tID == this.concurrentBookings[i].tables[j].tID) {
               return true;
             } else return false;
-          })[0].people = this.concurrentBookings[i].tables[j].people;
+          })[0].people = this.concurrentBookings[i].tables[j].people, "ESTOURO") 
         }
       
     }
