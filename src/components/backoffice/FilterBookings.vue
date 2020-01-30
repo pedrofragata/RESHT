@@ -11,15 +11,25 @@
                     <option :value="dates.lastYear">Último ano</option>
                 </select>
             </VSelect>
+            <!--<VSelect id="ra-filter-bookings-opening-date" label="Data da Reserva:" size="is-small is-fullwidth">
+                <select id="ra-filter-bookings-opening-date" v-model="filterDate">
+                    <option value="">Qualquer altura</option>
+                    <option :value="dates.today">Hoje</option>
+                    <option :value="dates.lastTwoDays">Últimos 2 dias</option>
+                    <option :value="dates.lastWeek">Última semana</option>
+                    <option :value="dates.lastMonth">Último mês</option>
+                    <option :value="dates.lastYear">Último ano</option>
+                </select>
+            </VSelect>-->
             <VSelect id="ra-filter-bookings-status" label="Estado:" size="is-small is-fullwidth">
                 <select id="ra-filter-bookings-status" v-model="filterStatus">
                     <option value="">Todos os estados</option>
                     <option value="0">Pendentes</option>
                     <option value="1">Confirmadas</option>
-                    <option value="2">Confirmadas Com Mesa</option>
+                   <!--<option value="2">Confirmadas Com Mesa</option>-->
                     <option value="3">Pagas</option>
-                    <option value="4">A Reembolsar</option>
-                    <option value="5">Reembolsadas</option>
+                    <option value="4">Rejeitadas</option>
+                <!--<option value="5">Reembolsadas</option>-->
                 </select>
             </VSelect>
         </div>
