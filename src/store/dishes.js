@@ -11,8 +11,8 @@ export default {
                 subCatID: 2,
                 desc: "Esta é uma descrição de um prato.",
                 image: "https://www.pingodoce.pt/wp-content/uploads/2017/06/ameijoas-a-bulhao-pato.jpg",
-                dateAvailableSince: "2020-01-17 00:00:00",
-                dateAvailableUpTo: "2020-01-31 23:59:00",
+                dateAvailableSince: "2018-01-17 00:00:00",
+                dateAvailableUpTo: "2019-01-31 23:59:00",
                 price: 4
             },
             {
@@ -23,7 +23,7 @@ export default {
                 desc: "Esta é outra descrição de um prato.",
                 image: "https://culinaria.culturamix.com/blog/wp-content/gallery/preparar-robalo/preparar-robalo-1.jpg",
                 dateAvailableSince: "2020-01-17 00:00:00",
-                dateAvailableUpTo: "2020-01-18 23:59:00",
+                dateAvailableUpTo: "2020-02-18 23:59:00",
                 price: 4.5
             },
             {
@@ -45,7 +45,7 @@ export default {
                 desc: "Prato de entrada.",
                 image: "http://compassionatecuisineblog.com/wp-content/uploads/2012/11/sopa-de-castanhas-e-cogumelos-compassionate-cuisine-blog-receitas-vegetarianas-1.jpg",
                 dateAvailableSince: "2020-01-17 00:00:00",
-                dateAvailableUpTo: "2020-01-31 23:59:00",
+                dateAvailableUpTo: "2020-02-31 23:59:00",
                 price: 3.5
             },
             {
@@ -56,7 +56,7 @@ export default {
                 desc: "Festa do Maracujá",
                 image: "https://abrilmdemulher.files.wordpress.com/2016/10/receita-lombo-de-porco-ao-maracuja.jpg?quality=90&strip=info&w=620&h=372&crop=1",
                 dateAvailableSince: "2020-01-19 00:00:00",
-                dateAvailableUpTo: "2020-01-30 23:59:00",
+                dateAvailableUpTo: "2020-02-30 23:59:00",
                 price: 5
             }
         ],
