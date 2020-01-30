@@ -206,7 +206,6 @@
                         <th>Hora de Chegada</th>
                         <th>Pessoas</th>
                         <th>Preço</th>
-                        <th>Rejeitar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -222,14 +221,11 @@
                                     </div>
                                 </abbr>
                             </td>
-                            <td>{{ booking.dateRequest }}</td>
+                            <td>{{ booking.dateRequest.split("T")[0]}}</td>
                             <td>{{ booking.dateOpening}}</td>
-                            <td>{{ booking.dateArrival }}</td>
+                            <td class="has-text-centered">{{ booking.timeArrival }}</td>
                             <td class="has-text-centered">{{ booking.numOfPeople }}</td>
                             <td class="has-text-centered">{{ `${booking.totalPrice} €` }}</td>
-                            <td class="has-text-centered">
-                                <button class="button is-small ra-reject-icon"></button>
-                            </td>
                         </tr>
                         <!--<tr v-for="(dish, dIdx) in booking.dishes" :key="dIdx + '-dish' + booking.bID"
                             :class="{'ra-striped' : bIdx % 2 !== 0}"

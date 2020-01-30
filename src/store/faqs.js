@@ -20,9 +20,7 @@ export default {
     },
     mutations: {
         ADD_FAQ(state, payload) {
-            state.allFaqs.push({
-                payload
-            });
+            state.allFaqs.push(payload);
         },
         REMOVE_FAQ(state, payload) {
             state.allFaqs = state.allFaqs.filter(faq => faq.question !== payload);

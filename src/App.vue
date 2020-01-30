@@ -9,6 +9,8 @@ export default {
   created() {
     this.$store.commit("users/GET_FROM_LOCALSTORAGE");
     this.$store.commit("bookings/GET_FROM_LOCALSTORAGE");
+    this.$store.commit("faqs/GET_FROM_LOCALSTORAGE");
+
     console.log("created")
   },
   beforeDestroy(){

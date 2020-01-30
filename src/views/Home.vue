@@ -168,21 +168,11 @@
       <Divider id="ra-bookmark-faqs" title="FAQs" />
       <div class="columns">
         <div class="column is-8 is-offset-2">
-          <Faq
-            question="Em que dias está o restaurante aberto?"
-            answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-          <Faq
-            question="Não pertenço ao IPP. Posso efetuar uma reserva?"
-            answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-          <Faq
-            question="Servem jantares?"
-            answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          />
-          <Faq
-            question="Emitem fatura?"
-            answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          
+          <Faq v-for="(faq,index) in allFaqs"
+          :key="index + '-allFaqs'"
+            :question="faq.question"
+            :answer="faq.answer"
           />
         </div>
       </div>
@@ -334,6 +324,7 @@ export default {
     ...mapGetters("bookings", ["bookingsNewId"]),
     ...mapGetters("users", ["loginStatus"]),
     ...mapGetters("dishes", ["availableDishes", "lastAvailableDish"]),
+    ...mapGetters("faqs", ["allFaqs"]),
 
     dishes: function() {
       let arrayDishes = [];
