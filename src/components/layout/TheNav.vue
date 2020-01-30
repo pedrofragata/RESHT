@@ -48,7 +48,7 @@
               class="navbar-item"
               :to="{name: 'profile', params: { userID: userID }}"
             >O meu perfil</router-link>
-            <router-link v-if="userID==0" class="navbar-item" :to="{name: 'backoffice' }">Backoffice</router-link>
+            <router-link v-if="loginStatus.loggedUser.accessLevel != 0" class="navbar-item" :to="{name: 'backoffice' }">Backoffice</router-link>
             <a class="navbar-item" @click="logout()">Terminar sessão</a>
           </div>
         </div>

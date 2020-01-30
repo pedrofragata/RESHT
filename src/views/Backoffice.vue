@@ -29,8 +29,8 @@
                   </ul>
                 </li>
               </ul>
-              <p class="menu-label">Administração</p>
-              <ul class="menu-list">
+              <p v-if="loginStatus.loggedUser.accessLevel==2" class="menu-label">Administração</p>
+              <ul v-if="loginStatus.loggedUser.accessLevel==2" class="menu-list">
                 <router-link to="/backoffice/#usersSection">Utilizadores</router-link>
               </ul>
             </aside>
@@ -74,7 +74,7 @@
               </div>
             </div>
           </div>
-          <div class="box">
+          <div v-if="loginStatus.loggedUser.accessLevel==2" class="box">
             <h3 id="usersSection" class="title is-3 is-spaced has-text-centered">Utilizadores</h3>
             <FilterUsers @users-filter-applied="filterUsers" />
             <TableUsers :users="users" />
@@ -147,7 +147,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("bookings", ["activeBooking"])
+    ...mapGetters("bookings", ["activeBooking"]),
+    ...mapGetters("users", ["loginStatus"])
   }
 };
 </script>
