@@ -1,22 +1,24 @@
 <template>
   <div class="restaurant-layout">
     <div class="ra-interactables-toolbar">
-      <p>Barra de ferramentas:</p>
+      <p >Barra de ferramentas:</p>
       <button
+        v-if="this.activeBooking.sID != 1"
         @click.prevent="selectTool('add')"
         class="button ra-tool-plus"
         :class="{'ra-tool-plus-active': selectedTool === 'add'}"
       ></button>
-      <button
+      <button 
+        v-if="this.activeBooking.sID != 1"
         @click.prevent="selectTool('remove')"
         class="button ra-tool-minus"
         :class="{'ra-tool-minus-active': selectedTool === 'remove'}"
       ></button>
-      <button type="button" class="confirmButton is-family-secondary" @click="saveAllTables">Gravar</button>
+      <button v-if="this.activeBooking.sID != 1" type="button" class="confirmButton is-family-secondary" @click="saveAllTables">Gravar</button>
       <!-- <button @click.prevent="selectTool('move')" class="button ra-tool-move"
               :class="{'ra-tool-move-active': selectedTool === 'move'}">
       </button>-->
-      <p>Clientes por atribuir: {{this.currentBookingPpl}}</p>
+      <p v-if="this.activeBooking.sID != 1">Clientes por atribuir: {{this.currentBookingPpl}}</p>
       <span style="float: right;">
         <p>{{this.activeBooking.dateOpening}}</p>
         <p>{{this.activeBooking.timeOpening}}</p>
@@ -197,63 +199,68 @@ export default {
       this.allTables[tableIndex].screenY = target.getBoundingClientRect().top;
     },
     onInteractableClick(event) {
-      const target = event.target;
-      this.clickedTable = this.allTables[parseInt(target.id)];
-      console.log(this.clickedTable, "CLICKED TABLE");
+      if (this.activeBooking.sID != 1) {
+        const target = event.target;
+        this.clickedTable = this.allTables[parseInt(target.id)];
+        console.log(this.clickedTable, "CLICKED TABLE");
 
-      if (
-        this.selectedTool === "add" &&
-        this.clientCounter < this.numOfClients &&
-        this.clickedTable.people < this.clickedTable.capacity
-      ) {
-        this.clickedTable.people += 1;
-        this.clientCounter++;
+        if (
+          this.selectedTool === "add" &&
+          this.clientCounter < this.numOfClients &&
+          this.clickedTable.people < this.clickedTable.capacity
+        ) {
+          this.clickedTable.people += 1;
+          this.clientCounter++;
 
-        this.currentBookingPpl--;
+          this.currentBookingPpl--;
 
-        this.clickedTablesArr.push(this.clickedTable.tID);
+          this.clickedTablesArr.push(this.clickedTable.tID);
 
-        console.log(this.clickedTablesArr, "ARRAY TABLES PREOCUPADO");
-      } else if (this.selectedTool === "remove" && this.clickedTable.people) {
-        if (this.clickedTablesArr.length) {
-          console.log(this.clickedTablesArr.tID, "id tableeeeeee");
-          console.log(
-            this.clickedTablesArr.includes(this.clickedTablesArr.tID),
-            "TRYYYYYYY"
-          );
-          if (this.clickedTablesArr.includes(this.clickedTable.tID)) {
-            console.log("ENTROU 2222222");
-            this.clickedTable.people--;
-            this.clientCounter--;
-            this.currentBookingPpl++;
-
-            let index = this.clickedTablesArr.findIndex(
-              tbl => tbl == this.clickedTable.tID
+          console.log(this.clickedTablesArr, "ARRAY TABLES PREOCUPADO");
+        } else if (this.selectedTool === "remove" && this.clickedTable.people) {
+          if (this.clickedTablesArr.length) {
+            console.log(this.clickedTablesArr.tID, "id tableeeeeee");
+            console.log(
+              this.clickedTablesArr.includes(this.clickedTablesArr.tID),
+              "TRYYYYYYY"
             );
-            console.log(index, "INDEEEEEEEEEX");
-            this.clickedTablesArr.splice(index, 1);
+            if (this.clickedTablesArr.includes(this.clickedTable.tID)) {
+              console.log("ENTROU 2222222");
+              this.clickedTable.people--;
+              this.clientCounter--;
+              this.currentBookingPpl++;
+
+              let index = this.clickedTablesArr.findIndex(
+                tbl => tbl == this.clickedTable.tID
+              );
+              console.log(index, "INDEEEEEEEEEX");
+              this.clickedTablesArr.splice(index, 1);
+            }
+
+            console.log("ENTROU");
           }
-
-          console.log("ENTROU");
         }
-      }
 
-      // a alterar alertas
-      else if (
-        this.clientCounter === this.numOfClients &&
-        this.selectedTool === "add"
-      ) {
-        alert(" As pessoas foram todas colocadas nas mesas ");
-      } else if (
-        this.clickedTable.people === this.clickedTable.capacity &&
-        this.selectedTool === "add"
-      ) {
-        alert(" Não cabe mais ninguém na mesa ");
-      } else if (!this.clickedTable.people && this.selectedTool === "remove") {
-        alert(" A mesa já se encontra vazia ");
-      }
+        // a alterar alertas
+        else if (
+          this.clientCounter === this.numOfClients &&
+          this.selectedTool === "add"
+        ) {
+          alert(" As pessoas foram todas colocadas nas mesas ");
+        } else if (
+          this.clickedTable.people === this.clickedTable.capacity &&
+          this.selectedTool === "add"
+        ) {
+          alert(" Não cabe mais ninguém na mesa ");
+        } else if (
+          !this.clickedTable.people &&
+          this.selectedTool === "remove"
+        ) {
+          alert(" A mesa já se encontra vazia ");
+        }
 
-      event.preventDefault();
+        event.preventDefault();
+      }
     },
     selectTool(action) {
       this.tools.forEach(tool => (tool.isActive = tool.action === action));
