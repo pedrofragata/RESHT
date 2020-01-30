@@ -56,10 +56,18 @@
               <td class="has-text-centered">{{ booking.numOfPeople }}</td>
               <td class="has-text-centered">{{ `${booking.totalPrice} €` }}</td>
               <td class="has-text-centered">
-                <button v-if="booking.sID != 3 && booking.sID !=4 && booking.sID !=5" @click="SetActiveBooking(booking)" class="button is-small ra-table-icon"></button>
+                <button
+                  v-if="booking.sID != 3 && booking.sID !=4 && booking.sID !=5"
+                  @click="SetActiveBooking(booking)"
+                  class="button is-small ra-table-icon"
+                ></button>
               </td>
               <td class="has-text-centered">
-                <button v-if="booking.sID != 3 && booking.sID !=4 && booking.sID !=5" @click="DeclineBooking(booking.bID)" class="button is-small ra-reject-icon"></button>
+                <button
+                  v-if="booking.sID != 3 && booking.sID !=4 && booking.sID !=5"
+                  @click="DeclineBooking(booking.bID)"
+                  class="button is-small ra-reject-icon"
+                ></button>
               </td>
             </tr>
             <tr
@@ -146,10 +154,13 @@ export default {
         }
       });
     },
-    SetActiveBooking(booking){
-        this.$store.commit("bookings/DEFINE_ACTIVE_BOOKING",booking)
-        console.log(this.activeBooking)
-
+    SetActiveBooking(booking) {
+      for (let i = 0; i < this.allTables.length; i++) {
+        this.allTables[i].people = 0;
+      }
+      this.$store.commit("bookings/DEFINE_ACTIVE_BOOKING", booking);
+      
+      console.log(this.activeBooking);
     }
     /*convertDate(date) {
             let day = date.split(" ")[0];
@@ -166,6 +177,7 @@ export default {
     ...mapGetters("bookings", ["statusDescByID", "statusColorByID"]),
     ...mapGetters("dishes", ["dishNameByID"]),
     ...mapGetters("bookings", ["activeBooking"]),
+    ...mapGetters("bookings", ["allTables"]),
 
     pages() {
       const numberOfPages = Math.ceil(this.bookings.length / this.perPage);

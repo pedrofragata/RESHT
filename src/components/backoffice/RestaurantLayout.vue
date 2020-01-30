@@ -16,6 +16,11 @@
       <!-- <button @click.prevent="selectTool('move')" class="button ra-tool-move"
               :class="{'ra-tool-move-active': selectedTool === 'move'}">
       </button>-->
+      <p>Clientes por atribuir: {{this.currentBookingPpl}}</p>
+      <span style="float: right;">
+        <p>{{this.activeBooking.dateOpening}}</p>
+        <p>{{this.activeBooking.timeOpening}}</p>
+      </span>
     </div>
     <div class="ra-interactables-screen">
       <div v-for="table in allTables" :key="table.tID + '-interactable'">
@@ -44,7 +49,6 @@ export default {
       clientCounter: 0,
       clickedTable: "",
       clickedTablesArr: [],
-      currentBooking: "",
       tools: [
         {
           action: "add",
@@ -289,11 +293,37 @@ export default {
         .filter(
           booking => booking.timeOpening == this.activeBooking.timeOpening
         );
+    },
+    currentBooking() {
+      return this.activeBooking;
+    }
+  },
+  watch: {
+    currentBooking: function() {
+      this.clientCounter = 0;
+      console.log("WATCHER", this.clientCounter);
+      this.currentBookingPpl = this.activeBooking.numOfPeople;
+
+      //this.currentBookingPpl = this.activeBooking.numOfPeople;
+      this.numOfClients = this.currentBooking.numOfPeople;
+      console.log(this.currentBooking);
+
+      for (let i = 0; i < this.concurrentBookings.length; i++) {
+        console.log(this.concurrentBookings[i].tables.length, "CAOOOOOOO");
+        for (let j = 0; j < this.concurrentBookings[i].tables.length; j++) {
+          console.log(j, "JOTAAAAAAA");
+          this.allTables.filter(table => {
+            if (table.tID == this.concurrentBookings[i].tables[j].tID) {
+              return true;
+            } else return false;
+          })[0].people = this.concurrentBookings[i].tables[j].people;
+        }
+      }
     }
   },
 
   created() {
-    this.currentBooking = this.activeBooking;
+    //this.currentBooking = this.activeBooking;
     this.currentBookingPpl = this.activeBooking.numOfPeople;
     this.numOfClients = this.currentBooking.numOfPeople;
     console.log(this.currentBooking);
@@ -311,11 +341,7 @@ export default {
     }
     console.log("Tables onCreated: ", this.allTables);
   },
-  updated() {
-    //console.log(this.allTables);
-    console.log(this.currentBooking, "currentBooking!!!!!!!!!");
-    console.log(this.concurrentBookings, "TODAS AS BOOKINGS DE");
-  },
+  beforeUpdate() {},
   mounted() {
     const interactables = document.querySelectorAll(".ra-interactable");
     for (let i = 0; i < interactables.length; i++) {

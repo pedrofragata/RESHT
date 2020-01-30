@@ -410,6 +410,7 @@ export default {
         },
         DEFINE_ACTIVE_BOOKING(state,booking){
             state.activeBooking = booking
+            
         },
         ASSIGN_BOOKING(state,id) {
             let index = state.bookings.findIndex(booking => booking.bID == id)
