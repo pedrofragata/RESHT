@@ -137,10 +137,9 @@ export default {
             });
         },
         ADD_MENU(state, payload) {
-            state.menus.push({
-                mID: payload.mID,
-                dIDs: payload.dIDs,
-                basePrice: payload.basePrice
+            state.dishes.filter(dish => payload.menu.includes(dish)).forEach(dish => {
+                dish.dateAvailableSince = payload.dateAvailableSince;
+                dish.dateAvailableUpTo = payload.dateAvailableUpTo;
             });
         },
         ADD_DISCOUNT(state, payload) {
