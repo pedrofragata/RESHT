@@ -8,6 +8,7 @@
             <th></th>
             <th>Nome</th>
             <th>Email</th>
+            <th>Palavra-passe</th>
             <th>Nivel de acesso</th>
             <th>Remover</th>
           </tr>
@@ -17,6 +18,7 @@
             <th></th>
             <th>Nome</th>
             <th>Email</th>
+            <th>Palavra-passe</th>
             <th>Nivel de acesso</th>
             <th>Remover</th>
           </tr>
@@ -40,7 +42,8 @@
               </td>
               <td>{{ user.fullName }}</td>
               <td>{{ user.email }}</td>
-              <td class="has-text-centered">{{ user.accessLevel }}</td>
+              <td><button class="button is-small ra-password-icon" @click="changePassword(user.uID)"></button></td>
+              <td>{{ getAccessLevelDesc(user.accessLevel) }}</td>
               <td class="has-text-centered">
                 <button class="button is-small ra-reject-icon" @click="removeUser(user.uID)"></button>
               </td>
@@ -104,12 +107,29 @@ export default {
         }
       });
     },
+    async changePassword(uID) {
+      const { value: password } = await Swal.fire({
+        title: "Insira a nova palavra-passe",
+        input: "password",
+        inputPlaceholder: "Escreva aqui a nova passe",
+        inputAttributes: {
+          maxlength: 30,
+          autocapitalize: 'off',
+          autocorrect: 'off'
+        }
+      })
+      if (password) {
+        this.$store.commit("users/EDIT_PASSWORD", {uID: uID, password: password});
+        this.$store.commit("users/SAVE_TO_LOCALSTORAGE");
+        Swal.fire("Alterado!", "A palavra-passe foi alterada com sucesso.", "success");
+      }
+    },
     updatePage(page) {
       this.page = page;
     }
   },
   computed: {
-    ...mapGetters("users", ["fullNameByID"]),
+    ...mapGetters("users", ["fullNameByID", "getAccessLevelDesc"]),
 
     pages() {
       const numberOfPages = Math.ceil(this.users.length / this.perPage);

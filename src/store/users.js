@@ -15,6 +15,20 @@ export default {
                 about:""
 
         }],
+        accessLevels: [
+            {
+                accessLevel: 0,
+                desc: "Utilizador Geral"
+            },
+            {
+                accessLevel: 1,
+                desc: "Responsável"
+            },
+            {
+                accessLevel: 2,
+                desc: "Administrador"
+            }
+        ],
         loginStatus: {
             isLogged: false,
             loggedUser: {}
@@ -94,7 +108,9 @@ export default {
         },
         fullNameByID: (state) => (uID) => { return state.users.find(user => user.uID === uID).fullName},
         isStaffMember: (state) => (uID) => { return state.users.find(user => user.uID === uID).accessLevel === 1},
-        
-        
+        getAccessLevelDesc: (state) => (accessLevel) => { return state.accessLevels.find(entry => {
+                return entry.accessLevel === accessLevel
+            }).desc;
+        }
     }
 }
