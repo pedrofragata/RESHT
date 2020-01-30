@@ -11,7 +11,7 @@ export default {
                 fullName: "Administrador User",
                 email: "admin@hotmail.com",
                 password:"123",
-                avatar:"",
+                avatar:"https://us.123rf.com/450wm/donets/donets1508/donets150800333/43440158-stock-vector-vector-user-icon-of-man-in-business-suit.jpg?ver=6",
                 about:""
 
         }],
@@ -44,7 +44,7 @@ export default {
                 fullName: payload.firstName + " " + payload.lastName,
                 email: payload.email,
                 password: payload.password,
-                avatar: "",
+                avatar: "https://www.pngitem.com/pimgs/m/294-2947257_interface-icons-user-avatar-profile-user-avatar-png.png",
                 about: ""
             });
         },
