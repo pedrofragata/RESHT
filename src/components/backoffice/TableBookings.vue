@@ -48,7 +48,7 @@
                   <div class="ra-status-indicator" :class="statusColorByID(booking.sID)"></div>
                 </abbr>
               </td>
-              <td>{{ booking.dateRequest }}</td>
+              <td>{{ booking.dateRequest.split("T")[0] }}</td>
               <td>{{ fullNameByID(booking.uID) }}</td>
               <td>{{booking.dateOpening}}</td>
               <td>{{booking.timeOpening}}</td>

@@ -322,6 +322,7 @@ export default {
     },
     updateNumOfPeople(num) {
       this.inputNumOfPeople = num;
+      this.dishIds.length = num
     },
     updateInputOtherInfo(str) {
       this.inputOtherInfo = str;

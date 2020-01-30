@@ -12,7 +12,7 @@ export default {
                 desc: "Esta é uma descrição de um prato.",
                 image: "https://www.pingodoce.pt/wp-content/uploads/2017/06/ameijoas-a-bulhao-pato.jpg",
                 dateAvailableSince: "2020-01-17 00:00:00",
-                dateAvailableUpTo: "2020-01-18 23:59:00",
+                dateAvailableUpTo: "2020-01-31 23:59:00",
                 price: 4
             },
             {
@@ -45,7 +45,7 @@ export default {
                 desc: "Prato de entrada.",
                 image: "http://compassionatecuisineblog.com/wp-content/uploads/2012/11/sopa-de-castanhas-e-cogumelos-compassionate-cuisine-blog-receitas-vegetarianas-1.jpg",
                 dateAvailableSince: "2020-01-17 00:00:00",
-                dateAvailableUpTo: "2020-01-18 23:59:00",
+                dateAvailableUpTo: "2020-01-31 23:59:00",
                 price: 3.5
             },
             {

@@ -100,7 +100,9 @@ export default {
                 if (this.filterDate === "") return this.allBookings;
 
                 return this.allBookings.filter(booking => {
-                    const dayOfBooking = booking.dateRequest.split(", ")[0];
+                    const dayOfBooking = booking.dateRequest.split("T")[0];
+                    console.log("dayOfBooking ",Date.parse(dayOfBooking) )
+                    console.log("filterDate ",this.filterDate)
                     if (Date.parse(dayOfBooking) >= this.filterDate) return dayOfBooking;
                     return false;
                 });
@@ -120,11 +122,11 @@ export default {
             
             const filteredPriceMin = (this.filterPriceMin === "0")
                                     ? filteredPeopleMax
-                                    : filteredPeopleMax.filter(booking => booking.totalPrice >= parseFloat(this.filterPriceMin));
+                                    : filteredPeopleMax.filter(booking => parseFloat(booking.totalPrice) >= parseFloat(this.filterPriceMin));
             
             const filteredPriceMax = (this.filterPriceMax === "Infinity")
                                     ? filteredPriceMin
-                                    : filteredPriceMin.filter(booking => booking.totalPrice <= parseFloat(this.filterPriceMax));
+                                    : filteredPriceMin.filter(booking => parseFloat(booking.totalPrice) <= parseFloat(this.filterPriceMax));
 
             return filteredPriceMax;
         }
