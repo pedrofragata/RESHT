@@ -3,8 +3,8 @@
     <TheNav />
     <div class="container is-fluid is-relative">
       <div class="columns">
-        <div class="column is-12 is-3-desktop sticky">
-          <div class="box">
+        <div class="column is-12 is-3-desktop">
+          <div class="box sticky">
             <aside class="menu">
               <p class="menu-label">Geral</p>
               <ul class="menu-list">

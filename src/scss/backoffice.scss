@@ -5,8 +5,9 @@
     background-attachment: fixed;
     background-size: auto 100%;
     background-position: center;
-    .div.sticky{
+    div.sticky{
         position: sticky;
+        top: $navbar-height;
     }
     .container {
         padding-top: 1em;
