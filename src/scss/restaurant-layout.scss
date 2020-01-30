@@ -16,7 +16,14 @@
     border: 2px solid $black-bis;
     border-radius: 6px;
 }
-
+.confirmButton{
+    background-color: hsl(74, 50%, 54%);
+    color: white;
+    border-color: $black-ter;
+    width: 70px;
+    height: 30px;
+    font-size: 13px;
+}
 .ra-interactables-screen {
     height: 400px;
 

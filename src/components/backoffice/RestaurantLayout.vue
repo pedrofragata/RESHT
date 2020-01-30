@@ -12,6 +12,7 @@
         class="button ra-tool-minus"
         :class="{'ra-tool-minus-active': selectedTool === 'remove'}"
       ></button>
+      <button type="button" class="confirmButton is-family-secondary" @click="saveAllTables">Gravar</button>
       <!-- <button @click.prevent="selectTool('move')" class="button ra-tool-move"
               :class="{'ra-tool-move-active': selectedTool === 'move'}">
       </button>-->
@@ -39,7 +40,10 @@ export default {
   name: "RestaurantLayout",
   data() {
     return {
+      numOfClients: 0,
       clientCounter: 0,
+      clickedTable: "",
+      clickedTablesArr: [],
       tools: [
         {
           action: "add",
@@ -57,6 +61,26 @@ export default {
     };
   },
   methods: {
+    saveAllTables() {
+      let btt = [
+        { tID: this.clickedTable.tID, people: this.clickedTable.people }
+      ];
+      if (this.activeBooking.numOfPeople == 0) {
+        this.$store.commit("bookings/ADD_TABLE_TO_BOOKING", {
+          bID: this.activeBooking.bID,
+          bTable: this.clickedTablesArr
+        });
+        console.log(this.allBookings, "ALL BOOKINGSSSSSSSSSSSSSS");
+        console.log(btt, "ARRAY QUE VAI PARA A MUTAÇÃO");
+
+        this.$store.commit("bookings/SAVE_TO_LOCALSTORAGE");
+        console.log(this.clientCounter, "CLIENT COUNTER FINAL SUBMIT");
+      } else {
+        console.log(this.clientCounter, "CLIENT COUNTER FINAL ELSE");
+        alert("NÃ NÃ");
+      }
+    },
+
     initInteract(selector) {
       // const data = this.$data; // palavra reservada "this" retorna undefined quando invocada dentro das props do interact
       // à exceção de onmove e onend da prop draggable
@@ -151,18 +175,42 @@ export default {
     },
     onInteractableClick(event) {
       const target = event.target;
-      const clickedTable = this.allTables[parseInt(target.id)];
+      this.clickedTable = this.allTables[parseInt(target.id)];
+      console.log(this.clickedTable, "CLICKED TABLE");
 
       if (
         this.selectedTool === "add" &&
         this.clientCounter < this.numOfClients &&
-        clickedTable.people < clickedTable.capacity
+        this.clickedTable.people < this.clickedTable.capacity
       ) {
-        clickedTable.people++;
+        this.clickedTable.people += 1;
         this.clientCounter++;
-      } else if (this.selectedTool === "remove" && clickedTable.people) {
-        clickedTable.people--;
-        this.clientCounter--;
+
+        //this.activeBooking.numOfPeople--;
+
+        this.clickedTablesArr.push(this.clickedTable.tID);
+
+        console.log(this.clickedTablesArr, "ARRAY TABLES PREOCUPADO");
+      } else if (this.selectedTool === "remove" && this.clickedTable.people) {
+        if (this.clickedTablesArr.length) {
+          console.log(this.clickedTablesArr.tID, "id tableeeeeee");
+          console.log(this.clickedTablesArr.includes(this.clickedTablesArr.tID), "TRYYYYYYY")
+          if (
+            this.clickedTablesArr.includes(this.clickedTable.tID)
+          ) {
+            console.log("ENTROU 2222222");
+            this.clickedTable.people--;
+            this.clientCounter--;
+            
+            let index = this.clickedTablesArr.findIndex(
+              tbl => tbl == this.clickedTable.tID
+            );
+            console.log(index, "INDEEEEEEEEEX");
+            this.clickedTablesArr.splice(index, 1);
+          }
+
+          console.log("ENTROU");
+        }
       }
 
       // a alterar alertas
@@ -172,11 +220,11 @@ export default {
       ) {
         alert(" As pessoas foram todas colocadas nas mesas ");
       } else if (
-        clickedTable.people === clickedTable.capacity &&
+        this.clickedTable.people === this.clickedTable.capacity &&
         this.selectedTool === "add"
       ) {
         alert(" Não cabe mais ninguém na mesa ");
-      } else if (!clickedTable.people && this.selectedTool === "remove") {
+      } else if (!this.clickedTable.people && this.selectedTool === "remove") {
         alert(" A mesa já se encontra vazia ");
       }
 
@@ -220,13 +268,11 @@ export default {
         .filter(
           booking => booking.timeOpening == this.activeBooking.timeOpening
         );
-    },
-    numOfClients(){
-      return this.activeBooking.numOfPeople
     }
   },
 
   created() {
+    this.numOfClients = this.activeBooking.numOfPeople;
     console.log(this.activeBooking);
     for (let i = 0; i < this.concurrentBookings.length; i++) {
       for (let j = 0; j < this.concurrentBookings[i].tables.length; j++) {
@@ -237,13 +283,16 @@ export default {
         })[0].people = this.concurrentBookings[i].tables[j].people;
       }
     }
-    console.log("Tables onCreated: ",this.allTables)
+    console.log("Tables onCreated: ", this.allTables);
   },
   updated() {
     //console.log(this.allTables);
-    console.log(this.activeBooking);
+    console.log(this.activeBooking, "ACTIVEBOOKING!!!!!!!!!");
     console.log(this.concurrentBookings);
-    
+    console.log(this.clientCounter, "CLIENT COUNTER LIVE");
+    console.log(this.clickedTable.people, "table PEOPLE COUNTER LIVE");
+    console.log(this.numOfClients, "NUMOFLCIENTS LIVE ");
+    console.log(this.activeBooking.numOfPeople, "NUM OF PEOPLE ");
   },
   mounted() {
     const interactables = document.querySelectorAll(".ra-interactable");

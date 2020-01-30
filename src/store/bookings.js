@@ -415,6 +415,14 @@ export default {
             let index = state.bookings.findIndex(booking => booking.bID == id)
             state.bookings[index].sID = 4;
         },
+
+        ADD_TABLE_TO_BOOKING(state, payload){
+            let index = state.bookings.findIndex(booking => booking.bID == payload.bID)
+            console.log(index, "BOOKING QUE VAI RECEBER A TABLE")
+            state.bookings[index].tables.push(payload.bTable)
+            
+        },
+
         ADD_TABLE(state, payload) {
             state.tables.push({
                 tID: payload.tID,
@@ -444,7 +452,7 @@ export default {
             //     localStorage.setItem("bookings-state", JSON.stringify(state.bookings));
             // }
                
-                
+    
 
             localStorage.getItem("tables-state")
                 ? state.tables = JSON.parse(localStorage.getItem("tables-state"))
