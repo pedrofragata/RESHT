@@ -40,6 +40,8 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Swal from "../../../node_modules/sweetalert2/dist/sweetalert2.js";
+import "../../../node_modules/sweetalert2/src/sweetalert2.scss";
 
 import interact from "interactjs";
 
@@ -70,7 +72,17 @@ export default {
   methods: {
     saveAllTables() {
       if (this.currentBookingPpl == 0) {
-        let newArray = [];
+        Swal.fire({
+        title: "Confirmar reserva?",
+        text: "Não será possivel reverter esta ação!",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, confirmar!"
+      }).then(result => {
+        if (result.value) {
+          let newArray = [];
         for (let i = 0; i < this.clickedTablesArr.length; i++) {
           let count = 0;
           for (let j = 0; j < this.clickedTablesArr.length; j++) {
@@ -93,16 +105,23 @@ export default {
             newArray.push(newTable);
           }
         }
-
+        
         this.$store.commit("bookings/ADD_TABLE_TO_BOOKING", {
           bID: this.currentBooking.bID,
           tables: newArray
         });
         this.$store.commit("bookings/ASSIGN_BOOKING", this.activeBooking.bID);
         this.$store.commit("bookings/SAVE_TO_LOCALSTORAGE");
+          Swal.fire("Confirmada!", "Reserva confirmada e mesa atribuida.", "success");
+        }
+      });
       } else {
         console.log(this.clientCounter, "CLIENT COUNTER FINAL ELSE");
-        alert("NÃ NÃ");
+        Swal.fire({
+          icon: "error",
+          title: "Oops..",
+          text: "Necessita de atribuir uma mesa a todos os clientes!"
+        });
       }
     },
 
