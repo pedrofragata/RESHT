@@ -1,3 +1,10 @@
+img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center center;
+}
 .ra-brand {
     position: absolute;
     top: 50%;
